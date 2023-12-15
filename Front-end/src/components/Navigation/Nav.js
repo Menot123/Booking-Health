@@ -7,14 +7,14 @@ import { FaQuestionCircle } from "react-icons/fa";
 const Nav = (props) => {
     return (
         <>
-            <div class="top-nav">
+            <div className="top-nav">
                 <div className='container p-3 d-flex nav-container'>
                     <div>
                         <img className='logo' alt='logo' src={logo}></img>
                     </div>
                     <NavLink to="news">Chuyên khoa</NavLink>
-                    <NavLink to="contact">Cơ sở Y tế</NavLink>
-                    <NavLink to="about">Sống khỏe</NavLink>
+                    <NavLink to="co-so-y-te">Cơ sở Y tế</NavLink>
+                    <NavLink to="song-khoe">Sống khỏe</NavLink>
                     <div className='search-input'>
                         <FaQuestionCircle />
                     </div>
