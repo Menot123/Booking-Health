@@ -1,8 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import viewEngine from './config/viewEngine'
-import initWebRoutes from './routes/web'
-import connection from './config/connectDb'
+import viewEngine from './config/viewEngine';
+import initWebRoutes from './routes/web';
+import connection from './config/connectDb';
+import cors from 'cors';
 require('dotenv').config()
 
 let app = express()
@@ -10,6 +11,8 @@ let port = process.env.PORT || 8769
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(cors())
 
 viewEngine(app)
 
