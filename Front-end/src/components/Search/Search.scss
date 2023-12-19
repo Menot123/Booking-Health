@@ -1,0 +1,20 @@
+.search-input {
+    cursor          : pointer;
+    background-color: white;
+    width           : 240px;
+    height          : 50px;
+    border-radius   : 25px;
+    display         : flex;
+    align-items     : center;
+    padding         : 4px;
+    margin          : 0 32px 0 12px;
+
+    .icon-search {
+        font-size: 1.3rem;
+    }
+
+    .place-holder-search {
+        color    : #999;
+        font-size: 1.1rem;
+    }
+}

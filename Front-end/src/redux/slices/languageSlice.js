@@ -1,24 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit'
+import Vietnamese from '../../languages/vi.json'
+import English from '../../languages/en.json'
 
 const initialState = {
     value: 'vi',
+    message: Vietnamese
 }
+
+
+
 
 export const languageSlice = createSlice({
     name: 'language',
     initialState,
     reducers: {
-        translateToEn: (state) => {
-            state.value = 'en'
+        translate: (state, action) => {
+            const newLocale = action.payload
+            state.value = newLocale
+            if (newLocale === 'en') {
+                state.message = English
+            } else {
+                state.message = Vietnamese
+            }
         },
-        translateToVi: (state) => {
-            state.value = 'vi'
-        }
-
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { translateToEn, translateToVi } = languageSlice.actions
+export const { translate } = languageSlice.actions
 
 export default languageSlice.reducer

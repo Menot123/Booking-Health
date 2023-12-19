@@ -5,12 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
+import Wrapper from './HOC/Wrapper'
 
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <Wrapper>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Wrapper>
   </Provider>,
   document.getElementById('root')
 );
