@@ -1,6 +1,6 @@
 import db from '../models/index'
 
-const testCreateWithORM = async () => {
+const testCreateWithORM = async() => {
     try {
         await db.User.create({
             username: 'felix',
@@ -12,4 +12,19 @@ const testCreateWithORM = async () => {
     }
 }
 
-module.exports = { testCreateWithORM }
+const loginChecked = async(us, pwd) => {
+    try {
+        console.log(us + pwd);
+        const checked = await db.User.findAll({
+            where: {
+                username: us,
+                password: pwd
+            }
+        });
+        return checked[0]
+    } catch (e) {
+        console.log('>>> error: ', e)
+    }
+}
+
+module.exports = { testCreateWithORM, loginChecked }
