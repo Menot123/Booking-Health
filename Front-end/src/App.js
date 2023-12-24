@@ -9,9 +9,11 @@ import {
 } from "react-router-dom";
 import { FormattedMessage } from 'react-intl'
 // import { Context } from './HOC/Wrapper'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { translate } from './redux/slices/languageSlice'
+import { fetchAllUser } from '../src/services/userService'
+
 
 
 
@@ -20,10 +22,12 @@ import Home from './components/Home/Home';
 
 
 function App() {
-  // const context = useContext(Context)
-  const locale = useSelector(state => state.language.value)
-  const dispatch = useDispatch()
 
+  console.log(process.env.REACT_APP_BACKEND_URL)
+
+  useEffect(() => {
+    fetchAllUser()
+  }, [])
 
   const url = window.location.pathname;
   return (
@@ -46,8 +50,8 @@ function App() {
           </Route>
           <Route exact path="/">
             <FormattedMessage
-              id="find-specialty"
-              defaultMessage={'Find specialty'}
+              id="homepage.specialty"
+            // defaultMessage={'Find specialty'}
             />
             <Home />
           </Route>

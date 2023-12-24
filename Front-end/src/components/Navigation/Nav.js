@@ -29,13 +29,13 @@ const Nav = (props) => {
                     <div className='img-logo' onClick={() => handleClickLogo()}>
                         <img className='logo' alt='logo' src={logo}></img>
                     </div>
-                    <NavLink to="news"><FormattedMessage id='specialty' /></NavLink>
-                    <NavLink to="co-so-y-te"><FormattedMessage id='facilities' /></NavLink>
-                    <NavLink to="song-khoe"><FormattedMessage id='live-healthy' /></NavLink>
+                    <NavLink to="news"><FormattedMessage id='homepage.specialty' /></NavLink>
+                    <NavLink to="co-so-y-te"><FormattedMessage id='homepage.facilities' /></NavLink>
+                    <NavLink to="song-khoe"><FormattedMessage id='homepage.live-healthy' /></NavLink>
                     <Search />
                     <div className='content-nav-right d-flex'>
-                        <div className='help-contact'>
-                            <FaQuestionCircle /> <span onClick={() => handleClickSupport()}><FormattedMessage id='support' /></span>
+                        <div className='help-contact d-flex'>
+                            <FaQuestionCircle /> <span onClick={() => handleClickSupport()}><FormattedMessage id='homepage.support' /></span>
                         </div>
                         <div className='change-language ms-3 d-flex'>
                             <span onClick={() => dispatch(translate('vi'))} className={language === 'vi' ? 'language-vi active' : 'language-vi '} >VN</span>

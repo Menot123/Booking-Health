@@ -1,7 +1,7 @@
 {
-    "specialty": "Chuyên khoa",
-    "facilities": "Cơ sở y tế",
-    "live-healthy": "Sống khỏe",
-    "find-specialty": "Tìm chuyên khoa",
-    "support": "Hỗ trợ"
+    "homepage.specialty": "Chuyên khoa",
+    "homepage.facilities": "Cơ sở y tế",
+    "homepage.live-healthy": "Sống khỏe",
+    "homepage.find-specialty": "Tìm chuyên khoa",
+    "homepage.support": "Hỗ trợ"
 }

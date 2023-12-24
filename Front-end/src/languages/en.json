@@ -1,7 +1,7 @@
 {
-    "specialty": "Specialty",
-    "facilities": "Facilities",
-    "live-healthy": "Live healthy",
-    "find-specialty": "Find specialty",
-    "support": "Support"
+    "homepage.specialty": "Specialty",
+    "homepage.facilities": "Facilities",
+    "homepage.live-healthy": "Live healthy",
+    "homepage.find-specialty": "Find specialty",
+    "homepage.support": "Support"
 }

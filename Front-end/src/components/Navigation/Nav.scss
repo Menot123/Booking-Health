@@ -47,7 +47,9 @@ body {
 
 
             .help-contact {
-                width: 60%;
+                width      : 60%;
+                align-items: center;
+                gap        : 4px;
 
                 &:hover {
                     cursor: pointer;
