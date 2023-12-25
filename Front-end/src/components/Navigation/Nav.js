@@ -29,7 +29,7 @@ const Nav = (props) => {
                     <div className='img-logo' onClick={() => handleClickLogo()}>
                         <img className='logo' alt='logo' src={logo}></img>
                     </div>
-                    <NavLink to="news"><FormattedMessage id='homepage.specialty' /></NavLink>
+                    <NavLink to="chuyen-khoa"><FormattedMessage id='homepage.specialty' /></NavLink>
                     <NavLink to="co-so-y-te"><FormattedMessage id='homepage.facilities' /></NavLink>
                     <NavLink to="song-khoe"><FormattedMessage id='homepage.live-healthy' /></NavLink>
                     <Search />
