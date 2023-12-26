@@ -12,7 +12,6 @@ import { FormattedMessage } from 'react-intl'
 import { useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { translate } from './redux/slices/languageSlice'
-import { fetchAllUser } from '../src/services/userService'
 
 
 
@@ -23,10 +22,8 @@ import Home from './components/Home/Home';
 
 function App() {
 
-  console.log(process.env.REACT_APP_BACKEND_URL)
 
   useEffect(() => {
-    fetchAllUser()
   }, [])
 
   const url = window.location.pathname;

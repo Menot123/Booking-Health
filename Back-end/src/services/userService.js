@@ -1,30 +1,36 @@
 import db from '../models/index'
+import { createNewJWT } from '../middleware/JWTServices'
 
-const testCreateWithORM = async() => {
+const loginChecked = async (us, pwd) => {
     try {
-        await db.User.create({
-            username: 'felix',
-            email: 'felix@example.com',
-            password: '123123'
-        })
-    } catch (e) {
-        console.log('>>> error: ', e)
-    }
-}
-
-const loginChecked = async(us, pwd) => {
-    try {
-        console.log(us + pwd);
-        const checked = await db.User.findAll({
+        let user = await db.User.findOne({
             where: {
                 username: us,
                 password: pwd
             }
         });
-        return checked[0]
+        if (user) {
+            let payload = {
+                username: user.username,
+            }
+            let token = createNewJWT(payload)
+            return {
+                EM: 'OK',
+                EC: 0,
+                DT: {
+                    access_token: token,
+                    username: user.username,
+                }
+            }
+        }
+        return {
+            EM: 'Your username or password is incorrect',
+            EC: 1,
+            DT: ''
+        }
     } catch (e) {
         console.log('>>> error: ', e)
     }
 }
 
-module.exports = { testCreateWithORM, loginChecked }
+module.exports = { loginChecked }
