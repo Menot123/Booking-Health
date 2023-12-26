@@ -1,5 +1,7 @@
 import './App.scss'
 import Nav from './components/Navigation/Nav';
+import Foot from './components/Footer/Foot';
+import Sup from './components/Support/Sup';
 import {
   BrowserRouter,
   Switch,
@@ -43,7 +45,7 @@ function App() {
             Song Khoe
           </Route>
           <Route path="/ho-tro">
-            Ho tro
+            <Sup />
           </Route>
           <Route exact path="/">
             <FormattedMessage
@@ -56,6 +58,7 @@ function App() {
             404 Not found
           </Route>
         </Switch>
+        {url === '/login' ? ' ' : <Foot />}
       </div>
     </BrowserRouter>
   );
