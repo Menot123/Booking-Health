@@ -4,81 +4,124 @@ body {
 }
 
 .top-nav {
-    height          : 100%;
-    overflow        : hidden;
-    background-color: rgb(237, 255, 250);
+    height             : 100%;
+    // overflow        : hidden;
+    background-color   : rgb(237, 255, 250);
 
     .nav-container {
 
-        .img-logo {
-            cursor: pointer;
-        }
+        position: relative;
 
-        align-items: center;
-        gap        : 4px;
-
-        a {
-            text-align     : center;
-            text-decoration: none;
-            font-size      : 19px;
-            color          : black;
-            padding        : 4px 8px;
-            min-width      : 140px;
-        }
-
-        a:hover {
-            cursor: pointer;
-        }
-
-        a.active {
-            color           : white;
-            background-color: rgb(255 196 25);
-            border-radius   : 20px;
-            font-weight     : 700;
-        }
-
-
-        .logo {
-            height: 44px;
-            width : 100%;
-        }
-
-        .content-nav-right {
-
-
-            .help-contact {
-                width      : 60%;
-                align-items: center;
-                gap        : 4px;
-
-                &:hover {
-                    cursor: pointer;
-                }
+        .nav-items {
+            .img-logo {
+                cursor: pointer;
             }
 
-            .change-language {
+            align-items: center;
+            gap        : 4px;
 
-                width: 40%;
+            a {
+                text-align     : center;
+                text-decoration: none;
+                font-size      : 19px;
+                color          : black;
+                padding        : 4px 8px;
+                min-width      : 140px;
+            }
 
-                .language-vi,
-                .language-en {
-                    opacity: 0.2;
+            a:hover {
+                cursor: pointer;
+            }
+
+            a.active {
+                color           : white;
+                background-color: rgb(255 196 25);
+                border-radius   : 20px;
+                font-weight     : 700;
+            }
+
+
+            .logo {
+                height: 44px;
+                width : 100%;
+            }
+
+            .content-nav-right {
+
+
+                .help-contact {
+                    width      : 60%;
+                    align-items: center;
+                    gap        : 4px;
 
                     &:hover {
-                        cursor : pointer;
-                        opacity: 1;
-
+                        cursor: pointer;
                     }
                 }
 
-                .active {
-                    opacity: 1;
-                    color  : orange;
+                .change-language {
+
+                    width: 40%;
+
+                    .language-vi,
+                    .language-en {
+                        opacity: 0.2;
+
+                        &:hover {
+                            cursor : pointer;
+                            opacity: 1;
+
+                        }
+                    }
+
+                    .active {
+                        opacity: 1;
+                        color  : orange;
+                    }
+                }
+
+
+            }
+
+        }
+
+        .banner-background {
+            height: 320px;
+            width : 100%;
+        }
+
+        .banner-slide {
+
+            width: 100%;
+
+            .banner-carousel {
+
+                .carousel {
+                    position: absolute;
+                    top     : 80px;
+
+                    .carousel-inner {
+                        border-radius: 32px;
+                        height       : 100%;
+
+                        .carousel-item {
+                            max-height: 400px;
+                            width     : 100%;
+                            inset     : 0px;
+                            object-fit: cover;
+                            color     : transparent;
+                        }
+                    }
                 }
             }
 
 
         }
+
     }
 
+}
+
+.banner-spacing {
+    height: 80px;
 }
