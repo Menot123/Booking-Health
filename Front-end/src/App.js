@@ -14,7 +14,8 @@ import { FormattedMessage } from 'react-intl'
 import { useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { translate } from './redux/slices/languageSlice'
-
+import { Scrollbars } from 'react-custom-scrollbars';
+import CustomScrollbar from './components/ScrollBarCustom/CustomScrollbar'
 
 
 
@@ -33,7 +34,6 @@ function App() {
     <BrowserRouter>
       <div className='app-container'>
         {url === '/login' ? ' ' : <Nav />}
-
         <Switch>
           <Route path="/login">
             <Login />
@@ -48,10 +48,6 @@ function App() {
             <Sup />
           </Route>
           <Route exact path="/">
-            <FormattedMessage
-              id="homepage.specialty"
-            // defaultMessage={'Find specialty'}
-            />
             <Home />
           </Route>
           <Route exact path="*">

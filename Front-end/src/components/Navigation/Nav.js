@@ -35,10 +35,13 @@ const Nav = (props) => {
                         <div className='img-logo' onClick={() => handleClickLogo()}>
                             <img className='logo' alt='logo' src={logo}></img>
                         </div>
-                        <NavLink to="chuyen-khoa"><FormattedMessage id='homepage.specialty' /></NavLink>
-                        <NavLink to="co-so-y-te"><FormattedMessage id='homepage.facilities' /></NavLink>
-                        <NavLink to="song-khoe"><FormattedMessage id='homepage.live-healthy' /></NavLink>
-                        <Search />
+                        <div className='nav-link-items d-flex '>
+                            <NavLink to="chuyen-khoa"><FormattedMessage id='homepage.specialty' /></NavLink>
+                            <NavLink to="co-so-y-te"><FormattedMessage id='homepage.facilities' /></NavLink>
+                            <NavLink to="song-khoe"><FormattedMessage id='homepage.live-healthy' /></NavLink>
+                            <Search className="search-input" />
+                        </div>
+
                         <div className='content-nav-right d-flex'>
                             <div className='help-contact d-flex'>
                                 <FaQuestionCircle /> <span onClick={() => handleClickSupport()}><FormattedMessage id='homepage.support' /></span>
@@ -49,7 +52,7 @@ const Nav = (props) => {
                             </div>
                         </div>
                     </div>
-                    {url === '/ho-tro' ? ' ' :
+                    {/* {url === '/ho-tro' ? ' ' :
                         <>
                             <div className='banner-background'></div>
 
@@ -84,7 +87,7 @@ const Nav = (props) => {
                                 </div>
                             </div>
                         </>
-                    }
+                    } */}
 
 
                 </div>

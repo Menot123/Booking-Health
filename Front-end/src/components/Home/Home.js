@@ -9,8 +9,10 @@ const Home = () => {
 
     return (
         <>
-            <div>Home</div>
-            <div>Current language: {language}</div>
+            <div className='container home-container'>
+                <div>Home</div>
+                <div>Current language: {language}</div>
+            </div>
 
         </>
     )

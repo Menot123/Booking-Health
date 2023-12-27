@@ -85,6 +85,12 @@ body {
 
         }
 
+        .nav-link-items {
+            align-items: center;
+            gap        : 4px;
+
+        }
+
         .banner-background {
             height: 320px;
             width : 100%;
@@ -124,4 +130,85 @@ body {
 
 .banner-spacing {
     height: 80px;
+}
+
+@media screen and (max-width: 576px) {
+    .nav-container {
+        .nav-items {
+            position      : relative;
+            flex-direction: column;
+            align-items   : unset !important;
+
+            .img-logo {
+                .logo {
+                    width: 168px;
+                }
+            }
+
+            .nav-link-items {
+                display        : flex;
+                justify-content: space-between;
+                flex-wrap      : wrap;
+
+
+                a {
+                    font-size: 16px;
+                    min-width: 100px;
+                }
+
+                .search-input {
+                    width : 100%;
+                    margin: 4px 8px;
+                }
+            }
+
+            .content-nav-right {
+                position: absolute;
+                top     : 10px;
+                right   : 0;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 577px) and (max-width: 1200px) {
+    .nav-container {
+        margin   : 0 !important;
+        max-width: 100% !important;
+
+        .nav-items {
+            position      : relative;
+            flex-direction: column;
+            align-items   : unset !important;
+
+            .img-logo {
+                .logo {
+                    width: 168px;
+                }
+            }
+
+            .nav-link-items {
+                display        : flex;
+                justify-content: space-evenly;
+                flex-wrap      : wrap;
+
+
+                a {
+                    font-size: 16px;
+                    min-width: 100px;
+                }
+
+                .search-input {
+                    width : 100%;
+                    margin: 4px 8px;
+                }
+            }
+
+            .content-nav-right {
+                position: absolute;
+                top     : 10px;
+                right   : 0;
+            }
+        }
+    }
 }
