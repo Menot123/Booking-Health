@@ -14,8 +14,6 @@ import { FormattedMessage } from 'react-intl'
 import { useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { translate } from './redux/slices/languageSlice'
-import { Scrollbars } from 'react-custom-scrollbars';
-import CustomScrollbar from './components/ScrollBarCustom/CustomScrollbar'
 
 
 
