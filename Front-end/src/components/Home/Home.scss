@@ -1,3 +1,16 @@
 .home-container {
-    height: 100vh;
+    min-height: 800px !important;
+}
+
+.doctor-wrapper {
+    width     : 100%;
+    overflow  : hidden;
+    position  : relative;
+    text-align: center;
+
+    .background-doctors {
+        width : 100%;
+        height: fit-content;
+    }
+
 }

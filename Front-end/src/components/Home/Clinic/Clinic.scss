@@ -1,0 +1,77 @@
+.slider-content {
+    .title {
+        margin-bottom: 32px;
+
+        .btn-view-more {
+            background-color: rgb(218, 243, 246);
+            padding         : 10px 8px;
+            border-radius   : 16px;
+            border          : none;
+
+            .text-btn-view-more {
+                font-size  : 20px;
+                color      : rgb(52, 146, 158);
+                font-weight: 600;
+            }
+        }
+    }
+
+    .slick-slider {
+        .slick-arrow {
+            z-index      : 10;
+            box-shadow   : 0 0 5px rgba(201, 236, 240, 0.5);
+            border-color : rgb(181, 231, 237);
+            border-radius: 30px;
+            width        : 40px;
+            height       : 40px;
+            padding-top  : 2px;
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+            color    : rgb(52, 146, 158);
+            font-size: 40px;
+        }
+
+        .slick-disabled {
+            display: none !important;
+        }
+    }
+}
+
+
+
+.clinic-item {
+    text-align      : center;
+    border-radius   : 16px;
+    background-color: rgb(255, 255, 255);
+    border          : 2px solid rgb(241, 241, 241);
+    margin-left     : 20px;
+    padding         : 20px;
+
+    .wrapper-img-clinic {
+        border-radius   : 12px;
+        background-color: rgb(255, 255, 255);
+        position        : relative;
+        padding-top     : 65.47%;
+
+
+        .img-clinic {
+            position  : absolute;
+            height    : 100%;
+            width     : 100%;
+            inset     : 0px;
+            object-fit: contain;
+            color     : transparent;
+        }
+    }
+
+    .title_clinic {
+        padding-top  : 16px;
+        margin-bottom: 16px;
+        text-align   : center;
+        font-size    : 18px;
+        font-weight  : 600;
+        color        : rgb(26, 26, 26);
+    }
+}

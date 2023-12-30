@@ -1,5 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import './Home.scss'
+import Specialty from './Specialty/Specialty'
+import Clinic from './Clinic/Clinic'
+import Doctor from './Doctor/Doctor'
+import background_doctor from '../../../src/assets/img/background_doctors.png'
 
 
 const Home = () => {
@@ -7,13 +12,20 @@ const Home = () => {
     const dispatch = useDispatch()
     const language = useSelector(state => state.language.value)
 
+
+
     return (
         <>
-            <div className='container home-container'>
-                <div>Home</div>
-                <div>Current language: {language}</div>
+            <div className='container'>
+                <Specialty />
+                <Clinic />
             </div>
-
+            <div className='doctor-wrapper'>
+                <div className='background-doctors'>
+                    <img src={background_doctor} alt='banner doctor' />
+                </div>
+                <Doctor />
+            </div>
         </>
     )
 }

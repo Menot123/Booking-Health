@@ -168,6 +168,19 @@ body {
                 right   : 0;
             }
         }
+
+        .wrapper-banner-slide {
+            .banner-slide {
+                .banner-carousel {
+                    .carousel {
+                        position    : absolute;
+                        top         : 166px;
+                        margin-right: 16px;
+                    }
+                }
+            }
+        }
+
     }
 }
 
@@ -208,6 +221,18 @@ body {
                 position: absolute;
                 top     : 10px;
                 right   : 0;
+            }
+        }
+
+        .wrapper-banner-slide {
+            .banner-slide {
+                .banner-carousel {
+                    .carousel {
+                        position    : absolute;
+                        top         : 166px;
+                        margin-right: 16px;
+                    }
+                }
             }
         }
     }

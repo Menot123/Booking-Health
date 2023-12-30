@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl'
 import { useContext, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { translate } from './redux/slices/languageSlice'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 
 
@@ -31,28 +32,30 @@ function App() {
   return (
     <BrowserRouter>
       <div className='app-container'>
-        {url === '/login' ? ' ' : <Nav />}
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/co-so-y-te">
-            Co so y te
-          </Route>
-          <Route path="/song-khoe">
-            Song Khoe
-          </Route>
-          <Route path="/ho-tro">
-            <Sup />
-          </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="*">
-            404 Not found
-          </Route>
-        </Switch>
-        {url === '/login' ? ' ' : <Foot />}
+        <Scrollbars style={{ width: '100%', height: '100%' }}>
+          {url === '/login' ? ' ' : <Nav />}
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/co-so-y-te">
+              Co so y te
+            </Route>
+            <Route path="/song-khoe">
+              Song Khoe
+            </Route>
+            <Route path="/ho-tro">
+              <Sup />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="*">
+              404 Not found
+            </Route>
+          </Switch>
+          {url === '/login' ? ' ' : <Foot />}
+        </Scrollbars>
       </div>
     </BrowserRouter>
   );
