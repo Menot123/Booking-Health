@@ -5,13 +5,13 @@ const loginChecked = async (us, pwd) => {
     try {
         let user = await db.User.findOne({
             where: {
-                username: us,
+                email: us,
                 password: pwd
             }
         });
         if (user) {
             let payload = {
-                username: user.username,
+                username: user.email,
             }
             let token = createNewJWT(payload)
             return {
@@ -19,7 +19,7 @@ const loginChecked = async (us, pwd) => {
                 EC: 0,
                 DT: {
                     access_token: token,
-                    username: user.username,
+                    username: user.email,
                 }
             }
         }

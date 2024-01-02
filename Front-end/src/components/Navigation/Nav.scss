@@ -5,6 +5,7 @@ body {
 
 .top-nav {
     height             : 100%;
+    max-height         : 460px;
     // overflow        : hidden;
     background-color   : rgb(237, 255, 250);
 
@@ -104,7 +105,7 @@ body {
 
                 .carousel {
                     position: absolute;
-                    top     : 80px;
+                    top     : 96px;
 
                     .carousel-inner {
                         border-radius: 32px;
@@ -116,6 +117,8 @@ body {
                             inset     : 0px;
                             object-fit: cover;
                             color     : transparent;
+
+
                         }
                     }
                 }
@@ -176,6 +179,12 @@ body {
                         position    : absolute;
                         top         : 166px;
                         margin-right: 16px;
+
+                        .carousel-inner {
+                            .carousel-item {
+                                max-height: 230px;
+                            }
+                        }
                     }
                 }
             }
@@ -231,6 +240,7 @@ body {
                         position    : absolute;
                         top         : 166px;
                         margin-right: 16px;
+
                     }
                 }
             }
