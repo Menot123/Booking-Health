@@ -3,4 +3,8 @@ let homePage = (req, res) => {
     res.render('home')
 }
 
-module.exports = { homePage }
+let adminPage = (req, res) => {
+    res.render('admin')
+}
+
+module.exports = { homePage, adminPage }

@@ -5,13 +5,13 @@ const loginChecked = async (us, pwd) => {
     try {
         let user = await db.User.findOne({
             where: {
-                username: us,
+                email: us,
                 password: pwd
             }
         });
         if (user) {
             let payload = {
-                username: user.username,
+                username: user.email,
             }
             let token = createNewJWT(payload)
             return {
@@ -19,7 +19,7 @@ const loginChecked = async (us, pwd) => {
                 EC: 0,
                 DT: {
                     access_token: token,
-                    username: user.username,
+                    username: user.email,
                 }
             }
         }
@@ -33,4 +33,30 @@ const loginChecked = async (us, pwd) => {
     }
 }
 
-module.exports = { loginChecked }
+let getAllCode = async (type) => {
+    try {
+        let res = {}
+        if (!type) {
+            res.EC = 0
+            res.EM = 'Missing parameter!'
+            res.DT = {}
+            return res
+        }
+        let allcode = await db.Allcode.findAll({
+            where: { type: type }
+        })
+        if (allcode) {
+            res.EC = 0
+            res.EM = 'Get allCode successfully'
+            res.DT = allcode
+            return res
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+    }
+}
+
+
+module.exports = { loginChecked, getAllCode }

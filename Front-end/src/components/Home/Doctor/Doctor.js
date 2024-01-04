@@ -21,7 +21,7 @@ function Doctor() {
 
         <div className='slider-doctor-content '>
             <div className='title w-100 d-flex align-items-center justify-content-between'>
-                <h4><FormattedMessage id='homepage.health-facilities' defaultMessage={'Bác sĩ nổi bật'} /></h4>
+                <h4><FormattedMessage id='homepage.outstanding-doctor' defaultMessage={'Bác sĩ nổi bật'} /></h4>
                 <span className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
             </div>
             <Slider {...settings}>
@@ -32,6 +32,15 @@ function Doctor() {
                         </div>
                         <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
                         <span>Sức khỏe tâm thần</span>
+                    </div>
+                </div>
+
+                <div className='wrapper-doctor-item'>
+                    <div className='doctor-item'>
+                        <div className='wrapper-img-doctor'>
+                            <img className='img-doctor' src={bac_si} />
+                        </div>
+                        <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
                     </div>
                 </div>
 

@@ -1,3 +1,14 @@
 .app-container {
     height: 100vh;
+
+    .scroll-bars {
+        div:has(.custom-thumb-vertical) {
+            right: 0px !important;
+        }
+
+        .custom-thumb-vertical {
+            border-radius   : inherit;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
 }
