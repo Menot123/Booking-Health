@@ -20,6 +20,8 @@ import { Scrollbars } from 'react-custom-scrollbars'
 
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
+import Blog from './components/Blog/Blog';
+import BlogDetail from './components/BlogDetail/BlogDetail';
 
 
 function App() {
@@ -46,6 +48,12 @@ function App() {
             </Route>
             <Route path="/ho-tro">
               <Sup />
+            </Route>
+            <Route path="/cam-nang" exact>
+              <Blog />
+            </Route>
+            <Route path="/cam-nang/chi-tiet" exact>
+              <BlogDetail />
             </Route>
             <Route exact path="/">
               <Home />
