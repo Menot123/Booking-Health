@@ -3,12 +3,16 @@ import './Header.scss'
 import { NavLink } from 'react-router-dom'
 import { TbLogout } from "react-icons/tb";
 import { useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../../../redux/slices/userSlice'
 
 
 function Navbar() {
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const handleLogout = () => {
+        dispatch(logout())
         history.push('/login')
     }
 

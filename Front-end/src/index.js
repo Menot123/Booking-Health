@@ -7,12 +7,18 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 import Wrapper from './HOC/Wrapper'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore } from 'redux-persist'
+
+let persistor = persistStore(store)
 
 ReactDOM.render(
   <Provider store={store}>
     <Wrapper>
       <React.StrictMode>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
       </React.StrictMode>
     </Wrapper>
   </Provider>,

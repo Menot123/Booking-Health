@@ -4,4 +4,15 @@ let getUser = async (req, res, next) => {
     return res.status(200).json('')
 }
 
-module.exports = { getUser }
+const getAccount = async (req, res) => {
+    return res.status(200).json({
+        EM: 'OK',
+        EC: 0,
+        DT: {
+            access_token: req.token,
+            username: req.user.username
+        }
+    })
+}
+
+module.exports = { getUser, getAccount }

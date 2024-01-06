@@ -25,7 +25,8 @@ import Home from './components/Home/Home';
 import Blog from './components/Blog/Blog';
 import BlogDetail from './components/BlogDetail/BlogDetail';
 import Admin from './admin/Admin';
-
+import PrivateRoutes from './routes/PrivateRoutes';
+import LoginRoute from './routes/LoginRoute';
 
 function App() {
 
@@ -45,9 +46,10 @@ function App() {
           autoHide autoHideTimeout={1000} autoHideDuration={200} style={{ width: '100%', height: '100%' }}>
           {url === '/login' || url === '/admin' ? ' ' : <Nav />}
           <Switch>
-            <Route path={path.LOGIN}>
+            <LoginRoute path={path.LOGIN} component={Login} />
+            {/* <Route path={path.LOGIN}>
               <Login />
-            </Route>
+            </Route> */}
             <Route path={path.CO_SO_Y_TE}>
               Co so y te
             </Route>
@@ -63,9 +65,10 @@ function App() {
             <Route path={path.BLOGDETAIL} exact>
               <BlogDetail />
             </Route>
-            <Route path={path.ADMIN}>
+            {/* <Route path={path.ADMIN} >
               <Admin />
-            </Route>
+            </Route> */}
+            <PrivateRoutes path={path.ADMIN} component={Admin} />
             <Route path={path.HOMEPAGE}>
               <Home />
             </Route>

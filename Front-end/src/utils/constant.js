@@ -7,8 +7,8 @@ export const path = {
     SONG_KHOE: '/song-khoe',
     HO_TRO: '/ho-tro',
     ADMIN: '/admin',
-    BLOG: '/cam_nang',
-    BLOGDETAIL: '/cam_nang/chitiet',
+    BLOG: '/cam-nang',
+    BLOGDETAIL: '/cam-nang/chi-tiet',
 };
 
 export const LANGUAGES = {

@@ -48,7 +48,7 @@ function BlogDetail() {
     };
 
     return (
-        <div className='container'>
+        <div className='container post-container'>
             <div className='row '>
                 <div className="detail">
                     {/* OffCanvas Table Content*/}

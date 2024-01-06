@@ -1,36 +1,42 @@
 // Blog list
 .slider-blog-content {
-    padding-top: 20px;
+    padding-top   : 20px;
     padding-bottom: 30px;
+
     .title {
         margin-bottom: 32px;
+
         .btn-view-more {
             background-color: gainsboro;
-            padding: 8px;
-            border-radius: 0px;
-            border: none;
+            padding         : 8px;
+            border-radius   : 0px;
+            border          : none;
+
             .text-btn-view-more {
-                font-size: 16px;
-                color: black;
+                font-size  : 16px;
+                color      : black;
                 font-weight: 600;
             }
         }
     }
+
     .slick-slider {
         .slick-arrow {
-            z-index: 10;
-            box-shadow: 0 0 5px rgba(201, 236, 240, 0.5);
-            border-color: rgb(181, 231, 237);
+            z-index      : 10;
+            box-shadow   : 0 0 5px rgba(201, 236, 240, 0.5);
+            border-color : rgb(181, 231, 237);
             border-radius: 30px;
-            width: 40px;
-            height: 40px;
-            padding-top: 2px;
+            width        : 40px;
+            height       : 40px;
+            padding-top  : 2px;
         }
+
         .slick-prev:before,
         .slick-next:before {
-            color: rgb(52, 146, 158);
+            color    : rgb(52, 146, 158);
             font-size: 40px;
         }
+
         .slick-disabled {
             display: none !important;
         }
@@ -39,42 +45,45 @@
 
 .blog-item {
     background-color: rgb(255, 255, 255);
-    border: 2px solid rgb(241, 241, 241);
-    margin: 0px 10px;
+    border          : 2px solid rgb(241, 241, 241);
+    margin          : 0px 10px;
+
     .wrapper-img-blog {
         background-color: rgb(255, 255, 255);
-        position: relative;
-        padding-top: 50%;
-        width: 100%;
-        overflow: hidden;
+        position        : relative;
+        padding-top     : 50%;
+        width           : 100%;
+        overflow        : hidden;
+
         /* Chiều cao tối đa của div */
         .img-blog {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            inset: 0px;
+            position  : absolute;
+            height    : 100%;
+            width     : 100%;
+            inset     : 0px;
             object-fit: cover;
-            color: transparent;
+            color     : transparent;
             max-height: 100%;
         }
     }
+
     .detail {
         font-size: 80%;
     }
 }
 
 .content {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
+    overflow          : hidden;
+    text-overflow     : ellipsis;
+    display           : -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
 
 .blog-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
+    overflow          : hidden;
+    text-overflow     : ellipsis;
+    display           : -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
 }
@@ -83,112 +92,145 @@ body {
     background-color: rgb(250, 249, 249) !important;
 }
 
-// Blog Detail
-.detail {
-    a {
-        text-decoration: none;
-    }
-    .full-content {
-        background-color: white;
-        width: 67%;
-        @media screen and (max-width: 992px) {
-            width: 100%;
-        }
-        float: left;
-        text-align: justify;
-        .title {
-            padding: 10px 26px 5px;
-            font-size: 30px;
-        }
-        .heading {
-            padding: 15px 26px 10px;
-            font-size: 23px
-        }
-        .subsection {
-            padding: 12px 24px 8px;
-            font-size: 21px;
-        }
-        .list {
-            display: block;
-            list-style-type: disc;
-            margin-left: 0;
-            margin-right: 0;
-            padding-left: 50px;
-            .text-content {
-                padding: 10px 5px 0px;
-                margin: 0px;
-                font-size: 18px;
-            }
-        }
-        .text-content {
-            padding: 10px 26px 0px;
-            margin: 0px;
-            font-size: 18px;
-        }
-        .more-info {
-            padding: 0px 26px;
-            .name-info {
-                font-size: 14px;
-                font-weight: bold;
-            }
-            .main-info {
-                margin-left: 5px;
-                font-size: 14px;
+.post-container {
+
+    .row {
+
+        // Blog Detail
+        .detail {
+            margin-top: 3.5rem;
+
+            a {
                 text-decoration: none;
             }
-        }
-    }
-    // Table Content Show
-    .table-content {
-        width: 400px;
-        float: right;
-        position: sticky;
-        top: 20px;
-        background-color: white;
-        .title {
-            margin: 10px 30px 20px 30px;
-            border-bottom: 4px solid orange;
-        }
-        .level1 {
-            list-style-type: none;
-            font-size: 18px;
-        }
-        .level2 {
-            color: #0d6efd;
-        }
-        li {
-            margin: 13px 0px;
-        }
-        @media screen and (max-width: 992px) {
-            display: none;
-        }
-    }
-    // OffCanVas Table Content
-    .offcanvas-table-content {
-        .title {
-            margin: 10px 30px 20px 30px;
-            border-bottom: 4px solid orange;
-        }
-        .level1 {
-            list-style-type: none;
-            font-size: 18px;
-        }
-        .level2 {
-            color: #0d6efd;
-        }
-        li {
-            margin: 13px 0px;
-        }
-    }
-    .offcanvas-btn {
-        display: none;
-        position: fixed;
-        bottom: 10px;
-        left: 10px;
-        z-index: 10;
-        text-align: center;
-        @media screen and (max-width: 992px) {
-            display: block;
+
+            .full-content {
+                background-color: white;
+                width           : 63%;
+
+                @media screen and (max-width: 992px) {
+                    width: 100%;
+                }
+
+                float     : left;
+                text-align: justify;
+
+                .title {
+                    padding  : 10px 26px 5px;
+                    font-size: 30px;
+                }
+
+                .heading {
+                    padding  : 15px 26px 10px;
+                    font-size: 23px
+                }
+
+                .subsection {
+                    padding  : 12px 24px 8px;
+                    font-size: 21px;
+                }
+
+                .list {
+                    display        : block;
+                    list-style-type: disc;
+                    margin-left    : 0;
+                    margin-right   : 0;
+                    padding-left   : 50px;
+
+                    .text-content {
+                        padding  : 10px 5px 0px;
+                        margin   : 0px;
+                        font-size: 18px;
+                    }
+                }
+
+                .text-content {
+                    padding  : 10px 26px 0px;
+                    margin   : 0px;
+                    font-size: 18px;
+                }
+
+                .more-info {
+                    padding: 0px 26px;
+
+                    .name-info {
+                        font-size  : 14px;
+                        font-weight: bold;
+                    }
+
+                    .main-info {
+                        margin-left    : 5px;
+                        font-size      : 14px;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            // Table Content Show
+            .table-content {
+                width           : 35%;
+                float           : right;
+                position        : sticky;
+                top             : 20px;
+                background-color: white;
+                margin-left     : 8px;
+
+                .title {
+                    margin       : 10px 30px 20px 30px;
+                    border-bottom: 4px solid orange;
+                }
+
+                .level1 {
+                    list-style-type: none;
+                    font-size      : 18px;
+                }
+
+                .level2 {
+                    color: #0d6efd;
+                }
+
+                li {
+                    margin: 13px 0px;
+                }
+
+                @media screen and (max-width: 992px) {
+                    display: none;
+                }
+            }
+
+            // OffCanVas Table Content
+            .offcanvas-table-content {
+                .title {
+                    margin       : 10px 30px 20px 30px;
+                    border-bottom: 4px solid orange;
+                }
+
+                .level1 {
+                    list-style-type: none;
+                    font-size      : 18px;
+                }
+
+                .level2 {
+                    color: #0d6efd;
+                }
+
+                li {
+                    margin: 13px 0px;
+                }
+            }
+
+            .offcanvas-btn {
+                display   : none;
+                position  : fixed;
+                bottom    : 10px;
+                left      : 10px;
+                z-index   : 10;
+                text-align: center;
+
+                @media screen and (max-width: 992px) {
+                    display: block;
+                }
+            }
         }
     }
 }

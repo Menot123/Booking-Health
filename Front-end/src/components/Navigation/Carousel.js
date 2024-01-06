@@ -5,16 +5,16 @@ import banner3 from '../../assets/img/banner3.png'
 
 const Carousel = () => {
     useEffect(() => {
-        // const carouselInterval = setInterval(() => {
-        //     const btnNext = document.querySelector('.carousel-control-next')
-        //     btnNext.click()
+        const carouselInterval = setInterval(() => {
+            const btnNext = document.querySelector('.carousel-control-next')
+            btnNext.click()
 
-        // }, 3000); // Thời gian chuyển slide (3 giây)
+        }, 3000); // Thời gian chuyển slide (3 giây)
 
-        // return () => {
-        //     // Xóa interval khi component unmount
-        //     clearInterval(carouselInterval);
-        // };
+        return () => {
+            // Xóa interval khi component unmount
+            clearInterval(carouselInterval);
+        };
     }, []);
 
     return (
