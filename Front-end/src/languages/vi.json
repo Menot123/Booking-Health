@@ -15,5 +15,15 @@
     "blog.new-blog": "Bài viết mới nhất",
     "blog.popular-blog": "Bài viết nổi bật",
     "blog.relevant-blog": "Bài viết liên quan",
-    "blog.handbook": "Cẩm nang"
+    "blog.handbook": "Cẩm nang",
+    "admin-header.user": "Người dùng",
+    "admin-header.clinic": "Phòng khám",
+    "admin-header.specialty": "Chuyên khoa",
+    "admin-header.handbook": "Cẩm nang",
+    "admin-header.welcome": "Xin chào, ",
+    "admin-header.manage-doctors": "Quản lý bác sĩ",
+    "admin-header.manage-schedules": "Quản lý kế hoạch khám bệnh",
+    "admin-header.manage-clinics": "Quản lý phòng khám",
+    "admin-header.manage-specialties": "Quản lý chuyên khoa",
+    "admin-header.manage-handbooks": "Quản lý cẩm nang"
 }

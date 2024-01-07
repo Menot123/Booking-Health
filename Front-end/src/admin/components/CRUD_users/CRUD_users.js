@@ -24,13 +24,6 @@ function CRUD_users() {
         imgReviewUrl: ''
     })
 
-    // const [email, setEmail] = useState('')
-    // const [password, setPassword] = useState('')
-    // const [lastname, setLastname] = useState('')
-    // const [firstName, setFirstname] = useState('')
-    // const [phone, setPhone] = useState('')
-    // const [addres, setAddress] = useState('')
-
     const [inputData, setInputData] = useState({
         email: '',
         password: '',
@@ -48,6 +41,9 @@ function CRUD_users() {
     useEffect(() => {
         getUsers()
         getSelectData()
+
+        return () => {
+        };
     }, [])
 
     const getUsers = async () => {

@@ -93,7 +93,7 @@ function BlogDetail() {
                     <div className='full-content'>
                         {/* Image Title*/}
                         <figure className='text-center'>
-                            <img src={new_blog} className='w-100' />
+                            <img alt='img-element' src={new_blog} className='w-100' />
                             <figcaption>Top 3 địa chỉ xét nghiệm NIPT Vũng Tàu</figcaption>
                         </figure>
 
@@ -148,7 +148,7 @@ function BlogDetail() {
                         <p className='text-content'>Phòng xét nghiệm Y khoa C- Star là địa chỉ xét nghiệm NIPT có tiếng tại Vũng Tàu được nhiều mẹ bầu tin tưởng. Tuy mới đi vào hoạt động từ năm 2021 nhưng C- Star đã đem lại sự hài lòng, tin tưởng cho khách hàng bởi đội ngũ kỹ thuật viên chuyên nghiệp và hệ thông xét nghiệm hiện đại, mang đến kết quả nhanh, chính xác.</p>
 
                         <figure className='text-center'>
-                            <img src={detail_in_blog} className=' text-content w-100' />
+                            <img alt='img-element' src={detail_in_blog} className=' text-content w-100' />
                             <figcaption>Phòng xét nghiệm Y khoa C-star được nhiều mẹ bầu tin tưởng thực hiện xét nghiệm NIPT - Ảnh: cstarlabs.vn</figcaption>
                         </figure>
 
@@ -194,7 +194,7 @@ function BlogDetail() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -210,24 +210,7 @@ function BlogDetail() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
-                            </div>
-                            {/* Blog Item: Title and Content */}
-                            <div className='items'>
-                                <div className='title ps-3 pe-3 mt-2 mb-0 blog-name'>
-                                    <h6 className='text-start blog-name'>Gợi ý Top 3 địa chỉ xét nghiệm NIPT tại Vũng Tàu</h6>
-                                </div>
-                                <p className='ps-3 pe-3 mb-1 detail fw-light content'>Tại Vũng Tàu, mẹ bầu nên đi xét nghiệm NIPT tại đâu để có kết quả nhanh chóng, chính xác? Tham khảo ngay bài viết dưới đây để biết thêm thông tin.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Blog Card */}
-                    <div className='wrapper-blog-item'>
-                        <div className='blog-item'>
-                            {/* Image Blog */}
-                            <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -244,7 +227,7 @@ function BlogDetail() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -261,7 +244,7 @@ function BlogDetail() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -278,7 +261,7 @@ function BlogDetail() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -295,7 +278,24 @@ function BlogDetail() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
+                            </div>
+                            {/* Blog Item: Title and Content */}
+                            <div className='items'>
+                                <div className='title ps-3 pe-3 mt-2 mb-0 blog-name'>
+                                    <h6 className='text-start blog-name'>Gợi ý Top 3 địa chỉ xét nghiệm NIPT tại Vũng Tàu</h6>
+                                </div>
+                                <p className='ps-3 pe-3 mb-1 detail fw-light content'>Tại Vũng Tàu, mẹ bầu nên đi xét nghiệm NIPT tại đâu để có kết quả nhanh chóng, chính xác? Tham khảo ngay bài viết dưới đây để biết thêm thông tin.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Blog Card */}
+                    <div className='wrapper-blog-item'>
+                        <div className='blog-item'>
+                            {/* Image Blog */}
+                            <div className='wrapper-img-blog'>
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>

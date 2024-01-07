@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from 'react-toastify'
 
+
 // Set config defaults when creating the instance
 const instance = axios.create({
     baseURL: process.env.REACT_APP_BACKEND_URL
@@ -22,20 +23,22 @@ instance.interceptors.request.use(function (config) {
 
 // Add a response interceptor
 instance.interceptors.response.use(function (response) {
+
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response.data;
 }, function (error) {
+
     const status = error && error.response && error.response.status || 500;
     switch (status) {
         // authentication (token related issues)
-        case 401: {
-            if (window.location.pathname !== '/'
-                && window.location.pathname !== '/login') {
-                toast.error('Unauthorized the user. Please login ...')
-            }
-            return error.response.status
-        }
+        // case 401: {
+        //     if (window.location.pathname !== '/'
+        //         && window.location.pathname !== '/login') {
+        //         toast.error('Unauthorized the user. Please login ...')
+        //     }
+        //     return error.response.status
+        // }
 
         // forbidden (permission related issues)
         case 403: {

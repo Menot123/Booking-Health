@@ -7,7 +7,7 @@ const createNewJWT = (payload) => {
     let key = process.env.JWT_SECRET_KEY
     let token = null
     try {
-        token = jwt.sign(payload, key)
+        token = jwt.sign(payload, key, { expiresIn: '1h' })
     } catch (e) {
         console.log(e)
     }
@@ -39,8 +39,21 @@ const checkUserJWT = (req, res, next) => {
             req.user = decode
             req.token = token
             next()
+        } else {
+            return res.status(401).json({
+                EC: -1,
+                DT: {},
+                EM: 'Not authenticated the user'
+            })
         }
+    } else {
+        return res.status(401).json({
+            EC: -1,
+            DT: {},
+            EM: 'Not authenticated the user'
+        })
     }
+
 }
 
 module.exports = { createNewJWT, verifyToken, checkUserJWT }

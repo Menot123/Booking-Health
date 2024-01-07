@@ -11,11 +11,11 @@ const Sup = (props) => {
                 <FormattedMessage id='support.qr' />
             </div>
             <div className='text-center mt-0'>
-                <img className='' src={qr} />
+                <img alt='img-logo-element' className='' src={qr} />
             </div>
             <div className='fixed-bottom mb-4 me-4 text-end'>
-                <div className='messenger-icon-wrapper' style={{cursor: 'pointer'}}>
-                    <FaFacebookMessenger size={40} color='white'/>
+                <div className='messenger-icon-wrapper' style={{ cursor: 'pointer' }}>
+                    <FaFacebookMessenger size={40} color='white' />
                 </div>
             </div>
         </>

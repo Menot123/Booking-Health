@@ -6,14 +6,9 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Link,
-  useRouteMatch,
 } from "react-router-dom";
-import { FormattedMessage } from 'react-intl'
 // import { Context } from './HOC/Wrapper'
-import { useContext, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { translate } from './redux/slices/languageSlice'
+import { useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars'
 import { path } from './utils/index'
 import { ToastContainer } from 'react-toastify';
@@ -47,9 +42,6 @@ function App() {
           {url === '/login' || url === '/admin' ? ' ' : <Nav />}
           <Switch>
             <LoginRoute path={path.LOGIN} component={Login} />
-            {/* <Route path={path.LOGIN}>
-              <Login />
-            </Route> */}
             <Route path={path.CO_SO_Y_TE}>
               Co so y te
             </Route>
@@ -65,9 +57,6 @@ function App() {
             <Route path={path.BLOGDETAIL} exact>
               <BlogDetail />
             </Route>
-            {/* <Route path={path.ADMIN} >
-              <Admin />
-            </Route> */}
             <PrivateRoutes path={path.ADMIN} component={Admin} />
             <Route path={path.HOMEPAGE}>
               <Home />

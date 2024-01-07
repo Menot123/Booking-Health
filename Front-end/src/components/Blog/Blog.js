@@ -61,7 +61,7 @@ function Blog() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -77,24 +77,7 @@ function Blog() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
-                            </div>
-                            {/* Blog Item: Title and Content */}
-                            <div className='items'>
-                                <div className='title ps-3 pe-3 mt-2 mb-0 blog-name'>
-                                    <h6 className='text-start blog-name'>Gợi ý Top 3 địa chỉ xét nghiệm NIPT tại Vũng Tàu</h6>
-                                </div>
-                                <p className='ps-3 pe-3 mb-1 detail fw-light content'>Tại Vũng Tàu, mẹ bầu nên đi xét nghiệm NIPT tại đâu để có kết quả nhanh chóng, chính xác? Tham khảo ngay bài viết dưới đây để biết thêm thông tin.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Blog Card */}
-                    <div className='wrapper-blog-item'>
-                        <div className='blog-item'>
-                            {/* Image Blog */}
-                            <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -111,7 +94,7 @@ function Blog() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -128,7 +111,7 @@ function Blog() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -145,7 +128,7 @@ function Blog() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -162,7 +145,24 @@ function Blog() {
                         <div className='blog-item'>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={new_blog} />
+                                <img alt='img-element' className='img-blog' src={new_blog} />
+                            </div>
+                            {/* Blog Item: Title and Content */}
+                            <div className='items'>
+                                <div className='title ps-3 pe-3 mt-2 mb-0 blog-name'>
+                                    <h6 className='text-start blog-name'>Gợi ý Top 3 địa chỉ xét nghiệm NIPT tại Vũng Tàu</h6>
+                                </div>
+                                <p className='ps-3 pe-3 mb-1 detail fw-light content'>Tại Vũng Tàu, mẹ bầu nên đi xét nghiệm NIPT tại đâu để có kết quả nhanh chóng, chính xác? Tham khảo ngay bài viết dưới đây để biết thêm thông tin.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Blog Card */}
+                    <div className='wrapper-blog-item'>
+                        <div className='blog-item'>
+                            {/* Image Blog */}
+                            <div className='wrapper-img-blog'>
+                                <img alt='img-element' className='img-blog' src={new_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -188,7 +188,7 @@ function Blog() {
                         <div className='blog-item' style={{ cursor: 'pointer' }}>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={popular_blog} />
+                                <img alt='img-element' className='img-blog' src={popular_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -205,7 +205,7 @@ function Blog() {
                         <div className='blog-item' style={{ cursor: 'pointer' }}>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={popular_blog} />
+                                <img alt='img-element' className='img-blog' src={popular_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -221,7 +221,7 @@ function Blog() {
                         <div className='blog-item' style={{ cursor: 'pointer' }}>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={popular_blog} />
+                                <img alt='img-element' className='img-blog' src={popular_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -237,7 +237,7 @@ function Blog() {
                         <div className='blog-item' style={{ cursor: 'pointer' }}>
                             {/* Image Blog */}
                             <div className='wrapper-img-blog'>
-                                <img className='img-blog' src={popular_blog} />
+                                <img alt='img-element' className='img-blog' src={popular_blog} />
                             </div>
                             {/* Blog Item: Title and Content */}
                             <div className='items'>
@@ -264,7 +264,7 @@ function Blog() {
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-center">
                                 <div class="handbook-item">
-                                    <img src={handbook} className='handbook-img' />
+                                    <img alt='img-element' src={handbook} className='handbook-img' />
                                     <div class="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
@@ -276,7 +276,7 @@ function Blog() {
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-center">
                                 <div class="handbook-item">
-                                    <img src={handbook} className='handbook-img' />
+                                    <img alt='img-element' src={handbook} className='handbook-img' />
                                     <div class="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
@@ -288,7 +288,7 @@ function Blog() {
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-center">
                                 <div class="handbook-item">
-                                    <img src={handbook} className='handbook-img' />
+                                    <img alt='img-element' src={handbook} className='handbook-img' />
                                     <div class="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
@@ -300,7 +300,7 @@ function Blog() {
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-center">
                                 <div class="handbook-item">
-                                    <img src={handbook} className='handbook-img' />
+                                    <img alt='img-element' src={handbook} className='handbook-img' />
                                     <div class="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
@@ -312,7 +312,7 @@ function Blog() {
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-center">
                                 <div class="handbook-item">
-                                    <img src={handbook} className='handbook-img' />
+                                    <img alt='img-element' src={handbook} className='handbook-img' />
                                     <div class="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
@@ -324,7 +324,7 @@ function Blog() {
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-center">
                                 <div class="handbook-item">
-                                    <img src={handbook} className='handbook-img' />
+                                    <img alt='img-element' src={handbook} className='handbook-img' />
                                     <div class="content-handbook"> Cơ xương khớp </div>
                                 </div>
 

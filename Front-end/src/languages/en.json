@@ -15,5 +15,15 @@
     "blog.new-blog": "New blog",
     "blog.popular-blog": "Popular blog",
     "blog.relevant-blog": "Relevant blog",
-    "blog.handbook": "Handbook"
+    "blog.handbook": "Handbook",
+    "admin-header.user": "User",
+    "admin-header.clinic": "Clinic",
+    "admin-header.specialty": "Specialty",
+    "admin-header.handbook": "Handbook",
+    "admin-header.welcome": "Welcome, ",
+    "admin-header.manage-doctors": "Manage doctors",
+    "admin-header.manage-schedules": "Manage schedules",
+    "admin-header.manage-clinics": "Manage clinics",
+    "admin-header.manage-specialties": "Manage specialties",
+    "admin-header.manage-handbooks": "Manage handbooks"
 }

@@ -28,7 +28,7 @@ function Clinic() {
                 <div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img className='img-clinic' src={viet_duc} />
+                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
                         </div>
                         <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
                     </div>
@@ -37,7 +37,7 @@ function Clinic() {
                 <div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img className='img-clinic' src={viet_duc} />
+                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
                         </div>
                         <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
                     </div>
@@ -46,7 +46,7 @@ function Clinic() {
                 <div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img className='img-clinic' src={viet_duc} />
+                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
                         </div>
                         <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
                     </div>
@@ -55,7 +55,7 @@ function Clinic() {
                 <div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img className='img-clinic' src={viet_duc} />
+                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
                         </div>
                         <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
                     </div>
@@ -64,7 +64,7 @@ function Clinic() {
                 <div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img className='img-clinic' src={viet_duc} />
+                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
                         </div>
                         <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
                     </div>

@@ -7,15 +7,21 @@ import { FaQuestionCircle } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { translate } from '../../redux/slices/languageSlice'
+import { changeUserLanguage } from '../../redux/slices/userSlice'
 import { FormattedMessage } from 'react-intl'
 import Carousel from './Carousel'
+import { useEffect } from 'react'
 
 
 const Nav = (props) => {
     let history = useHistory();
     const dispatch = useDispatch()
-    const language = useSelector(state => state.language.value)
+    const language = useSelector(state => state.userRedux.language)
     const url = window.location.pathname;
+
+    useEffect(() => {
+        dispatch(translate(language))
+    }, [])
 
     const handleClickLogo = () => {
         history.push("/");
@@ -24,6 +30,12 @@ const Nav = (props) => {
     const handleClickSupport = () => {
         history.push("/ho-tro");
     }
+
+    const handleChangeLanguage = (lang) => {
+        dispatch(translate(lang))
+        dispatch(changeUserLanguage(lang))
+    }
+
     return (
         <>
             <div className="top-nav">
@@ -44,8 +56,8 @@ const Nav = (props) => {
                                 <FaQuestionCircle /> <span onClick={() => handleClickSupport()}><FormattedMessage id='homepage.support' /></span>
                             </div>
                             <div className='change-language ms-3 d-flex'>
-                                <span onClick={() => dispatch(translate('vi'))} className={language === 'vi' ? 'language-vi active' : 'language-vi '} >VN</span>
-                                <span onClick={() => dispatch(translate('en'))} className={language === 'en' ? 'language-en ms-2 active' : 'language-en ms-2'}>EN</span>
+                                <span onClick={() => handleChangeLanguage('vi')} className={language === 'vi' ? 'language-vi active' : 'language-vi '} >VN</span>
+                                <span onClick={() => handleChangeLanguage('en')} className={language === 'en' ? 'language-en ms-2 active' : 'language-en ms-2'}>EN</span>
                             </div>
                         </div>
                     </div>

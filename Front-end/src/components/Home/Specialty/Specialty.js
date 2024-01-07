@@ -27,7 +27,7 @@ function Specialty() {
                 <div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img className='img-specialty' src={co_xuong_khop} />
+                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>
@@ -36,7 +36,7 @@ function Specialty() {
                 <div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img className='img-specialty' src={co_xuong_khop} />
+                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>
@@ -44,21 +44,21 @@ function Specialty() {
                 <div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img className='img-specialty' src={co_xuong_khop} />
+                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>
                 </div><div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img className='img-specialty' src={co_xuong_khop} />
+                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>
                 </div><div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img className='img-specialty' src={co_xuong_khop} />
+                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>

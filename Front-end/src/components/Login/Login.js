@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import axios from '../../axios/axios';
 import './Login.scss'
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login } from '../../services/userService'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setAuth, fetchAccount } from '../../redux/slices/userSlice'
 import { getUserAccount } from '../../services/userService'
 
@@ -15,28 +15,71 @@ const Login = (props) => {
   const history = useHistory()
   const dispatch = useDispatch()
 
+  const defaultIsValidInput = {
+    usernameValid: true,
+    passwordValid: true,
+  }
+  const [isValidInput, setIsValidInput] = useState(defaultIsValidInput)
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null)
+
+  const isMounted = useRef(true); // Tạo một biến định thời
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false; // Đánh dấu component đã bị huỷ bỏ
+    };
+  }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    toast.success('Login')
+    if (!username) {
+      setIsValidInput({ ...defaultIsValidInput, usernameValid: false })
+      toast.error('Please enter your username')
+      if (usernameRef.current) {
+        usernameRef.current.focus();
+      }
+      return
+    }
+    if (!password) {
+      setIsValidInput({ ...defaultIsValidInput, passwordValid: false })
+      toast.error('Please enter your password')
+      if (passwordRef.current) {
+        passwordRef.current.focus();
+      }
+      return
+    }
     try {
       const response = await login(username, password)
-      if (response.EC === 0) {
-        let payload = {
-          token: response.DT.access_token,
-          account: response.DT.username
+      // Kiểm tra trạng thái của component trước khi thực hiện các hành động thay đổi state
+      if (isMounted.current) {
+        if (response.EC === 0) {
+          let payload = {
+            token: response.DT.access_token,
+            account: response.DT.username
+          }
+          let account = await getUserAccount()
+          if (account && account.EC === 0) {
+            if (isMounted.current) {
+              dispatch(fetchAccount(account.DT));
+            }
+          }
+          dispatch(setAuth(payload))
+          if (isMounted.current) {
+            setUsername('');
+            setPassword('');
+            history.push('/admin');
+          }
         }
-        let account = await getUserAccount()
-        if (account && account.EC === 0) {
-          dispatch(fetchAccount(account.DT.username))
+        else {
+          alert("Your username or password is incorrect")
+          if (isMounted.current) {
+            setUsername('');
+            setPassword('');
+          }
         }
-        dispatch(setAuth(payload))
-        setUsername('')
-        setPassword('')
-        history.push('/admin');
       }
-      else {
-        window.alert("Your username or password is incorrect")
-      }
+
     } catch (error) {
       console.error(error);
     }
@@ -62,9 +105,11 @@ const Login = (props) => {
                 <div className="form-group">
                   <label htmlFor="username">Username</label>
                   <input
+                    ref={usernameRef}
                     type="text"
                     className="form-control"
                     id="username"
+                    value={username}
                     placeholder="Enter username"
                     onChange={(e) => setUsername(e.target.value)}
                   />
@@ -74,6 +119,8 @@ const Login = (props) => {
                 <div className="form-group mt-2">
                   <label htmlFor="password">Password</label>
                   <input
+                    value={password}
+                    ref={passwordRef}
                     type={showPassword ? "text" : "password"}
                     className="form-control"
                     id="password"

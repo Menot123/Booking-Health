@@ -12,6 +12,8 @@ const loginChecked = async (us, pwd) => {
         if (user) {
             let payload = {
                 username: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName
             }
             let token = createNewJWT(payload)
             return {
@@ -20,6 +22,8 @@ const loginChecked = async (us, pwd) => {
                 DT: {
                     access_token: token,
                     username: user.email,
+                    firstName: user.firstName,
+                    lastName: user.lastName
                 }
             }
         }
