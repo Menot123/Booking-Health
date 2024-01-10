@@ -1,5 +1,9 @@
 import db from '../models/index'
 import { createNewJWT } from '../middleware/JWTServices'
+import bcrypt from 'bcryptjs';
+
+const salt = bcrypt.genSaltSync(7);
+
 
 const loginChecked = async (us, pwd) => {
     try {
@@ -37,7 +41,7 @@ const loginChecked = async (us, pwd) => {
     }
 }
 
-let getAllCode = async (type) => {
+const getAllCode = async (type) => {
     try {
         let res = {}
         if (!type) {
@@ -62,7 +66,7 @@ let getAllCode = async (type) => {
     }
 }
 
-let getAllUsers = async () => {
+const getAllUsers = async () => {
     try {
         let res = {}
         let users = await db.User.findAll()
@@ -83,7 +87,7 @@ let getAllUsers = async () => {
     }
 }
 
-let getTypeRoleService = async (type) => {
+const getTypeRoleService = async (type) => {
     try {
         let res = {}
         let data = await db.Allcode.findAll({
@@ -105,5 +109,48 @@ let getTypeRoleService = async (type) => {
     }
 }
 
+let hashUserPassword = async (password) => {
+    try {
+        const hashPassword = await bcrypt.hash(password, salt);
+        return hashPassword;
+    } catch (err) {
+        throw err;
+    }
+};
 
-module.exports = { loginChecked, getAllCode, getAllUsers, getTypeRoleService }
+const createUserService = async (userData) => {
+    try {
+        let res = {}
+        if (userData) {
+            let password = userData.password
+            let hashPassword = await hashUserPassword(password)
+            let userDataCreate = {
+                email: userData.email,
+                password: hashPassword,
+                address: userData.address,
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                gender: userData.gender,
+                phoneNumber: userData.phone,
+                image: userData.avatar,
+                roleId: userData.role,
+                position: userData.position
+            }
+            await db.User.create(userDataCreate)
+            res.EC = 0
+            res.EM = 'Create user successfully'
+            res.DT = {}
+        } else {
+            res.EC = 1
+            res.EM = 'Create user failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+    }
+}
+
+
+module.exports = { loginChecked, getAllCode, getAllUsers, getTypeRoleService, createUserService }

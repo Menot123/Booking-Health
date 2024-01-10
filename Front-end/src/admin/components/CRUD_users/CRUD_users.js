@@ -2,14 +2,14 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import './CRUD_users.scss'
 import 'react-image-lightbox/style.css';
-import { fetchAllUser, fetchAllGender } from '../../../services/userService'
+import { fetchAllUser, fetchAllGender, createNewUser } from '../../../services/userService'
 import Loader from '../Loader/Loader';
 import { v4 as uuidv4 } from 'uuid';
 import { FaUpload } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import Lightbox from 'react-image-lightbox';
-
+import { toast } from 'react-toastify';
 
 function CRUD_users() {
 
@@ -24,6 +24,8 @@ function CRUD_users() {
         imgReviewUrl: ''
     })
 
+    const [genderDefault, setGenderDefault] = useState('')
+
     const [inputData, setInputData] = useState({
         email: '',
         password: '',
@@ -36,6 +38,8 @@ function CRUD_users() {
         role: '',
         avatar: '',
     });
+
+    const validateData = ['email', 'password', 'lastName', 'firstName', 'phone', 'address', 'gender', 'position', 'role', 'avatar']
 
     // Fetch data
     useEffect(() => {
@@ -54,6 +58,12 @@ function CRUD_users() {
             setIsLoading(false)
         }
     }
+    const getUserAfterCreate = async () => {
+        let usersData = await fetchAllUser()
+        if (usersData.EC === 0 && usersData.DT.length > 0) {
+            setUsers(usersData.DT)
+        }
+    }
 
     const getSelectData = async () => {
         let genderData = await fetchAllGender('gender')
@@ -70,6 +80,12 @@ function CRUD_users() {
         }
 
     }
+
+    useEffect(() => {
+        if (gender.length > 0) {
+            setGenderDefault(gender[0]);
+        }
+    }, [gender]);
 
     const handleChangeImage = async (e) => {
         let dataFile = e.target.files
@@ -115,6 +131,46 @@ function CRUD_users() {
         }));
     }
 
+    const validateDataSend = (data) => {
+        const missingFields = [];
+
+        validateData.forEach((fieldName) => {
+            if (!data[fieldName]) {
+                missingFields.push(fieldName);
+            }
+        });
+        return missingFields;
+    }
+
+    const handleCreateUser = async () => {
+        let user = {
+            email: inputData.email,
+            password: inputData.password,
+            lastName: inputData.lastName,
+            firstName: inputData.firstName,
+            phone: inputData.phone,
+            address: inputData.address,
+            gender: inputData.gender,
+            position: inputData.position,
+            role: inputData.role,
+            avatar: inputData.avatar,
+        }
+        let validateArr = validateDataSend(user)
+        if (validateArr.length === 0) {
+            let response = await createNewUser(user)
+            if (response.EC === 0) {
+                toast.success('Create user successfully')
+                getUserAfterCreate()
+            } else {
+                toast.error('Create user failed')
+            }
+        } else {
+            const missingFieldsString = validateArr.join(', ');
+            toast.error('Missing fields: ' + missingFieldsString + ', please fill them!');
+        }
+    }
+
+
     return (
         <div>
             <h3 className='text-center mt-3'>Manage User</h3>
@@ -157,7 +213,9 @@ function CRUD_users() {
 
                             <div className='col-3'>
                                 <label>Giới tính</label>
-                                <select className='form-select' onChange={(e) => handleOnchangeInput(e, 'gender')} >
+                                <select className='form-select' value={inputData.gender}
+                                    onChange={(e) => handleOnchangeInput(e, 'gender')} >
+                                    <option hidden>Chọn giới tính</option>
                                     {
                                         gender && gender.length > 0 &&
                                         gender.map((item, index) => {
@@ -172,7 +230,8 @@ function CRUD_users() {
 
                             <div className='col-3'>
                                 <label>Chức danh</label>
-                                <select className='form-select' onChange={(e) => handleOnchangeInput(e, 'position')}>
+                                <select value={inputData.position} className='form-select' onChange={(e) => handleOnchangeInput(e, 'position')}>
+                                    <option hidden>Chọn chức danh</option>
                                     {
                                         position && position.length > 0 &&
                                         position.map((item, index) => {
@@ -187,7 +246,8 @@ function CRUD_users() {
 
                             <div className='col-3'>
                                 <label>Vai trò</label>
-                                <select className='form-select' onChange={(e) => handleOnchangeInput(e, 'role')}>
+                                <select value={inputData.role} className='form-select' onChange={(e) => handleOnchangeInput(e, 'role')}>
+                                    <option hidden>Chọn vai trò</option>
                                     {
                                         role && role.length > 0 &&
                                         role.map((item, index) => {
@@ -216,7 +276,7 @@ function CRUD_users() {
 
                         </div>
                         <div className='btn-save'>
-                            <button className='btn btn-primary'>Lưu user</button>
+                            <button onClick={() => handleCreateUser()} className='btn btn-primary'>Lưu user</button>
                         </div>
 
                         {

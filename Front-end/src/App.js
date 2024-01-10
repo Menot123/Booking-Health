@@ -36,7 +36,7 @@ function App() {
         <Scrollbars className='scroll-bars'
           renderThumbVertical={({ style, ...props }) => (
 
-            <div {...props} className="custom-thumb-vertical" style={{ ...style }} />
+            <div {...props} className="custom-thumb-vertical" style={{ padding: '0 17px 0 0' }} />
           )}
           autoHide autoHideTimeout={1000} autoHideDuration={200} style={{ width: '100%', height: '100%' }}>
           {url === '/login' || url === '/admin' ? ' ' : <Nav />}

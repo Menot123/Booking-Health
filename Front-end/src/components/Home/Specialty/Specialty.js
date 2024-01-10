@@ -13,12 +13,16 @@ function Specialty() {
         infinite: false,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        responsive: [
+            { breakpoint: 992, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+            { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } }
+        ]
     };
 
     return (
 
-        <div className='slider-content '>
+        <div className='slider-content mr17 '>
             <div className='title w-100 d-flex align-items-center justify-content-between'>
                 <h4><FormattedMessage id='homepage.specialty' defaultMessage={'Chuyên khoa'} /></h4>
                 <span className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
@@ -27,7 +31,7 @@ function Specialty() {
                 <div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
+                            <img className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>
@@ -36,7 +40,7 @@ function Specialty() {
                 <div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
+                            <img className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>
@@ -44,21 +48,21 @@ function Specialty() {
                 <div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
+                            <img className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>
                 </div><div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
+                            <img className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>
                 </div><div className='wrapper-specialty-item'>
                     <div className='specialty-item'>
                         <div className='wrapper-img-specialty'>
-                            <img alt='img-specialty-element' className='img-specialty' src={co_xuong_khop} />
+                            <img className='img-specialty' src={co_xuong_khop} />
                         </div>
                         <h4 className='title specialty'>Cơ xương khớp</h4>
                     </div>

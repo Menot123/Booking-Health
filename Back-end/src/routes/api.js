@@ -9,7 +9,7 @@ const router = express.Router()
 
 
 const initApiRoutes = (app) => {
-    router.all('*', checkUserJWT);
+    // router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
     router.get('/all-code', apiController.getAllCode);
@@ -17,6 +17,7 @@ const initApiRoutes = (app) => {
     router.get('/type-role', apiController.getTypeRole)
     router.get('/account', userController.getAccount)
     router.post('/logout', userController.handleLogout)
+    router.post('/create-user', userController.handleCreateUser)
 
     return app.use("/api/", router)
 

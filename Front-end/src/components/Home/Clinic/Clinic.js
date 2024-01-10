@@ -3,9 +3,8 @@ import Slider from "react-slick"
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './Clinic.scss'
-import viet_duc from '../../../assets/img/viet_duc.jpg'
+import vietduc from '../../../assets/img/viet_duc.jpg'
 import { FormattedMessage } from 'react-intl'
-
 
 function Clinic() {
 
@@ -14,59 +13,58 @@ function Clinic() {
         infinite: false,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        responsive: [
+            { breakpoint: 992, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+            { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } }
+        ]
     };
 
     return (
 
-        <div className='slider-content '>
+        <div className='slider-content mr17 '>
             <div className='title w-100 d-flex align-items-center justify-content-between'>
-                <h4><FormattedMessage id='homepage.health-facilities' defaultMessage={'Cơ sở y tế'} /></h4>
+                <h4><FormattedMessage id='homepage.facilities' defaultMessage={'Cơ sở y tế'} /></h4>
                 <span className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
             </div>
             <Slider {...settings}>
                 <div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
+                            <img className='img-clinic' src={vietduc} />
                         </div>
-                        <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
+                        <h4 className='title clinic'>Bệnh viện hữu nghị Việt Đức</h4>
                     </div>
                 </div>
 
                 <div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
+                            <img className='img-clinic' src={vietduc} />
                         </div>
-                        <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
+                        <h4 className='title clinic'>Bệnh viện hữu nghị Việt Đức</h4>
                     </div>
                 </div>
-
                 <div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
+                            <img className='img-clinic' src={vietduc} />
                         </div>
-                        <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
+                        <h4 className='title clinic'>Bệnh viện hữu nghị Việt Đức</h4>
                     </div>
-                </div>
-
-                <div className='wrapper-clinic-item'>
+                </div><div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
+                            <img className='img-clinic' src={vietduc} />
                         </div>
-                        <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
+                        <h4 className='title clinic'>Bệnh viện hữu nghị Việt Đức</h4>
                     </div>
-                </div>
-
-                <div className='wrapper-clinic-item'>
+                </div><div className='wrapper-clinic-item'>
                     <div className='clinic-item'>
                         <div className='wrapper-img-clinic'>
-                            <img alt='img-clinic' className='img-clinic' src={viet_duc} />
+                            <img className='img-clinic' src={vietduc} />
                         </div>
-                        <div className='title_clinic'>Bệnh viện hữu nghị Việt Đức</div>
+                        <h4 className='title clinic'>Bệnh viện hữu nghị Việt Đức</h4>
                     </div>
                 </div>
 

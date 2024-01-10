@@ -1,4 +1,4 @@
-// import userService from '../services/userService'
+import userService from '../services/userService'
 
 let getUser = async (req, res, next) => {
     return res.status(200).json('')
@@ -34,4 +34,25 @@ const handleLogout = (req, res, next) => {
     }
 }
 
-module.exports = { getUser, getAccount, handleLogout }
+const handleCreateUser = async (req, res, next) => {
+    try {
+        let dataSend = req.body.data
+        let response = await userService.createUserService(dataSend)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from create user')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+
+module.exports = { getUser, getAccount, handleLogout, handleCreateUser }

@@ -1,6 +1,10 @@
 .slider-content {
+    padding-top   : 20px;
+    padding-bottom: 30px;
+
     .title {
         margin-bottom: 32px;
+        margin-left  : 6px;
 
         .btn-view-more {
             background-color: rgb(218, 243, 246);
@@ -26,7 +30,6 @@
             height       : 40px;
             padding-top  : 2px;
             margin-left  : 18px;
-
         }
 
         .slick-prev:before,
@@ -40,8 +43,6 @@
         }
     }
 }
-
-
 
 .clinic-item {
     text-align      : center;
@@ -77,3 +78,5 @@
         color        : rgb(26, 26, 26);
     }
 }
+
+@media screen and (max-width: 576px) {}

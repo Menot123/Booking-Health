@@ -4,6 +4,7 @@
 
     .title {
         margin-bottom: 32px;
+        margin-left  : 6px;
 
         .btn-view-more {
             background-color: rgb(218, 243, 246);
@@ -29,6 +30,10 @@
             height       : 40px;
             padding-top  : 2px;
             margin-left  : 18px;
+        }
+
+        .slick-prev {
+            left: -22px;
         }
 
         .slick-prev:before,
@@ -66,5 +71,27 @@
             object-fit: cover;
             color     : transparent;
         }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .slider-content {
+        .title {
+            margin-bottom: 6px !important;
+
+            .btn-view-more {
+                background-color: transparent !important;
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 577px) and (max-width: 1200px) {
+    .slider-content {
+        .title {
+            margin-bottom: 18px !important;
+        }
+
     }
 }

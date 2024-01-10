@@ -88,3 +88,16 @@
 
     }
 }
+
+@media screen and (max-width: 576px) {
+    .slider-doctor-content {
+        padding: 0 28px;
+
+        .slick-slider {
+            .slick-prev {
+                left: -38px;
+            }
+        }
+    }
+
+}

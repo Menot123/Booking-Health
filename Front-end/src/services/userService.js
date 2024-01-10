@@ -17,5 +17,8 @@ const getUserAccount = () => {
     return axios.get('/api/account')
 }
 
+const createNewUser = (data) => {
+    return axios.post('/api/create-user', { data })
+}
 
-export { fetchAllUser, fetchAllGender, login, getUserAccount }
+export { fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser }
