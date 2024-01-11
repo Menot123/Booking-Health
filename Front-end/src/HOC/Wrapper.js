@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { IntlProvider } from 'react-intl'
+import { IntlProvider, injectIntl } from 'react-intl'
 
 
 
@@ -10,7 +10,7 @@ const Wrapper = (props) => {
     const message = useSelector(state => state.language.message)
 
     return (
-        <IntlProvider messages={message} locale={locale}>
+        <IntlProvider messages={message} locale={locale} intl={injectIntl}>
             {props.children}
         </IntlProvider>
     )

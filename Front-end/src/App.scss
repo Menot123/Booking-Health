@@ -23,3 +23,7 @@
         }
     }
 }
+
+.Toastify__toast-container--bottom-right:has(div.Toastify__toast--error) {
+    width: 400px;
+}

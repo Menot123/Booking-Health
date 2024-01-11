@@ -34,6 +34,7 @@ const { dispatch } = store; // direct access to redux store.
 axios.interceptors.response.use(
   response => response,
   error => {
+
     const { status } = error.response;
     if (status === UNAUTHORIZED && window.location.pathname !== '/' && window.location.pathname !== '/login') {
       toast.error('Unauthorized the user. Please login ...')

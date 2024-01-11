@@ -10,8 +10,14 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import Lightbox from 'react-image-lightbox';
 import { toast } from 'react-toastify';
+import { FormattedMessage } from 'react-intl'
+import { useSelector } from 'react-redux';
+import { LANGUAGES } from '../../../utils/index'
+import ReactPaginate from 'react-paginate';
 
 function CRUD_users() {
+
+    const currentLang = useSelector(state => state.userRedux.language)
 
     const [isLoading, setIsLoading] = useState(false)
     const [users, setUsers] = useState([])
@@ -23,10 +29,12 @@ function CRUD_users() {
         isOpen: false,
         imgReviewUrl: ''
     })
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1)
+    const [currentLimit, setCurrentLimit] = useState(5)
+    const [totalPage, setTotalPage] = useState(0)
 
-    const [genderDefault, setGenderDefault] = useState('')
-
-    const [inputData, setInputData] = useState({
+    const defaultInputData = {
         email: '',
         password: '',
         lastName: '',
@@ -37,27 +45,41 @@ function CRUD_users() {
         position: '',
         role: '',
         avatar: '',
-    });
+    }
+
+    const [inputData, setInputData] = useState(defaultInputData);
 
     const validateData = ['email', 'password', 'lastName', 'firstName', 'phone', 'address', 'gender', 'position', 'role', 'avatar']
 
     // Fetch data
     useEffect(() => {
-        getUsers()
         getSelectData()
-
-        return () => {
-        };
+        getUsers()
     }, [])
 
-    const getUsers = async () => {
+    // re-render when change page
+    useEffect(() => {
+        getUsersWithPagination()
+    }, [currentPage])
+
+    const getUsers = async (page) => {
         setIsLoading(true)
-        let usersData = await fetchAllUser()
-        if (usersData.EC === 0 && usersData.DT.length > 0) {
-            setUsers(usersData.DT)
+        let res = await fetchAllUser(currentPage, currentLimit)
+        if (res.EC === 0 && res.DT.users.length > 0) {
+            setUsers(res.DT.users)
+            setTotalPage(res.DT.totalPage)
             setIsLoading(false)
         }
     }
+
+    const getUsersWithPagination = async (page) => {
+        let res = await fetchAllUser(currentPage, currentLimit)
+        if (res.EC === 0 && res.DT.users.length > 0) {
+            setUsers(res.DT.users)
+            setTotalPage(res.DT.totalPage)
+        }
+    }
+
     const getUserAfterCreate = async () => {
         let usersData = await fetchAllUser()
         if (usersData.EC === 0 && usersData.DT.length > 0) {
@@ -80,12 +102,6 @@ function CRUD_users() {
         }
 
     }
-
-    useEffect(() => {
-        if (gender.length > 0) {
-            setGenderDefault(gender[0]);
-        }
-    }, [gender]);
 
     const handleChangeImage = async (e) => {
         let dataFile = e.target.files
@@ -142,6 +158,12 @@ function CRUD_users() {
         return missingFields;
     }
 
+    const checkEmailValid = (email) => {
+        return email.match(
+            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    };
+
     const handleCreateUser = async () => {
         let user = {
             email: inputData.email,
@@ -155,20 +177,34 @@ function CRUD_users() {
             role: inputData.role,
             avatar: inputData.avatar,
         }
+        let checkEmail = checkEmailValid(user.email)
+        if (!checkEmail) {
+            toast.error('Invalid email please re-enter')
+            return
+        }
         let validateArr = validateDataSend(user)
         if (validateArr.length === 0) {
             let response = await createNewUser(user)
             if (response.EC === 0) {
                 toast.success('Create user successfully')
+                setInputData(defaultInputData)
+                setImgPreview(prevState => ({
+                    ...prevState,
+                    imgReviewUrl: ''
+                }));
                 getUserAfterCreate()
             } else {
-                toast.error('Create user failed')
+                toast.error(response.EM)
             }
         } else {
             const missingFieldsString = validateArr.join(', ');
             toast.error('Missing fields: ' + missingFieldsString + ', please fill them!');
         }
     }
+
+    const handlePageClick = async (e) => {
+        setCurrentPage(+e.selected + 1)
+    };
 
 
     return (
@@ -178,49 +214,54 @@ function CRUD_users() {
                 {isLoading ? <Loader loading={isLoading} /> :
                     <>
                         <div className='title-CRUD my-3'>
-                            <span>Thêm mới người dùng</span>
+                            <span><FormattedMessage id='admin-form-CRUD.create-new-user' /></span>
                         </div>
                         <div className='row'>
                             <div className='col-3'>
-                                <label htmlFor='input_email'>Email</label>
+                                <label htmlFor='input_email'><FormattedMessage id='admin-form-CRUD.email' /></label>
                                 <input value={inputData.email} onChange={(e) => handleOnchangeInput(e, 'email')} className='form-control' id='input_email' type='email' />
                             </div>
 
                             <div className='col-3'>
-                                <label htmlFor='input_password'>Mật khẩu</label>
+                                <label htmlFor='input_password'><FormattedMessage id='admin-form-CRUD.password' /></label>
                                 <input value={inputData.password} onChange={(e) => handleOnchangeInput(e, 'password')} className='form-control' id='input_password' type='text' />
                             </div>
 
                             <div className='col-3'>
-                                <label htmlFor='input_last_name'>Tên</label>
+                                <label htmlFor='input_last_name'><FormattedMessage id='admin-form-CRUD.firstName' /></label>
                                 <input value={inputData.lastName} onChange={(e) => handleOnchangeInput(e, 'lastName')} className='form-control' id='input_last_name' type='text' />
                             </div>
 
                             <div className='col-3'>
-                                <label htmlFor='input_first_name'>Họ</label>
+                                <label htmlFor='input_first_name'><FormattedMessage id='admin-form-CRUD.lastName' /></label>
                                 <input value={inputData.firstName} onChange={(e) => handleOnchangeInput(e, 'firstName')} className='form-control' id='input_first_name' type='text' />
                             </div>
 
                             <div className='col-3 my-3'>
-                                <label htmlFor='input_phone'>Số điện thoại</label>
+                                <label htmlFor='input_phone'><FormattedMessage id='admin-form-CRUD.phone' /></label>
                                 <input value={inputData.phone} onChange={(e) => handleOnchangeInput(e, 'phone')} className='form-control' id='input_phone' type='number' />
                             </div>
 
                             <div className='col-9 my-3'>
-                                <label htmlFor='input_address'>Địa chỉ</label>
+                                <label htmlFor='input_address'><FormattedMessage id='admin-form-CRUD.address' /></label>
                                 <input value={inputData.address} onChange={(e) => handleOnchangeInput(e, 'address')} className='form-control' id='input_address' type='text' />
                             </div>
 
                             <div className='col-3'>
-                                <label>Giới tính</label>
+
+
+                                <label><FormattedMessage id='admin-form-CRUD.gender' /></label>
                                 <select className='form-select' value={inputData.gender}
                                     onChange={(e) => handleOnchangeInput(e, 'gender')} >
-                                    <option hidden>Chọn giới tính</option>
+
+                                    <FormattedMessage id='admin-form-CRUD.select-gender'>
+                                        {(msg) => (<option hidden>{msg}</option>)}
+                                    </FormattedMessage>
                                     {
                                         gender && gender.length > 0 &&
                                         gender.map((item, index) => {
                                             return (
-                                                <option key={uuidv4()} value={item.keyCode}>{item.valueVi}</option>
+                                                <option key={uuidv4()} value={item.keyCode}>{currentLang === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
                                             )
 
                                         })
@@ -229,30 +270,33 @@ function CRUD_users() {
                             </div>
 
                             <div className='col-3'>
-                                <label>Chức danh</label>
+                                <label><FormattedMessage id='admin-form-CRUD.position' /></label>
                                 <select value={inputData.position} className='form-select' onChange={(e) => handleOnchangeInput(e, 'position')}>
-                                    <option hidden>Chọn chức danh</option>
+                                    <FormattedMessage id='admin-form-CRUD.select-position'>
+                                        {(msg) => (<option hidden>{msg}</option>)}
+                                    </FormattedMessage>
                                     {
                                         position && position.length > 0 &&
                                         position.map((item, index) => {
                                             return (
-                                                <option key={uuidv4()} value={item.keyCode}>{item.valueVi}</option>
+                                                <option key={uuidv4()} value={item.keyCode}>{currentLang === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
                                             )
-
                                         })
                                     }
                                 </select>
                             </div>
 
                             <div className='col-3'>
-                                <label>Vai trò</label>
+                                <label><FormattedMessage id='admin-form-CRUD.role' /></label>
                                 <select value={inputData.role} className='form-select' onChange={(e) => handleOnchangeInput(e, 'role')}>
-                                    <option hidden>Chọn vai trò</option>
+                                    <FormattedMessage id='admin-form-CRUD.select-role'>
+                                        {(msg) => (<option hidden>{msg}</option>)}
+                                    </FormattedMessage>
                                     {
                                         role && role.length > 0 &&
                                         role.map((item, index) => {
                                             return (
-                                                <option key={uuidv4()} value={item.keyCode}>{item.valueVi}</option>
+                                                <option key={uuidv4()} value={item.keyCode}>{currentLang === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
                                             )
                                         })
                                     }
@@ -260,12 +304,12 @@ function CRUD_users() {
                             </div>
 
                             <div className='col-3'>
-                                <label>Ảnh đại diện</label>
+                                <label><FormattedMessage id='admin-form-CRUD.avatar' /></label>
                                 <div className='preview-img-wrapper'>
                                     <input hidden id="img-upload" type='file'
                                         onChange={(e) => handleChangeImage(e)}
                                     />
-                                    <label className='label-upload' htmlFor="img-upload">Tải ảnh lên <FaUpload /></label>
+                                    <label className='label-upload' htmlFor="img-upload"><FormattedMessage id='admin-form-CRUD.upload-avatar' /><FaUpload className='ms-1 mb-1' /></label>
                                     <div className='preview-image'
                                         style={{ backgroundImage: `url(${imgPreview.imgReviewUrl})` }}
                                         onClick={() => openPreviewImage()}
@@ -324,6 +368,28 @@ function CRUD_users() {
                                 }
                             </tbody>
                         </table>
+                        {totalPage > 0 &&
+                            <ReactPaginate
+                                nextLabel="next >"
+                                onPageChange={handlePageClick}
+                                pageRangeDisplayed={3}
+                                marginPagesDisplayed={2}
+                                pageCount={totalPage}
+                                previousLabel="< previous"
+                                pageClassName="page-item"
+                                pageLinkClassName="page-link"
+                                previousClassName="page-item"
+                                previousLinkClassName="page-link"
+                                nextClassName="page-item"
+                                nextLinkClassName="page-link"
+                                breakLabel="..."
+                                breakClassName="page-item"
+                                breakLinkClassName="page-link"
+                                containerClassName="pagination"
+                                activeClassName="active"
+                                renderOnZeroPageCount={null}
+                            />
+                        }
                     </>
                 }
             </div>
@@ -331,5 +397,7 @@ function CRUD_users() {
         </div>
     )
 }
+
+
 
 export default CRUD_users

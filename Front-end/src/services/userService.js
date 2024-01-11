@@ -1,8 +1,8 @@
 import axios from "../axios/axios";
 
 
-const fetchAllUser = () => {
-    return axios.get('/api/users')
+const fetchAllUser = (page, limit) => {
+    return axios.get(`/api/users?page=${page}&limit=${limit}`)
 }
 
 const fetchAllGender = (type) => {

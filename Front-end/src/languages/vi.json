@@ -25,5 +25,20 @@
     "admin-header.manage-schedules": "Quản lý kế hoạch khám bệnh",
     "admin-header.manage-clinics": "Quản lý phòng khám",
     "admin-header.manage-specialties": "Quản lý chuyên khoa",
-    "admin-header.manage-handbooks": "Quản lý cẩm nang"
+    "admin-header.manage-handbooks": "Quản lý cẩm nang",
+    "admin-form-CRUD.create-new-user": "Thêm mới người dùng",
+    "admin-form-CRUD.email": "Email",
+    "admin-form-CRUD.password": "Mật khẩu",
+    "admin-form-CRUD.firstName": "Tên",
+    "admin-form-CRUD.lastName": "Họ",
+    "admin-form-CRUD.phone": "Số diện thoại",
+    "admin-form-CRUD.address": "Địa chỉ",
+    "admin-form-CRUD.gender": "Giới tính",
+    "admin-form-CRUD.select-gender": "Chọn giới tính",
+    "admin-form-CRUD.position": "Chức danh",
+    "admin-form-CRUD.select-position": "Chức danh",
+    "admin-form-CRUD.role": "Vai trò",
+    "admin-form-CRUD.select-role": "Chọn chức danh",
+    "admin-form-CRUD.avatar": "Ảnh đại diện",
+    "admin-form-CRUD.upload-avatar": "Tải ảnh lên"
 }

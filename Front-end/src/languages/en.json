@@ -25,5 +25,20 @@
     "admin-header.manage-schedules": "Manage schedules",
     "admin-header.manage-clinics": "Manage clinics",
     "admin-header.manage-specialties": "Manage specialties",
-    "admin-header.manage-handbooks": "Manage handbooks"
+    "admin-header.manage-handbooks": "Manage handbooks",
+    "admin-form-CRUD.create-new-user": "Create a new user",
+    "admin-form-CRUD.email": "Email",
+    "admin-form-CRUD.password": "Password",
+    "admin-form-CRUD.firstName": "First Name",
+    "admin-form-CRUD.lastName": "Last Name",
+    "admin-form-CRUD.phone": "Phone number",
+    "admin-form-CRUD.address": "Address",
+    "admin-form-CRUD.gender": "Gender",
+    "admin-form-CRUD.select-gender": "Select gender",
+    "admin-form-CRUD.position": "Position",
+    "admin-form-CRUD.select-position": "Select position",
+    "admin-form-CRUD.role": "Role",
+    "admin-form-CRUD.select-role": "Select role",
+    "admin-form-CRUD.avatar": "Avatar",
+    "admin-form-CRUD.upload-avatar": "Upload avatar"
 }
