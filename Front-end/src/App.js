@@ -23,7 +23,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import Blog from './components/Blog/Blog';
-import BlogDetail from './components/BlogDetail/BlogDetail';
+import BlogDetail from './components/Blog/BlogDetail';
+import BlogList from './components/Blog/BlogList';
+import BlogListChild from './components/Blog/BlogListChild';
 import Admin from './admin/Admin';
 import PrivateRoutes from './routes/PrivateRoutes';
 import LoginRoute from './routes/LoginRoute';
@@ -59,12 +61,22 @@ function App() {
             <Route path={path.HO_TRO}>
               <Sup />
             </Route>
+
+            {/* Blog */}
             <Route path={path.BLOG} exact>
               <Blog />
             </Route>
             <Route path={path.BLOGDETAIL} exact>
               <BlogDetail />
             </Route>
+            <Route path={path.BLOGLIST} exact>
+              <BlogList />
+            </Route>
+            <Route path={path.BLOGLISTCHILD} exact>
+              <BlogListChild />
+            </Route>
+            {/* End Blog */}
+
             {/* <Route path={path.ADMIN} >
               <Admin />
             </Route> */}

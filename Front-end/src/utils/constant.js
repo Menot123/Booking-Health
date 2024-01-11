@@ -9,6 +9,8 @@ export const path = {
     ADMIN: '/admin',
     BLOG: '/cam-nang',
     BLOGDETAIL: '/cam-nang/chi-tiet',
+    BLOGLIST: '/cam-nang/danh-sach',
+    BLOGLISTCHILD: '/cam-nang/danh-sach/chi-tiet-danh-sach',
 };
 
 export const LANGUAGES = {

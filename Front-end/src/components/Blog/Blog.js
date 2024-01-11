@@ -6,9 +6,15 @@ import './Blog.scss'
 import new_blog from '../../assets/img/new-blog.png'
 import popular_blog from '../../assets/img/popular-blog.png'
 import handbook from '../../assets/img/handbook.png'
+import { useHistory, Redirect, Navigate } from "react-router-dom";
 import { FormattedMessage } from 'react-intl'
 
 function Blog() {
+    let history = useHistory();
+    const handleNavigateToPage = (path) => {
+        history.push(path);
+        // window.scrollTo(0, 0);
+    };
     const settings_new_blog = {
         dots: false,
         infinite: false,
@@ -53,7 +59,6 @@ function Blog() {
             <div className='slider-blog-content'>
                 <div className='title w-100 d-flex align-items-center justify-content-between border-bottom'>
                     <h4><FormattedMessage id='blog.new-blog' defaultMessage={'Bài viết mới nhất'} /></h4>
-                    <span className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} style={{ cursor: 'pointer' }} /></span> </span>
                 </div>
                 <Slider {...settings_new_blog}>
                     {/* Blog Card */}
@@ -180,7 +185,6 @@ function Blog() {
             <div className='slider-blog-content'>
                 <div className='title w-100 d-flex align-items-center justify-content-between border-bottom'>
                     <h4><FormattedMessage id='blog.popular-blog' defaultMessage={'Bài viết nổi bật'} /></h4>
-                    <span className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} style={{ cursor: 'pointer' }} /></span> </span>
                 </div>
                 <Slider {...settings_popular_blog}>
                     {/* Blog Card */}
@@ -256,16 +260,21 @@ function Blog() {
                 {/* Handbook */}
                 <div className='title w-100 d-flex align-items-center justify-content-between border-bottom'>
                     <h4><FormattedMessage id='blog.handbook' defaultMessage={'Bài viết nổi bật'} /></h4>
-                    <span className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} style={{ cursor: 'pointer' }} /></span> </span>
+                    {/* <Redirect class="btn btn-primary btn-view-more text-btn-view-more" to="/danh-sach">
+                        Xem thêm
+                    </Redirect> */}
+                    <span className='btn btn-primary btn-view-more text-btn-view-more' onClick={() => handleNavigateToPage("/cam-nang/danh-sach")}>
+                        <FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} />
+                    </span>
                 </div>
                 <Slider {...setting_handbook}>
                     {/* Hanbook Card */}
                     <div className='wrapper-handbook-item' >
-                        <div class="row">
-                            <div class="col-md-12 d-flex justify-content-center">
-                                <div class="handbook-item">
+                        <div className="row">
+                            <div className="col-md-12 d-flex justify-content-center">
+                                <div className="handbook-item">
                                     <img src={handbook} className='handbook-img' />
-                                    <div class="content-handbook"> Cơ xương khớp </div>
+                                    <div className="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
                             </div>
@@ -273,11 +282,11 @@ function Blog() {
                     </div>
                     {/* Hanbook Card */}
                     <div className='wrapper-handbook-item' >
-                        <div class="row">
-                            <div class="col-md-12 d-flex justify-content-center">
-                                <div class="handbook-item">
+                        <div className="row">
+                            <div className="col-md-12 d-flex justify-content-center">
+                                <div className="handbook-item">
                                     <img src={handbook} className='handbook-img' />
-                                    <div class="content-handbook"> Cơ xương khớp </div>
+                                    <div className="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
                             </div>
@@ -285,11 +294,11 @@ function Blog() {
                     </div>
                     {/* Hanbook Card */}
                     <div className='wrapper-handbook-item' >
-                        <div class="row">
-                            <div class="col-md-12 d-flex justify-content-center">
-                                <div class="handbook-item">
+                        <div className="row">
+                            <div className="col-md-12 d-flex justify-content-center">
+                                <div className="handbook-item">
                                     <img src={handbook} className='handbook-img' />
-                                    <div class="content-handbook"> Cơ xương khớp </div>
+                                    <div className="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
                             </div>
@@ -297,11 +306,11 @@ function Blog() {
                     </div>
                     {/* Hanbook Card */}
                     <div className='wrapper-handbook-item' >
-                        <div class="row">
-                            <div class="col-md-12 d-flex justify-content-center">
-                                <div class="handbook-item">
+                        <div className="row">
+                            <div className="col-md-12 d-flex justify-content-center">
+                                <div className="handbook-item">
                                     <img src={handbook} className='handbook-img' />
-                                    <div class="content-handbook"> Cơ xương khớp </div>
+                                    <div className="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
                             </div>
@@ -309,11 +318,11 @@ function Blog() {
                     </div>
                     {/* Hanbook Card */}
                     <div className='wrapper-handbook-item' >
-                        <div class="row">
-                            <div class="col-md-12 d-flex justify-content-center">
-                                <div class="handbook-item">
+                        <div className="row">
+                            <div className="col-md-12 d-flex justify-content-center">
+                                <div className="handbook-item">
                                     <img src={handbook} className='handbook-img' />
-                                    <div class="content-handbook"> Cơ xương khớp </div>
+                                    <div className="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
                             </div>
@@ -321,11 +330,11 @@ function Blog() {
                     </div>
                     {/* Hanbook Card */}
                     <div className='wrapper-handbook-item' >
-                        <div class="row">
-                            <div class="col-md-12 d-flex justify-content-center">
-                                <div class="handbook-item">
+                        <div className="row">
+                            <div className="col-md-12 d-flex justify-content-center">
+                                <div className="handbook-item">
                                     <img src={handbook} className='handbook-img' />
-                                    <div class="content-handbook"> Cơ xương khớp </div>
+                                    <div className="content-handbook"> Cơ xương khớp </div>
                                 </div>
 
                             </div>
