@@ -1,7 +1,8 @@
 import axios from "../axios/axios";
 
-const fetchAllUser = () => {
-    return axios.get('/api/users')
+
+const fetchAllUser = (page, limit) => {
+    return axios.get(`/api/users?page=${page}&limit=${limit}`)
 }
 
 const fetchAllGender = (type) => {
@@ -16,4 +17,8 @@ const getUserAccount = () => {
     return axios.get('/api/account')
 }
 
-export { fetchAllUser, fetchAllGender, login, getUserAccount }
+const createNewUser = (data) => {
+    return axios.post('/api/create-user', { data })
+}
+
+export { fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser }

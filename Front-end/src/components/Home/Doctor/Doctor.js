@@ -33,7 +33,7 @@ function Doctor() {
                 <div className='wrapper-doctor-item'>
                     <div className='doctor-item'>
                         <div className='wrapper-img-doctor'>
-                            <img className='img-doctor' src={bac_si} />
+                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
                         </div>
                         <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
                         <span>Sức khỏe tâm thần</span>
@@ -43,7 +43,7 @@ function Doctor() {
                 <div className='wrapper-doctor-item'>
                     <div className='doctor-item'>
                         <div className='wrapper-img-doctor'>
-                            <img className='img-doctor' src={bac_si} />
+                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
                         </div>
                         <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
                     </div>
@@ -52,7 +52,7 @@ function Doctor() {
                 <div className='wrapper-doctor-item'>
                     <div className='doctor-item'>
                         <div className='wrapper-img-doctor'>
-                            <img className='img-doctor' src={bac_si} />
+                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
                         </div>
                         <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
                     </div>
@@ -61,7 +61,7 @@ function Doctor() {
                 <div className='wrapper-doctor-item'>
                     <div className='doctor-item'>
                         <div className='wrapper-img-doctor'>
-                            <img className='img-doctor' src={bac_si} />
+                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
                         </div>
                         <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
                     </div>
@@ -70,7 +70,7 @@ function Doctor() {
                 <div className='wrapper-doctor-item'>
                     <div className='doctor-item'>
                         <div className='wrapper-img-doctor'>
-                            <img className='img-doctor' src={bac_si} />
+                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
                         </div>
                         <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
                     </div>
@@ -79,7 +79,7 @@ function Doctor() {
                 <div className='wrapper-doctor-item'>
                     <div className='doctor-item'>
                         <div className='wrapper-img-doctor'>
-                            <img className='img-doctor' src={bac_si} />
+                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
                         </div>
                         <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
                     </div>

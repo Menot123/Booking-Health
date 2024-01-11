@@ -9,7 +9,8 @@ import { combineReducers } from '@reduxjs/toolkit'
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['userRedux'],
+    whitelist: ['userRedux']
+
 }
 
 const reducer = combineReducers({

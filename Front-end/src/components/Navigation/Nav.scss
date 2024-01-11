@@ -106,6 +106,8 @@ body {
                 .carousel {
                     position: absolute;
                     top     : 96px;
+                    left    : 0;
+                    width   : 100%;
 
                     .carousel-inner {
                         border-radius: 32px;
@@ -118,6 +120,9 @@ body {
                             object-fit: cover;
                             color     : transparent;
 
+                            .img-carousel {
+                                width: 100%;
+                            }
 
                         }
                     }
@@ -136,61 +141,80 @@ body {
 }
 
 @media screen and (max-width: 576px) {
-    .nav-container {
-        .nav-items {
-            position      : relative;
-            flex-direction: column;
-            align-items   : unset !important;
+    .banner-spacing {
+        height: 40px;
+    }
 
-            .img-logo {
-                .logo {
-                    width: 168px;
+    .top-nav {
+        max-height: 350px;
+
+
+        .nav-container {
+            .nav-items {
+                position      : relative;
+                flex-direction: column;
+                align-items   : unset !important;
+
+                .img-logo {
+                    .logo {
+                        width: 168px;
+                    }
+                }
+
+                .nav-link-items {
+                    display        : flex;
+                    justify-content: space-between;
+                    flex-wrap      : wrap;
+
+
+                    a {
+                        font-size: 16px;
+                        min-width: 100px;
+                    }
+
+                    .search-input {
+                        width : 100%;
+                        margin: 4px 8px;
+                    }
+                }
+
+                .content-nav-right {
+                    position: absolute;
+                    top     : 10px;
+                    right   : 0;
                 }
             }
 
-            .nav-link-items {
-                display        : flex;
-                justify-content: space-between;
-                flex-wrap      : wrap;
+            .wrapper-banner-slide {
+                .banner-slide {
+                    .banner-carousel {
+                        .carousel {
+                            position       : absolute;
+                            top            : 166px;
+                            // margin-right: 16px;
+                            left           : 20px;
+                            width          : 92%;
 
+                            .carousel-inner {
+                                .carousel-item {
+                                    overflow: hidden !important;
 
-                a {
-                    font-size: 16px;
-                    min-width: 100px;
-                }
-
-                .search-input {
-                    width : 100%;
-                    margin: 4px 8px;
-                }
-            }
-
-            .content-nav-right {
-                position: absolute;
-                top     : 10px;
-                right   : 0;
-            }
-        }
-
-        .wrapper-banner-slide {
-            .banner-slide {
-                .banner-carousel {
-                    .carousel {
-                        position    : absolute;
-                        top         : 166px;
-                        margin-right: 16px;
-
-                        .carousel-inner {
-                            .carousel-item {
-                                max-height: 230px;
+                                    // max-height: 230px;
+                                    .img-carousel {
+                                        width        : 100%;
+                                        height       : 200px;
+                                        border-radius: 32px;
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
+        }
     }
+
 }
 
 @media screen and (min-width: 577px) and (max-width: 1200px) {
@@ -240,6 +264,20 @@ body {
                         position    : absolute;
                         top         : 166px;
                         margin-right: 16px;
+                        padding     : 0 24px;
+
+                        .carousel-inner {
+                            .carousel-item {
+                                overflow: hidden !important;
+
+                                // max-height: 230px;
+                                .img-carousel {
+                                    width        : 100%;
+                                    height       : 350px;
+                                    border-radius: 32px;
+                                }
+                            }
+                        }
 
                     }
                 }

@@ -1,12 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { getUserAccount } from '../../services/userService'
 
 
 
 const initialState = {
     isAuthenticated: false,
     token: '',
-    account: '',
+    account: {
+        username: '',
+        firstName: '',
+        lastName: ''
+    },
+    currentLang: ''
 }
 
 
@@ -29,12 +33,15 @@ export const userSlice = createSlice({
         },
         fetchAccount: (state, action) => {
             state.account = action.payload
+        },
+        changeUserLanguage: (state, action) => {
+            state.language = action.payload
         }
 
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setAuth, logout, fetchAccount } = userSlice.actions
+export const { setAuth, logout, fetchAccount, changeUserLanguage } = userSlice.actions
 
 export default userSlice.reducer

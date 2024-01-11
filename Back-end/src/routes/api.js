@@ -16,6 +16,8 @@ const initApiRoutes = (app) => {
     router.get('/users', apiController.getUsers);
     router.get('/type-role', apiController.getTypeRole)
     router.get('/account', userController.getAccount)
+    router.post('/logout', userController.handleLogout)
+    router.post('/create-user', userController.handleCreateUser)
 
     return app.use("/api/", router)
 

@@ -10,7 +10,7 @@ import initApiRoutes from './routes/api';
 
 let app = express()
 let port = process.env.PORT || 8769
-
+// app.use(cors())
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
@@ -26,12 +26,19 @@ app.use(function (req, res, next) {
     // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', true);
 
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200)
+    }
+
     // Pass to next layer of middleware
     next();
 });
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({ limit: '5mb' })); // Ví dụ giới hạn 5MB
+app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
+
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(cookieParser())
 

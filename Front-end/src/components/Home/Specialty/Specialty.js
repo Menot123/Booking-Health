@@ -22,7 +22,7 @@ function Specialty() {
 
     return (
 
-        <div className='slider-content '>
+        <div className='slider-content mr17 '>
             <div className='title w-100 d-flex align-items-center justify-content-between'>
                 <h4><FormattedMessage id='homepage.specialty' defaultMessage={'Chuyên khoa'} /></h4>
                 <span className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>

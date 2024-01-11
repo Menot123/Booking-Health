@@ -6,14 +6,9 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  Link,
-  useRouteMatch,
 } from "react-router-dom";
-import { FormattedMessage } from 'react-intl'
 // import { Context } from './HOC/Wrapper'
-import { useContext, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { translate } from './redux/slices/languageSlice'
+import { useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars'
 import { path } from './utils/index'
 import { ToastContainer } from 'react-toastify';
@@ -43,15 +38,12 @@ function App() {
         <Scrollbars className='scroll-bars'
           renderThumbVertical={({ style, ...props }) => (
 
-            <div {...props} className="custom-thumb-vertical" style={{ ...style }} />
+            <div {...props} className="custom-thumb-vertical" style={{ padding: '0 17px 0 0' }} />
           )}
           autoHide autoHideTimeout={1000} autoHideDuration={200} style={{ width: '100%', height: '100%' }}>
           {url === '/login' || url === '/admin' ? ' ' : <Nav />}
           <Switch>
             <LoginRoute path={path.LOGIN} component={Login} />
-            {/* <Route path={path.LOGIN}>
-              <Login />
-            </Route> */}
             <Route path={path.CO_SO_Y_TE}>
               Co so y te
             </Route>
@@ -77,9 +69,6 @@ function App() {
             </Route>
             {/* End Blog */}
 
-            {/* <Route path={path.ADMIN} >
-              <Admin />
-            </Route> */}
             <PrivateRoutes path={path.ADMIN} component={Admin} />
             <Route path={path.HOMEPAGE}>
               <Home />
@@ -98,7 +87,7 @@ function App() {
           position="bottom-right"
           autoClose={3000}
           hideProgressBar={false}
-          newestOnTop={false}
+          newestOnTop={true}
           closeOnClick
           rtl={false}
           pauseOnFocusLoss

@@ -5,16 +5,16 @@ import banner3 from '../../assets/img/banner3.png'
 
 const Carousel = () => {
     useEffect(() => {
-        const carouselInterval = setInterval(() => {
-            const btnNext = document.querySelector('.carousel-control-next')
-            btnNext.click()
+        // const carouselInterval = setInterval(() => {
+        //     const btnNext = document.querySelector('.carousel-control-next')
+        //     btnNext.click()
 
-        }, 3000); // Thời gian chuyển slide (3 giây)
+        // }, 3000); // Thời gian chuyển slide (3 giây)
 
-        return () => {
-            // Xóa interval khi component unmount
-            clearInterval(carouselInterval);
-        };
+        // return () => {
+        //     // Xóa interval khi component unmount
+        //     clearInterval(carouselInterval);
+        // };
     }, []);
 
     return (
@@ -28,13 +28,13 @@ const Carousel = () => {
                     </div>
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src={banner1} className="d-block w-100" alt="banner 1" />
+                            <img src={banner1} className="d-block img-carousel" alt="banner 1" />
                         </div>
                         <div className="carousel-item">
-                            <img src={banner2} className="d-block w-100" alt='banner2' />
+                            <img src={banner2} className="d-block img-carousel" alt='banner2' />
                         </div>
                         <div className="carousel-item">
-                            <img src={banner3} className="d-block w-100" alt="banner3" />
+                            <img src={banner3} className="d-block img-carousel" alt="banner3" />
                         </div>
                     </div>
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

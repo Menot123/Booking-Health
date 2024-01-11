@@ -22,12 +22,23 @@ let getAllCode = async (req, res, next) => {
 
 let getUsers = async (req, res, next) => {
     try {
-        let data = await userService.getAllUsers()
-        return res.status(200).json({
-            EM: data.EM,
-            EC: data.EC,
-            DT: data.DT
-        })
+        if (req.query.page && req.query.limit) {
+            let { page, limit } = req.query
+            let data = await userService.getUsersPagination(+page, +limit)
+            return res.status(200).json({
+                EM: data.EM,
+                EC: data.EC,
+                DT: data.DT
+            })
+        } else {
+            let data = await userService.getAllUsers()
+            return res.status(200).json({
+                EM: data.EM,
+                EC: data.EC,
+                DT: data.DT
+            })
+        }
+
 
     } catch (e) {
         console.log('Something went wrong from get all users')
