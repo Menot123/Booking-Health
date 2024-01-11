@@ -21,4 +21,8 @@ const createNewUser = (data) => {
     return axios.post('/api/create-user', { data })
 }
 
-export { fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser }
+const deleteUser = (user) => {
+    return axios.delete('/api/delete-user', { data: { user: user } })
+}
+
+export { fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser, deleteUser }

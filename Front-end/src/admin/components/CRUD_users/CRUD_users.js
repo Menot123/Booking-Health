@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import './CRUD_users.scss'
 import 'react-image-lightbox/style.css';
-import { fetchAllUser, fetchAllGender, createNewUser } from '../../../services/userService'
+import { fetchAllUser, fetchAllGender, createNewUser, deleteUser } from '../../../services/userService'
 import Loader from '../Loader/Loader';
 import { v4 as uuidv4 } from 'uuid';
 import { FaUpload } from "react-icons/fa";
@@ -77,13 +77,6 @@ function CRUD_users() {
         if (res.EC === 0 && res.DT.users.length > 0) {
             setUsers(res.DT.users)
             setTotalPage(res.DT.totalPage)
-        }
-    }
-
-    const getUserAfterCreate = async () => {
-        let usersData = await fetchAllUser()
-        if (usersData.EC === 0 && usersData.DT.length > 0) {
-            setUsers(usersData.DT)
         }
     }
 
@@ -192,7 +185,7 @@ function CRUD_users() {
                     ...prevState,
                     imgReviewUrl: ''
                 }));
-                getUserAfterCreate()
+                getUsersWithPagination()
             } else {
                 toast.error(response.EM)
             }
@@ -205,6 +198,21 @@ function CRUD_users() {
     const handlePageClick = async (e) => {
         setCurrentPage(+e.selected + 1)
     };
+
+    const handleDeleteUser = async (id, email) => {
+        if (id && email) {
+            let userDelete = { userId: id, userEmail: email }
+            let response = await deleteUser(userDelete)
+            if (response.EC === 0) {
+                toast.success(response.EM)
+                getUsersWithPagination()
+            } else {
+                toast.error(response.EM)
+            }
+        } else {
+            toast.error(`Delete user ${email} failed`)
+        }
+    }
 
 
     return (
@@ -359,7 +367,7 @@ function CRUD_users() {
                                                 <td>{item.address}</td>
                                                 <td className='w-100 d-flex justify-content-center'>
                                                     <span className='icon-action-edit'><FaPencil /></span>
-                                                    <span className='icon-action-delete ms-4'><FaTrashAlt /></span>
+                                                    <span className='icon-action-delete ms-4' onClick={() => handleDeleteUser(item.id, item.email)}><FaTrashAlt /></span>
                                                 </td>
                                             </tr>
                                         )
