@@ -52,10 +52,10 @@ function BlogDetail() {
             <div className='row '>
                 <div className="detail">
                     {/* OffCanvas Table Content*/}
-                    <button class="btn btn-primary offcanvas-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Mục lục</button>
+                    <button class="btn btn-primary offcanvas-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><FormattedMessage id='blog.catalogue' defaultMessage={'Mục lục'} /></button>
                     <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                         <div class="offcanvas-header" style={{ borderBottom: '4px solid orange' }}>
-                            <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Mục lục</h3>
+                            <h3 class="offcanvas-title" id="offcanvasScrollingLabel"><FormattedMessage id='blog.catalogue' defaultMessage={'Mục lục'} /></h3>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body border-top-1">
@@ -76,7 +76,7 @@ function BlogDetail() {
 
                     {/* Table Content show */}
                     <div className="table-content">
-                        <h3 className='title'>Mục lục</h3>
+                        <h3 className='title'><FormattedMessage id='blog.catalogue' defaultMessage={'Mục lục'} /></h3>
                         <ul className='list level1'>
                             <li><a href="#section1" >Xét nghiệm NIPT có những ưu điểm gì?</a></li>
                             <li><a href="#section2">Top 3 địa chỉ xét nghiệm NIPT tại Vũng Tàu</a>
