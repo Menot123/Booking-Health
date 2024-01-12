@@ -5,8 +5,14 @@ import 'slick-carousel/slick/slick-theme.css'
 import './BlogList.scss'
 import { useHistory } from "react-router-dom";
 import { FormattedMessage } from 'react-intl'
+import { useEffect } from 'react'
 
 const BlogList = (props) => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+  }, [])
   let history = useHistory();
   const handleNavigateToPage = (path) => {
     history.push(path);

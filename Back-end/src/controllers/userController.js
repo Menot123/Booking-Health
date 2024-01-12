@@ -54,5 +54,25 @@ const handleCreateUser = async (req, res, next) => {
     }
 }
 
+const handleDeleteUser = async (req, res, next) => {
+    try {
+        let user = req.body.user
+        let response = await userService.deleteUserService(user)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
 
-module.exports = { getUser, getAccount, handleLogout, handleCreateUser }
+    } catch (e) {
+        console.log('Something went wrong from delete user')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+
+module.exports = { getUser, getAccount, handleLogout, handleCreateUser, handleDeleteUser }

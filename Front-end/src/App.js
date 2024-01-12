@@ -8,7 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 // import { Context } from './HOC/Wrapper'
-import { useEffect } from 'react';
+import { useRef } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars'
 import { path } from './utils/index'
 import { ToastContainer } from 'react-toastify';
@@ -28,14 +28,20 @@ import LoginRoute from './routes/LoginRoute';
 function App() {
 
 
-  useEffect(() => {
-  }, [])
+  const scrollbarsRef = useRef(null);
+
+  const scrollToTop = () => {
+    if (scrollbarsRef.current) {
+      scrollbarsRef.current.scrollTop(0);
+    }
+  };
 
   const url = window.location.pathname;
   return (
     <BrowserRouter>
+
       <div className='app-container'>
-        <Scrollbars className='scroll-bars'
+        <Scrollbars ref={scrollbarsRef} className='scroll-bars'
           renderThumbVertical={({ style, ...props }) => (
 
             <div {...props} className="custom-thumb-vertical" style={{ padding: '0 17px 0 0' }} />
@@ -55,8 +61,8 @@ function App() {
             </Route>
 
             {/* Blog */}
-            <Route path={path.BLOG} exact>
-              <Blog />
+            <Route path={path.BLOG} exact >
+              <Blog scrollToTop={scrollToTop} />
             </Route>
             <Route path={path.BLOGDETAIL} exact>
               <BlogDetail />

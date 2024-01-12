@@ -88,6 +88,7 @@ const getAllUsers = async () => {
                 }
             }
         })
+
         if (users) {
             res.EC = 0
             res.EM = 'Get all users successfully'
@@ -115,6 +116,9 @@ const getUsersPagination = async (page, limit) => {
             where: {
                 email: {
                     [Op.not]: 'admin@gmail.com'
+                },
+                status: {
+                    [Op.not]: 'deleted'
                 }
             }
         })
@@ -195,7 +199,8 @@ const createUserService = async (userData) => {
                 phoneNumber: userData.phone,
                 image: userData.avatar,
                 roleId: userData.role,
-                position: userData.position
+                position: userData.position,
+                status: 'active'
             }
             let checkDuplicate = await db.User.findOne({
                 where: { email: userData.email }
@@ -227,8 +232,37 @@ const createUserService = async (userData) => {
     }
 }
 
+const deleteUserService = async (userDelete) => {
+    try {
+        let { userId, userEmail } = userDelete
+        let res = {}
+        let user = await db.User.findOne({
+            where: { id: userId }
+        })
+        if (user) {
+            await user.update({ status: 'deleted' })
+            res.EC = 0
+            res.EM = `Delete user ${userEmail} successfully`
+            res.DT = {}
+        } else {
+            res.EC = 1
+            res.EM = `Delete user ${userEmail} failed`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with delete user service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 
 module.exports = {
     loginChecked, getAllCode, getAllUsers, getTypeRoleService, createUserService,
-    getUsersPagination
+    getUsersPagination, deleteUserService
 }

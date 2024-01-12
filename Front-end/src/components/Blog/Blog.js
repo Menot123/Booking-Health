@@ -9,11 +9,11 @@ import handbook from '../../assets/img/handbook.png'
 import { useHistory, Redirect, Navigate } from "react-router-dom";
 import { FormattedMessage } from 'react-intl'
 
-function Blog() {
+function Blog(props) {
     let history = useHistory();
     const handleNavigateToPage = (path) => {
-        history.push(path);
-        // window.scrollTo(0, 0);
+        history.push(path)
+        props.scrollToTop()
     };
     const settings_new_blog = {
         dots: false,
