@@ -42,5 +42,7 @@
     "admin-form-CRUD.role": "Role",
     "admin-form-CRUD.select-role": "Select role",
     "admin-form-CRUD.avatar": "Avatar",
-    "admin-form-CRUD.upload-avatar": "Upload avatar"
+    "admin-form-CRUD.upload-avatar": "Upload avatar",
+    "admin-form-CRUD.save-user": "Save user",
+    "admin-form-CRUD.save-change": "Save change"
 }

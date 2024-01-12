@@ -20,6 +20,9 @@ const initApiRoutes = (app) => {
     router.post('/create-user', userController.handleCreateUser)
     router.delete('/delete-user', userController.handleDeleteUser)
 
+    router.get('/data-update-user', userController.handleGetDataUpdateUser)
+    router.patch('/update-user', userController.handleUpdateUser)
+
     return app.use("/api/", router)
 
 }

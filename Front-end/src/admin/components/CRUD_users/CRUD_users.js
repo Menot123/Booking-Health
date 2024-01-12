@@ -1,8 +1,8 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './CRUD_users.scss'
 import 'react-image-lightbox/style.css';
-import { fetchAllUser, fetchAllGender, createNewUser, deleteUser } from '../../../services/userService'
+import { fetchAllUser, fetchAllGender, createNewUser, deleteUser, getDataUpdateUser, updateUserData } from '../../../services/userService'
 import Loader from '../Loader/Loader';
 import { v4 as uuidv4 } from 'uuid';
 import { FaUpload } from "react-icons/fa";
@@ -50,6 +50,10 @@ function CRUD_users() {
     const [inputData, setInputData] = useState(defaultInputData);
 
     const validateData = ['email', 'password', 'lastName', 'firstName', 'phone', 'address', 'gender', 'position', 'role', 'avatar']
+
+    const emailRef = useRef(null)
+
+    const [isUpdate, setIsUpdate] = useState(false)
 
     // Fetch data
     useEffect(() => {
@@ -171,8 +175,9 @@ function CRUD_users() {
             avatar: inputData.avatar,
         }
         let checkEmail = checkEmailValid(user.email)
-        if (!checkEmail) {
+        if (!checkEmail && inputData.email.length !== 0) {
             toast.error('Invalid email please re-enter')
+            emailRef.current.focus()
             return
         }
         let validateArr = validateDataSend(user)
@@ -214,6 +219,77 @@ function CRUD_users() {
         }
     }
 
+    const convertImgBase64 = (base64) => {
+        let imageBase64 = new Buffer(base64, 'base64').toString('binary')
+        return imageBase64
+    }
+
+    const handleGetDataEditUser = async (id, email) => {
+        setIsUpdate(true)
+        if (id && email) {
+            let userUpdate = { userId: id, userEmail: email }
+            let response = await getDataUpdateUser(userUpdate)
+            if (response.EC === 0) {
+                let userData = {
+                    email: response.DT.email,
+                    password: response.DT.password,
+                    lastName: response.DT.lastName,
+                    firstName: response.DT.firstName,
+                    phone: response.DT.phoneNumber,
+                    address: response.DT.address,
+                    gender: response.DT.gender,
+                    position: response.DT.position,
+                    role: response.DT.roleId,
+                    avatar: response.DT.image,
+                }
+                let imgReview = convertImgBase64(response.DT.image)
+                setInputData(userData)
+                setImgPreview(prevState => ({
+                    ...prevState,
+                    imgReviewUrl: imgReview
+                }));
+            } else {
+                toast.error(response.EM)
+            }
+        } else {
+            toast.error(`Delete user ${email} failed`)
+        }
+    }
+
+    const handleUpdateUser = async () => {
+        let user = {
+            email: inputData.email,
+            password: inputData.password,
+            lastName: inputData.lastName,
+            firstName: inputData.firstName,
+            phone: inputData.phone,
+            address: inputData.address,
+            gender: inputData.gender,
+            position: inputData.position,
+            role: inputData.role,
+            avatar: imgPreview.imgReviewUrl,
+        }
+        let validateArr = validateDataSend(user)
+        if (validateArr.length === 0) {
+            let response = await updateUserData(user)
+            if (response.EC === 0) {
+                toast.success(`Update user ${user.email} successfully`)
+                setInputData(defaultInputData)
+                setImgPreview(prevState => ({
+                    ...prevState,
+                    imgReviewUrl: ''
+                }));
+                getUsersWithPagination()
+                setIsUpdate(false)
+            } else {
+                toast.error(response.EM)
+            }
+        } else {
+            const missingFieldsString = validateArr.join(', ');
+            toast.error('Missing fields: ' + missingFieldsString + ', please fill them!');
+        }
+    }
+
 
     return (
         <div>
@@ -226,13 +302,13 @@ function CRUD_users() {
                         </div>
                         <div className='row'>
                             <div className='col-3'>
-                                <label htmlFor='input_email'><FormattedMessage id='admin-form-CRUD.email' /></label>
-                                <input value={inputData.email} onChange={(e) => handleOnchangeInput(e, 'email')} className='form-control' id='input_email' type='email' />
+                                <label ref={emailRef} htmlFor='input_email'><FormattedMessage id='admin-form-CRUD.email' /></label>
+                                <input disabled={isUpdate ? true : false} value={inputData.email} onChange={(e) => handleOnchangeInput(e, 'email')} className='form-control' id='input_email' type='email' />
                             </div>
 
                             <div className='col-3'>
                                 <label htmlFor='input_password'><FormattedMessage id='admin-form-CRUD.password' /></label>
-                                <input value={inputData.password} onChange={(e) => handleOnchangeInput(e, 'password')} className='form-control' id='input_password' type='text' />
+                                <input type={isUpdate ? 'password' : 'text'} disabled={isUpdate ? true : false} value={inputData.password} onChange={(e) => handleOnchangeInput(e, 'password')} className='form-control' id='input_password' />
                             </div>
 
                             <div className='col-3'>
@@ -328,7 +404,13 @@ function CRUD_users() {
 
                         </div>
                         <div className='btn-save'>
-                            <button onClick={() => handleCreateUser()} className='btn btn-primary'>Lưu user</button>
+                            {
+                                isUpdate
+                                    ?
+                                    <button onClick={() => handleUpdateUser()} className={'btn btn-warning'}> <FormattedMessage id='admin-form-CRUD.save-change' /> </button>
+                                    :
+                                    <button onClick={() => handleCreateUser()} className={'btn btn-primary'}> <FormattedMessage id='admin-form-CRUD.save-user' /></button>
+                            }
                         </div>
 
                         {
@@ -366,7 +448,7 @@ function CRUD_users() {
                                                 <td>{item.lastName}</td>
                                                 <td>{item.address}</td>
                                                 <td className='w-100 d-flex justify-content-center'>
-                                                    <span className='icon-action-edit'><FaPencil /></span>
+                                                    <span className='icon-action-edit'><FaPencil onClick={() => handleGetDataEditUser(item.id, item.email)} /></span>
                                                     <span className='icon-action-delete ms-4' onClick={() => handleDeleteUser(item.id, item.email)}><FaTrashAlt /></span>
                                                 </td>
                                             </tr>

@@ -74,5 +74,49 @@ const handleDeleteUser = async (req, res, next) => {
     }
 }
 
+const handleGetDataUpdateUser = async (req, res, next) => {
+    try {
+        let userId = req.query.userId
+        let userEmail = req.query.userEmail
+        let response = await userService.getDataUserUpdate({ userId, userEmail })
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
 
-module.exports = { getUser, getAccount, handleLogout, handleCreateUser, handleDeleteUser }
+    } catch (e) {
+        console.log('Something went wrong from update user')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+const handleUpdateUser = async (req, res, next) => {
+    try {
+        let userData = req.body.data
+        let response = await userService.updateUserService(userData)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from update user')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+
+module.exports = {
+    getUser, getAccount, handleLogout, handleCreateUser, handleDeleteUser,
+    handleGetDataUpdateUser, handleUpdateUser
+}

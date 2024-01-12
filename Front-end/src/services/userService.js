@@ -25,4 +25,15 @@ const deleteUser = (user) => {
     return axios.delete('/api/delete-user', { data: { user: user } })
 }
 
-export { fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser, deleteUser }
+const getDataUpdateUser = (data) => {
+    return axios.get(`/api/data-update-user?userId=${data.userId}&userEmail=${data.userEmail}`)
+}
+
+const updateUserData = (data) => {
+    return axios.patch('/api/update-user', { data })
+}
+
+export {
+    fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
+    updateUserData
+}

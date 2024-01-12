@@ -42,5 +42,7 @@
     "admin-form-CRUD.role": "Vai trò",
     "admin-form-CRUD.select-role": "Chọn chức danh",
     "admin-form-CRUD.avatar": "Ảnh đại diện",
-    "admin-form-CRUD.upload-avatar": "Tải ảnh lên"
+    "admin-form-CRUD.upload-avatar": "Tải ảnh lên",
+    "admin-form-CRUD.save-user": "Lưu user",
+    "admin-form-CRUD.save-change": "Lưu thay đổi"
 }

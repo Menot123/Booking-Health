@@ -120,6 +120,9 @@ const getUsersPagination = async (page, limit) => {
                 status: {
                     [Op.not]: 'deleted'
                 }
+            },
+            attributes: {
+                exclude: ['password']
             }
         })
 
@@ -261,8 +264,79 @@ const deleteUserService = async (userDelete) => {
     }
 }
 
+const getDataUserUpdate = async (userInfo) => {
+    try {
+        let { userId, userEmail } = userInfo
+        let res = {}
+        let user = await db.User.findOne({
+            where: { id: userId },
+            attributes: {
+                exclude: ['createdAt', 'updatedAt']
+            },
+            // include: [
+            //     {
+            //         model: db.Allcode, as: 'genderUser', attributes: ['valueVi', 'valueEn']
+            //     },
+            //     {
+            //         model: db.Allcode, as: 'positionUser', attributes: ['valueVi', 'valueEn']
+            //     },
+            //     {
+            //         model: db.Allcode, as: 'roleUser', attributes: ['valueVi', 'valueEn']
+            //     }
+            // ],
+        })
+        if (user) {
+            res.EC = 0
+            res.EM = `Get data user ${userEmail} successfully`
+            res.DT = user
+        } else {
+            res.EC = 1
+            res.EM = `Get data user ${userEmail} failed`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get data update user service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
+const updateUserService = async (userData) => {
+    try {
+        let res = {}
+        let email = userData.email
+        let user = await db.User.findOne({
+            where: { email: email }
+        })
+        if (user) {
+            await user.update({ ...userData, image: userData.avatar })
+            res.EC = 0
+            res.EM = `Update info user ${email} successfully`
+            res.DT = {}
+        } else {
+            res.EC = 1
+            res.EM = `Get data user ${email} failed`
+            res.DT = {}
+        }
+
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get data update user service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
 
 module.exports = {
     loginChecked, getAllCode, getAllUsers, getTypeRoleService, createUserService,
-    getUsersPagination, deleteUserService
+    getUsersPagination, deleteUserService, getDataUserUpdate, updateUserService
 }

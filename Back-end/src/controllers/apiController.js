@@ -70,5 +70,5 @@ let getTypeRole = async (req, res, next) => {
 }
 
 module.exports = {
-    getAllCode, getUsers, getTypeRole
+    getAllCode, getUsers, getTypeRole,
 }
