@@ -1,14 +1,14 @@
 import React from 'react'
 import './Admin.scss'
 import Header from './components/Header/Header'
-import CRUD_users from './components/CRUD_users/CRUD_users'
+import ManageUser from './components/ManageUser/ManageUser'
 
 
 function Admin() {
     return (
         <>
             <Header />
-            <CRUD_users />
+            <ManageUser />
         </>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
-import './CRUD_users.scss'
+import './ManageUser.scss'
 import 'react-image-lightbox/style.css';
 import { fetchAllUser, fetchAllGender, createNewUser, deleteUser, getDataUpdateUser, updateUserData } from '../../../services/userService'
 import Loader from '../Loader/Loader';
@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 import { LANGUAGES } from '../../../utils/index'
 import ReactPaginate from 'react-paginate';
 
-function CRUD_users() {
+function ManageUser() {
 
     const currentLang = useSelector(state => state.userRedux.language)
 
@@ -220,7 +220,8 @@ function CRUD_users() {
     }
 
     const convertImgBase64 = (base64) => {
-        let imageBase64 = new Buffer(base64, 'base64').toString('binary')
+        let imageBase64 = ''
+        imageBase64 = new Buffer(base64, 'base64').toString('binary')
         return imageBase64
     }
 
@@ -242,7 +243,8 @@ function CRUD_users() {
                     role: response.DT.roleId,
                     avatar: response.DT.image,
                 }
-                let imgReview = convertImgBase64(response.DT.image)
+                let imgReview = convertImgBase64(userData.avatar)
+                setAvatar(imgReview)
                 setInputData(userData)
                 setImgPreview(prevState => ({
                     ...prevState,
@@ -267,7 +269,7 @@ function CRUD_users() {
             gender: inputData.gender,
             position: inputData.position,
             role: inputData.role,
-            avatar: imgPreview.imgReviewUrl,
+            avatar: avatar,
         }
         let validateArr = validateDataSend(user)
         if (validateArr.length === 0) {
@@ -490,4 +492,4 @@ function CRUD_users() {
 
 
 
-export default CRUD_users
+export default ManageUser

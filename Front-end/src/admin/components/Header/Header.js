@@ -42,7 +42,7 @@ function Navbar() {
                         <span className='nav-item-title'><FormattedMessage id='admin-header.user' /></span>
                         <div className="sub-menu sub-menu-long">
                             <div className='wrapper-link'>
-                                <NavLink to="CRUD-user">CRUD User</NavLink>
+                                <NavLink to="/admin">CRUD User</NavLink>
 
                             </div>
                             <div className='wrapper-link'>

@@ -273,6 +273,7 @@ const getDataUserUpdate = async (userInfo) => {
             attributes: {
                 exclude: ['createdAt', 'updatedAt']
             },
+            raw: false
             // include: [
             //     {
             //         model: db.Allcode, as: 'genderUser', attributes: ['valueVi', 'valueEn']
