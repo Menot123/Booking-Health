@@ -42,15 +42,15 @@ function Navbar() {
                         <span className='nav-item-title'><FormattedMessage id='admin-header.user' /></span>
                         <div className="sub-menu sub-menu-long">
                             <div className='wrapper-link'>
-                                <NavLink to="/admin">CRUD User</NavLink>
+                                <NavLink to="/admin">Manage Users</NavLink>
 
                             </div>
                             <div className='wrapper-link'>
-                                <NavLink to="manage-doctors"><FormattedMessage id='admin-header.manage-doctors' /></NavLink>
+                                <NavLink to="/admin/manage-doctors"><FormattedMessage id='admin-header.manage-doctors' /></NavLink>
 
                             </div>
                             <div className='wrapper-link'>
-                                <NavLink to="manage-schedules"><FormattedMessage id='admin-header.manage-schedules' /></NavLink>
+                                <NavLink to="/admin/manage-schedules"><FormattedMessage id='admin-header.manage-schedules' /></NavLink>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@ function Navbar() {
                 </div>
 
                 <div className='nav-content-right'>
-                    <div className='hello-user'><FormattedMessage id='admin-header.welcome' /> {nameUser.toUpperCase()}</div>
+                    <div className='hello-user'><FormattedMessage id='admin-header.welcome' /> {nameUser && nameUser.toUpperCase()}</div>
                     <div className='change-language'>
                         <span onClick={() => handleChangeLanguage('vi')} className={language === 'vi' ? 'lang-vi active' : 'lang-vi '}>VN</span>
                         <span onClick={() => handleChangeLanguage('en')} className={language === 'en' ? 'lang-en active' : 'lang-en '}>EN</span>

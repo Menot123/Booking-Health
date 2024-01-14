@@ -7,6 +7,7 @@ export const path = {
     SONG_KHOE: '/song-khoe',
     HO_TRO: '/ho-tro',
     ADMIN: '/admin',
+    MANAGE_DOCTORS: '/admin/manage-doctors',
     BLOG: '/cam-nang',
     BLOGDETAIL: '/cam-nang/chi-tiet',
     BLOGLIST: '/cam-nang/danh-sach',

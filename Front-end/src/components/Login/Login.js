@@ -135,7 +135,7 @@ const Login = (props) => {
                   <button type="submit" className="btn btn-primary custom-gradient">Login</button>
                 </div>
                 <p className="card-text text-end mt-2">
-                  <a href="#">Forgot password?</a>
+                  <a href="/home">Forgot password?</a>
                 </p>
               </div>
             </form>

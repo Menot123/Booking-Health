@@ -4,13 +4,14 @@ import { NavLink } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
 import Search from '../Search/Search';
 import { FaQuestionCircle } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { translate } from '../../redux/slices/languageSlice'
-import { changeUserLanguage } from '../../redux/slices/userSlice'
+import { changeUserLanguage, setCarousel } from '../../redux/slices/userSlice'
 import { FormattedMessage } from 'react-intl'
 import Carousel from './Carousel'
 import { useEffect } from 'react'
+
 
 
 const Nav = (props) => {
@@ -18,6 +19,9 @@ const Nav = (props) => {
     const dispatch = useDispatch()
     const language = useSelector(state => state.userRedux.language)
     const url = window.location.pathname;
+
+    const location = useLocation();
+    const { pathname } = location;
 
     useEffect(() => {
         dispatch(translate(language))
@@ -61,16 +65,12 @@ const Nav = (props) => {
                             </div>
                         </div>
                     </div>
-                    {url === '/ho-tro' ? ' ' :
-                        <>
-                            <div className='wrapper-banner-slide'>
-                                <div className='banner-background'></div>
-
-                                <Carousel></Carousel>
-                            </div>
-
-                        </>
-                    }
+                    {pathname === '/' || pathname === '/home' ? (
+                        <div className='wrapper-banner-slide'>
+                            <div className='banner-background'></div>
+                            <Carousel></Carousel>
+                        </div>
+                    ) : ''}
 
 
                 </div>

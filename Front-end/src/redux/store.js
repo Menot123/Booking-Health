@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import languageReducer from '../redux/slices/languageSlice'
 import userReducer from './slices/userSlice'
-import { persistReducer, createTransform } from 'redux-persist';
+import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from '@reduxjs/toolkit'
 

@@ -19,7 +19,7 @@ const Home = () => {
 
     return (
         <>
-            <div className='container'>
+            <div className='container home-container'>
                 <Specialty />
                 <Clinic />
             </div>

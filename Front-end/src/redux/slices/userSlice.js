@@ -10,7 +10,8 @@ const initialState = {
         firstName: '',
         lastName: ''
     },
-    currentLang: ''
+    currentLang: '',
+    isShowCarousel: false,
 }
 
 
@@ -36,12 +37,15 @@ export const userSlice = createSlice({
         },
         changeUserLanguage: (state, action) => {
             state.language = action.payload
+        },
+        setCarousel: (state, action) => {
+            state.isShowCarousel = action.payload
         }
 
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setAuth, logout, fetchAccount, changeUserLanguage } = userSlice.actions
+export const { setAuth, logout, fetchAccount, changeUserLanguage, setCarousel } = userSlice.actions
 
 export default userSlice.reducer
