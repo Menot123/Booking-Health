@@ -24,6 +24,7 @@
 
             .sub-menu,
             .sub-menu-long {
+                z-index            : 100;
                 display            : none;
                 position           : absolute;
                 top                : 100%;
@@ -45,9 +46,8 @@
                         text-decoration: none;
                         color          : #000;
                         line-height    : 32px;
-                        width          : 100%;
+                        width          : 100% !important;
                         font-size      : 0.9rem;
-                        margin         : 0.5 rem;
                     }
 
 

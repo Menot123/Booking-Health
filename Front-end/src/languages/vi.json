@@ -26,6 +26,7 @@
     "admin-header.specialty": "Chuyên khoa",
     "admin-header.handbook": "Cẩm nang",
     "admin-header.welcome": "Xin chào, ",
+    "admin-header.manage-users": "Quản lý người dùng",
     "admin-header.manage-doctors": "Quản lý bác sĩ",
     "admin-header.manage-schedules": "Quản lý kế hoạch khám bệnh",
     "admin-header.manage-clinics": "Quản lý phòng khám",
@@ -47,5 +48,17 @@
     "admin-form-CRUD.avatar": "Ảnh đại diện",
     "admin-form-CRUD.upload-avatar": "Tải ảnh lên",
     "admin-form-CRUD.save-user": "Lưu user",
-    "admin-form-CRUD.save-change": "Lưu thay đổi"
+    "admin-form-CRUD.save-change": "Lưu thay đổi",
+    "admin-manage-doctor.add-info-doctor": "Thêm thông tin bác sĩ",
+    "admin-manage-doctor.select-doctor": "Chọn bác sĩ",
+    "admin-manage-doctor.introductory-information": "Thông tin giới thiệu",
+    "admin-manage-doctor.medical-examination-price": "Giá khám bệnh",
+    "admin-manage-doctor.payment-methods": "Phương thức thanh toán",
+    "admin-manage-doctor.province": "Tỉnh thành",
+    "admin-manage-doctor.name-clinic": "Tên phòng khám",
+    "admin-manage-doctor.address-clinic": "Địa chỉ phòng khám",
+    "admin-manage-doctor.note": "Ghi chú",
+    "admin-manage-doctor.select-specialty": "Chọn chuyên khoa",
+    "admin-manage-doctor.select-clinic": "Chọn phòng khám",
+    "admin-manage-doctor.save-info": "Lưu thông tin"
 }

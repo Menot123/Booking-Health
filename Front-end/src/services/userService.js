@@ -33,7 +33,38 @@ const updateUserData = (data) => {
     return axios.patch('/api/update-user', { data })
 }
 
+const getAllDoctor = () => {
+    return axios.get('/api/get-doctors')
+}
+
+const getAllPrice = () => {
+    return axios.get('/api/get-prices')
+}
+
+const getAllPayment = () => {
+    return axios.get('/api/get-payments')
+}
+
+const getAllProvince = () => {
+    return axios.get('/api/get-provinces')
+}
+
+const getAllSpecialties = () => {
+    return axios.get('/api/get-specialties')
+}
+
+const getAllClinic = () => {
+    return axios.get('/api/get-clinics')
+}
+
+const getInfoDoctor = (id) => {
+    return axios.get(`/api/get-info-doctor?id=${id}`)
+}
+
+
+
 export {
     fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
-    updateUserData
+    updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
+    getAllClinic
 }

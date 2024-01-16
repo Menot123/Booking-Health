@@ -312,7 +312,7 @@ const updateUserService = async (userData) => {
         let res = {}
         let email = userData.email
         let user = await db.User.findOne({
-            where: { email: email }
+            where: { email: email },
         })
         if (user) {
             await user.update({ ...userData, image: userData.avatar })

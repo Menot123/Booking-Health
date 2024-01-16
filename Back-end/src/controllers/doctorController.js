@@ -1,0 +1,142 @@
+import doctorService from '../services/doctorService'
+
+
+const getAllDoctor = async (req, res, next) => {
+    try {
+        let response = await doctorService.getAllDoctorService()
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from update user')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+const getInfoDoctor = async (req, res, next) => {
+    try {
+        let idDoctor = req.query.id
+        console.log(idDoctor)
+        let response = await doctorService.getInfoDoctorService(idDoctor)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from get info doctor')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+const getAllPrice = async (req, res, next) => {
+    try {
+        let response = await doctorService.getAllPriceService()
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from get all prices')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+const getAllPayments = async (req, res, next) => {
+    try {
+        let response = await doctorService.getAllPaymentsService()
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from get all payments')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+const getAllProvinces = async (req, res, next) => {
+    try {
+        let response = await doctorService.getAllProvincesService()
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from get all provinces')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+const getAllSpecialties = async (req, res, next) => {
+    try {
+        let response = await doctorService.getAllSpecialtiesService()
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from get all speicalties')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+const getAllClinics = async (req, res, next) => {
+    try {
+        let response = await doctorService.getAllClinicService()
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from get all clinics')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+module.exports = {
+    getAllDoctor, getAllPrice, getInfoDoctor, getAllPayments, getAllProvinces,
+    getAllSpecialties, getAllClinics
+}

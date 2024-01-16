@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { LANGUAGES } from '../../../utils/index'
 import ReactPaginate from 'react-paginate';
 
+
 function ManageUser() {
 
     const currentLang = useSelector(state => state.userRedux.language)
@@ -244,6 +245,7 @@ function ManageUser() {
                     avatar: response.DT.image,
                 }
                 let imgReview = convertImgBase64(userData.avatar)
+                console.log(imgReview)
                 setAvatar(imgReview)
                 setInputData(userData)
                 setImgPreview(prevState => ({

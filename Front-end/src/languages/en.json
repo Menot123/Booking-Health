@@ -26,6 +26,7 @@
     "admin-header.specialty": "Specialty",
     "admin-header.handbook": "Handbook",
     "admin-header.welcome": "Welcome, ",
+    "admin-header.manage-users": "Manage users",
     "admin-header.manage-doctors": "Manage doctors",
     "admin-header.manage-schedules": "Manage schedules",
     "admin-header.manage-clinics": "Manage clinics",
@@ -47,5 +48,17 @@
     "admin-form-CRUD.avatar": "Avatar",
     "admin-form-CRUD.upload-avatar": "Upload avatar",
     "admin-form-CRUD.save-user": "Save user",
-    "admin-form-CRUD.save-change": "Save change"
+    "admin-form-CRUD.save-change": "Save change",
+    "admin-manage-doctor.add-info-doctor": "Add info doctor",
+    "admin-manage-doctor.select-doctor": "Select doctor",
+    "admin-manage-doctor.introductory-information": "Introductory information",
+    "admin-manage-doctor.medical-examination-price": "Medical examination price",
+    "admin-manage-doctor.payment-methods": "Payment methods",
+    "admin-manage-doctor.province": "Province",
+    "admin-manage-doctor.name-clinic": "Name clinic",
+    "admin-manage-doctor.address-clinic": "Address clinic",
+    "admin-manage-doctor.note": "note",
+    "admin-manage-doctor.select-specialty": "Select specialty",
+    "admin-manage-doctor.select-clinic": "Select clinic",
+    "admin-manage-doctor.save-info": "Save info"
 }
