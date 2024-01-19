@@ -57,10 +57,10 @@ function ManageUser() {
     const [isUpdate, setIsUpdate] = useState(false)
 
     // Fetch data
+
     useEffect(() => {
-        getSelectData()
-        getUsers()
-    }, [])
+        Promise.all([getSelectData(), getUsers()])
+    }, []);
 
     // re-render when change page
     useEffect(() => {
@@ -245,7 +245,6 @@ function ManageUser() {
                     avatar: response.DT.image,
                 }
                 let imgReview = convertImgBase64(userData.avatar)
-                console.log(imgReview)
                 setAvatar(imgReview)
                 setInputData(userData)
                 setImgPreview(prevState => ({

@@ -23,7 +23,6 @@ const getAllDoctor = async (req, res, next) => {
 const getInfoDoctor = async (req, res, next) => {
     try {
         let idDoctor = req.query.id
-        console.log(idDoctor)
         let response = await doctorService.getInfoDoctorService(idDoctor)
         return res.status(200).json({
             EM: response.EM,
@@ -136,7 +135,27 @@ const getAllClinics = async (req, res, next) => {
     }
 }
 
+const updateInfoDoctor = async (req, res, next) => {
+    try {
+        let data = req.body.data
+        let response = await doctorService.updateInfoDoctorService(data)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from update info doctor')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
 module.exports = {
     getAllDoctor, getAllPrice, getInfoDoctor, getAllPayments, getAllProvinces,
-    getAllSpecialties, getAllClinics
+    getAllSpecialties, getAllClinics, updateInfoDoctor
 }
