@@ -47,9 +47,12 @@ const getInfoDoctorService = async (id) => {
         let doctor = await db.Doctor_info.findOne({
             where: {
                 doctorId: id,
-            }
-        })
+            },
+            include: [
+                { model: db.Markdown, as: 'dataMarkdown', attributes: ['textMarkdown', 'textHTML', 'description'] },
+            ]
 
+        })
         if (doctor) {
             res.EC = 0
             res.EM = 'Get info doctor successfully'
@@ -222,7 +225,69 @@ const getAllClinicService = async () => {
     }
 }
 
+const updateInfoDoctorService = async (data) => {
+    try {
+        let res = {}
+        let idDoctor = data.doctorId
+        let doctorInfo = await db.Doctor_info.findOne({
+            where: { doctorId: idDoctor }
+        })
+
+        let markdown = await db.Markdown.findOne({
+            where: { doctorId: idDoctor }
+        })
+
+
+        //  Update data doctor info & markdown
+        let dataUpdateDoctor = {
+            clinicId: data.clinic,
+            specialtyId: data.specialty,
+            priceId: data.price,
+            provinceId: data.province,
+            paymentId: data.payment,
+            addressClinic: data.addressClinic,
+            nameClinic: data.nameClinic,
+            note: data.note
+        }
+
+        let dataUpdateMarkdown = {
+            textMarkdown: data.textMarkdown,
+            textHtml: data.textHtml,
+            description: data.introduction
+        }
+
+        if (doctorInfo && markdown) {
+
+            await doctorInfo.update(dataUpdateDoctor)
+            await markdown.update(dataUpdateMarkdown)
+            res.EC = 0
+            res.EM = 'Update info doctor successfully'
+            res.DT = {}
+            return res
+        } else {
+            // Create a new doctor info
+
+            await db.Doctor_info.create({ ...dataUpdateDoctor, doctorId: data.doctorId })
+            await db.Markdown.create({ ...dataUpdateMarkdown, doctorId: data.doctorId })
+            res.EC = 0
+            res.EM = 'Create info doctor successfully'
+            res.DT = {}
+            return res
+        }
+
+
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with update info doctor service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     getAllDoctorService, getInfoDoctorService, getAllPriceService, getAllPaymentsService, getAllProvincesService,
-    getAllSpecialtiesService, getAllClinicService
+    getAllSpecialtiesService, getAllClinicService, updateInfoDoctorService
 }

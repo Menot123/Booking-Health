@@ -61,10 +61,12 @@ const getInfoDoctor = (id) => {
     return axios.get(`/api/get-info-doctor?id=${id}`)
 }
 
-
+const updateInfoDoctor = (dataInfo) => {
+    return axios.post(`/api/update-info-doctor`, { data: dataInfo })
+}
 
 export {
     fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
     updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
-    getAllClinic
+    getAllClinic, updateInfoDoctor
 }

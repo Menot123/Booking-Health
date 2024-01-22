@@ -11,7 +11,7 @@ const router = express.Router()
 
 
 const initApiRoutes = (app) => {
-    // router.all('*', checkUserJWT);
+    router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
     router.get('/all-code', apiController.getAllCode);
@@ -36,7 +36,7 @@ const initApiRoutes = (app) => {
     router.get('/get-clinics', doctorController.getAllClinics)
 
     router.get('/get-info-doctor', doctorController.getInfoDoctor)
-    // router.post('/get-info-doctor', doctorController.getInfoDoctor)
+    router.post('/update-info-doctor', doctorController.updateInfoDoctor)
 
 
     // manage posts route
