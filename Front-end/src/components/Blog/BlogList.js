@@ -8,15 +8,10 @@ import { FormattedMessage } from 'react-intl'
 import { useEffect } from 'react'
 
 const BlogList = (props) => {
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-
-  }, [])
   let history = useHistory();
   const handleNavigateToPage = (path) => {
     history.push(path);
-
+    props.scrollToTop()
   };
   return (
     <div className='container-bloglist'>

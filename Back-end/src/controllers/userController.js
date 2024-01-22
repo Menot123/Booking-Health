@@ -56,6 +56,7 @@ const handleCreateUser = async (req, res, next) => {
 
 const handleDeleteUser = async (req, res, next) => {
     try {
+        // console.log(req.body)
         let user = req.body.user
         let response = await userService.deleteUserService(user)
         return res.status(200).json({

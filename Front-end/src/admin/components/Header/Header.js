@@ -77,7 +77,7 @@ function Navbar() {
                         <span className='nav-item-title'><FormattedMessage id='admin-header.handbook' /></span>
                         <div className="sub-menu ">
                             <div className='wrapper-link'>
-                                <NavLink to="manage-posts"><FormattedMessage id='admin-header.manage-handbooks' /></NavLink>
+                                <NavLink to="/admin/manage-posts"><FormattedMessage id='admin-header.manage-handbooks' /></NavLink>
                             </div>
                         </div>
                     </div>

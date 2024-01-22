@@ -165,8 +165,25 @@ CREATE TABLE `post` (
   `descriptionEn` text DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL
+  `updatedAt` datetime NOT NULL,
+  `status` varchar(255) default "active"
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+INSERT INTO `post` (`id`, `owner`, `titleVi`, `titleEn`, `descriptionVi`, `descriptionEn`, `image`, `createdAt`, `updatedAt`, `status`) VALUES
+(1, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(2, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(3, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(4, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(5, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(6, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(7, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(8, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(9, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(10, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(11, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active'),
+(12, 'Phan Phùng Phi', 'Title Vi nè', 'This title en', 'Đây là mô tả tổng bộ bằng tiếng việt', 'This is english description', 'https://cms-api-in.myhealthcare.co/image/20220910103120.jpeg', '2024-01-18 13:37:14', '2024-01-18 13:37:14', 'active');
+
 
 -- --------------------------------------------------------
 

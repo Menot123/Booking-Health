@@ -237,12 +237,15 @@ const createUserService = async (userData) => {
 
 const deleteUserService = async (userDelete) => {
     try {
+        // console.log(userDelete)
         let { userId, userEmail } = userDelete
         let res = {}
         let user = await db.User.findOne({
             where: { id: userId }
         })
+        // console.log(user)
         if (user) {
+            console.log(user)
             await user.update({ status: 'deleted' })
             res.EC = 0
             res.EM = `Delete user ${userEmail} successfully`

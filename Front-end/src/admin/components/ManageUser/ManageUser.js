@@ -70,6 +70,7 @@ function ManageUser() {
     const getUsers = async (page) => {
         setIsLoading(true)
         let res = await fetchAllUser(currentPage, currentLimit)
+        console.log(res)
         if (res.EC === 0 && res.DT.users.length > 0) {
             setUsers(res.DT.users)
             setTotalPage(res.DT.totalPage)
