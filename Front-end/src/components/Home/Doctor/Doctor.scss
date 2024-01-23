@@ -23,6 +23,7 @@
     }
 
     .slick-slider {
+
         .slick-arrow {
             z-index      : 10;
             box-shadow   : 0 0 5px rgba(201, 236, 240, 0.5);
@@ -44,49 +45,53 @@
         .slick-disabled {
             display: none !important;
         }
-    }
+
+        .wrapper-doctor-item {
+            width : 260px !important;
+            height: 270px;
+
+            .doctor-item {
+                display        : flex;
+                flex-direction : column;
+                justify-content: flex-start;
+                align-items    : center;
+                margin-left    : 20px;
+                cursor         : pointer;
+
+                .wrapper-img-doctor {
+                    width         : 84%;
+                    // height     : 100%;
+                    padding-top   : 84%;
+                    position      : relative;
 
 
-    .wrapper-doctor-item {
-        width: fit-content !important;
+                    .img-doctor {
+                        border-radius: 500px;
 
-        .doctor-item {
-            display        : flex;
-            flex-direction : column;
-            justify-content: flex-start;
-            align-items    : center;
-            margin-left    : 20px;
+                        position  : absolute;
+                        height    : 100%;
+                        width     : 100%;
+                        inset     : 0px;
+                        object-fit: cover;
+                        color     : transparent;
+                    }
+                }
 
-            .wrapper-img-doctor {
-                width         : 84%;
-                // height     : 100%;
-                padding-top   : 84%;
-                position      : relative;
-
-
-                .img-doctor {
-                    border-radius: 500px;
-
-                    position  : absolute;
-                    height    : 100%;
-                    width     : 100%;
-                    inset     : 0px;
-                    object-fit: cover;
-                    color     : transparent;
+                .title_doctor {
+                    padding-top  : 16px;
+                    margin-bottom: 4px;
+                    text-align   : center;
+                    font-size    : 18px;
+                    font-weight  : 600;
+                    color        : rgb(26, 26, 26);
                 }
             }
 
-            .title_doctor {
-                padding-top  : 16px;
-                margin-bottom: 4px;
-                text-align   : center;
-                font-size    : 18px;
-                font-weight  : 600;
-                color        : rgb(26, 26, 26);
-            }
         }
-
     }
+
+
+
 }
 
 @media screen and (max-width: 576px) {

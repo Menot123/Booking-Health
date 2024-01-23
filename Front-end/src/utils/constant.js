@@ -8,10 +8,12 @@ export const path = {
     HO_TRO: '/ho-tro',
     ADMIN: '/admin',
     MANAGE_DOCTORS: '/admin/manage-doctors',
+    MANAGE_SCHEDULES: '/admin/manage-schedules',
     BLOG: '/cam-nang',
     BLOGDETAIL: '/cam-nang/chi-tiet',
     BLOGLIST: '/cam-nang/danh-sach',
     BLOGLISTCHILD: '/cam-nang/danh-sach/chi-tiet-danh-sach',
+    DETAIL_DOCTOR: '/detail-doctor/:id'
 };
 
 export const LANGUAGES = {

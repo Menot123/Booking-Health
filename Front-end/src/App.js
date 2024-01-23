@@ -24,6 +24,7 @@ import LoginRoute from './routes/LoginRoute';
 import NotFound from './components/404_Not_Found/NotFound';
 import AdminRoute from './routes/AdminRoute'
 import BlogRoute from './routes/BlogRoute';
+import DetailDoctor from './components/Home/Doctor/DetailDoctor/DetailDoctor';
 
 
 function App() {
@@ -64,6 +65,10 @@ function App() {
               <Sup />
             </Route>
 
+            <Route path={path.DETAIL_DOCTOR}>
+              <DetailDoctor />
+            </Route>
+
             {/* Blog */}
             <Route
               path={path.BLOG}
@@ -82,7 +87,7 @@ function App() {
               <Home />
             </Route>
 
-            <Route exact path="*">
+            <Route path="*">
               <NotFound />
             </Route>
           </Switch>

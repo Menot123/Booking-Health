@@ -263,7 +263,7 @@ function Blog(props) {
                     {/* <Redirect class="btn btn-primary btn-view-more text-btn-view-more" to="/danh-sach">
                         Xem thêm
                     </Redirect> */}
-                    <span className='btn btn-primary btn-view-more text-btn-view-more' onClick={() => handleNavigateToPage("/cam-nang/danh-sach")}>
+                    <span key={'btn-view-more-blog'} className='btn btn-primary btn-view-more text-btn-view-more' onClick={() => handleNavigateToPage("/cam-nang/danh-sach")}>
                         <FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} />
                     </span>
                 </div>

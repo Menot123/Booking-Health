@@ -5,9 +5,30 @@ import 'slick-carousel/slick/slick-theme.css'
 import './Doctor.scss'
 import bac_si from '../../../assets/img/bs-anh-thu1.jpg'
 import { FormattedMessage } from 'react-intl'
+import { getAllDoctor } from '../../../services/userService'
+import { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
+import { useHistory } from 'react-router-dom'
 
 
 function Doctor() {
+
+    const [doctors, setDoctors] = useState([])
+    const history = useHistory()
+
+    useEffect(() => {
+        getDoctors()
+    }, [])
+
+    const getDoctors = async () => {
+        let res = await getAllDoctor()
+        let listDoctor = ''
+        if (res.EC === 0 && res.DT) {
+            listDoctor = res.DT
+        }
+        setDoctors(listDoctor)
+    }
+
 
     const settings = {
         dots: false,
@@ -19,73 +40,47 @@ function Doctor() {
             { breakpoint: 1400, settings: { slidesToShow: 3, slidesToScroll: 1 } },
             { breakpoint: 992, settings: { slidesToShow: 2, slidesToScroll: 1 } },
             { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } }
-        ]
+        ],
     };
+
+    const convertImgBase64 = (base64) => {
+        let imageBase64 = ''
+        imageBase64 = new Buffer(base64, 'base64').toString('binary')
+        return imageBase64
+    }
+
+    const handleClickDetailDoctor = (doctorId) => {
+        history.push(`/detail-doctor/${doctorId}`)
+    }
 
     return (
 
         <div className='slider-doctor-content '>
             <div className='title w-100 d-flex align-items-center justify-content-between'>
                 <h4><FormattedMessage id='homepage.outstanding-doctor' defaultMessage={'Bác sĩ nổi bật'} /></h4>
-                <span className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
+                <span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span>
             </div>
-            <Slider {...settings}>
-                <div className='wrapper-doctor-item'>
-                    <div className='doctor-item'>
-                        <div className='wrapper-img-doctor'>
-                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
-                        </div>
-                        <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
-                        <span>Sức khỏe tâm thần</span>
-                    </div>
-                </div>
+            {doctors && doctors.length > 0 &&
+                <Slider {...settings}>
 
-                <div className='wrapper-doctor-item'>
-                    <div className='doctor-item'>
-                        <div className='wrapper-img-doctor'>
-                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
-                        </div>
-                        <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
-                    </div>
-                </div>
+                    {doctors && doctors.length > 0 &&
+                        doctors.map((item, index) => {
+                            return (
+                                <div className='wrapper-doctor-item' key={uuidv4()}>
+                                    <div className='doctor-item' onClick={() => handleClickDetailDoctor(item.id)}>
+                                        <div className='wrapper-img-doctor'>
+                                            <img alt='img-doctor-element' className='img-doctor' src={convertImgBase64(item.image)} />
+                                        </div>
+                                        <div className='title_doctor'>{item.firstName + ' ' + item.lastName}</div>
+                                        <span >{item.dataIdDoctor?.dataSpecialty?.nameVi}</span>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
 
-                <div className='wrapper-doctor-item'>
-                    <div className='doctor-item'>
-                        <div className='wrapper-img-doctor'>
-                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
-                        </div>
-                        <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
-                    </div>
-                </div>
-
-                <div className='wrapper-doctor-item'>
-                    <div className='doctor-item'>
-                        <div className='wrapper-img-doctor'>
-                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
-                        </div>
-                        <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
-                    </div>
-                </div>
-
-                <div className='wrapper-doctor-item'>
-                    <div className='doctor-item'>
-                        <div className='wrapper-img-doctor'>
-                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
-                        </div>
-                        <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
-                    </div>
-                </div>
-
-                <div className='wrapper-doctor-item'>
-                    <div className='doctor-item'>
-                        <div className='wrapper-img-doctor'>
-                            <img alt='img-doctor-element' className='img-doctor' src={bac_si} />
-                        </div>
-                        <div className='title_doctor'>Ths. Bs Vũ Ngọc Anh Thơ</div>
-                    </div>
-                </div>
-
-            </Slider>
+                </Slider>
+            }
         </div>
 
     )

@@ -155,7 +155,66 @@ const updateInfoDoctor = async (req, res, next) => {
     }
 }
 
+const getDetailDoctor = async (req, res, next) => {
+    try {
+        let id = req.query.id
+        let response = await doctorService.getDetailDoctorService(id)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from get info detail doctor')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+const getAllSchedule = async (req, res, next) => {
+    try {
+        let response = await doctorService.getAllScheduleService()
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from get all schedule doctor')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+const createSchedule = async (req, res, next) => {
+    try {
+        let response = await doctorService.createScheduleService(req.body.data)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from create schedules doctor')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
 module.exports = {
     getAllDoctor, getAllPrice, getInfoDoctor, getAllPayments, getAllProvinces,
-    getAllSpecialties, getAllClinics, updateInfoDoctor
+    getAllSpecialties, getAllClinics, updateInfoDoctor, getDetailDoctor, getAllSchedule,
+    createSchedule
 }

@@ -60,5 +60,6 @@
     "admin-manage-doctor.note": "note",
     "admin-manage-doctor.select-specialty": "Select specialty",
     "admin-manage-doctor.select-clinic": "Select clinic",
-    "admin-manage-doctor.save-info": "Save info"
+    "admin-manage-doctor.save-info": "Save info",
+    "admin-manage-schedule.title": "MANAGE DOCTOR'S MEDICAL EXAMINATION PLAN"
 }

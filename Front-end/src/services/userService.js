@@ -65,8 +65,20 @@ const updateInfoDoctor = (dataInfo) => {
     return axios.post(`/api/update-info-doctor`, { data: dataInfo })
 }
 
+const getInfoDetailDoctor = (doctorId) => {
+    return axios.get(`/api/get-info-detail-doctor?id=${doctorId}`)
+}
+
+const getAllSchedule = () => {
+    return axios.get('/api/get-all-schedule')
+}
+
+const createSchedule = (dataSchedule) => {
+    return axios.post('/api/create-schedule', { data: dataSchedule })
+}
+
 export {
     fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
     updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
-    getAllClinic, updateInfoDoctor
+    getAllClinic, updateInfoDoctor, getInfoDetailDoctor, getAllSchedule, createSchedule
 }

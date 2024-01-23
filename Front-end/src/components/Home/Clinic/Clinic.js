@@ -25,7 +25,7 @@ function Clinic() {
         <div className='slider-content mr17 '>
             <div className='title w-100 d-flex align-items-center justify-content-between'>
                 <h4><FormattedMessage id='homepage.facilities' defaultMessage={'Cơ sở y tế'} /></h4>
-                <span className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
+                <span key='btn-view-more-clinic' className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
             </div>
             <Slider {...settings}>
                 <div className='wrapper-clinic-item'>

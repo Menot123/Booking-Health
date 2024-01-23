@@ -1,0 +1,43 @@
+.manage-schedule-container {
+    .manage-schedule-heading {
+        text-align: center;
+        margin    : 24px 0;
+
+        .manage-schedule-title {
+            font-weight: 500;
+
+        }
+    }
+
+    .manage-schedule-content {
+        display: flex;
+        gap    : 20px;
+
+        .select-doctors {
+            width: 50%;
+        }
+
+        .select-date {
+            width: 50%;
+
+            .react-datepicker-wrapper {
+                width: 100%;
+            }
+        }
+    }
+
+    .select-schedules {
+        margin   : 18px 0;
+        display  : flex;
+        gap      : 20px;
+        flex-wrap: wrap;
+
+        .btn-schedule {
+            border: 1px solid #ccc;
+
+            &.active {
+                background-color: orange;
+            }
+        }
+    }
+}

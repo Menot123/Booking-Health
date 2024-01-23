@@ -9,6 +9,7 @@ import {
 import PrivateRoutes from '../routes/PrivateRoutes';
 import { path } from '../../src/utils/index'
 import ManageDoctors from '../admin/components/ManageDoctors/ManageDoctors';
+import ManageSchedules from '../admin/components/ManageSchedule/ManageSchedules';
 
 
 
@@ -19,6 +20,7 @@ function AdminRoute() {
             <Switch>
                 <PrivateRoutes exact path={path.ADMIN} component={ManageUser} />
                 <PrivateRoutes path={path.MANAGE_DOCTORS} component={ManageDoctors} />
+                <PrivateRoutes path={path.MANAGE_SCHEDULES} component={ManageSchedules} />
             </Switch>
 
         </>

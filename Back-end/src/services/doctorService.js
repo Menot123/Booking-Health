@@ -1,6 +1,6 @@
 import db from '../models/index'
 const { Op } = require("sequelize");
-
+import _ from 'lodash'
 
 
 const getAllDoctorService = async () => {
@@ -15,8 +15,18 @@ const getAllDoctorService = async () => {
                 }
             },
             attributes: {
-                exclude: ['password', 'image']
-            }
+                exclude: ['password']
+            },
+            include: [
+                {
+                    model: db.Doctor_info,
+                    as: 'dataIdDoctor',
+                    attributes: ['specialtyId'],
+                    include: [
+                        { model: db.Specialty, as: 'dataSpecialty', attributes: ['nameVi', 'nameEn'] }
+                    ]
+                },
+            ]
         })
 
         if (doctors) {
@@ -287,7 +297,141 @@ const updateInfoDoctorService = async (data) => {
     }
 }
 
+const getDetailDoctorService = async (id) => {
+    try {
+        let res = {}
+        let doctor = await db.User.findOne({
+            where: {
+                id: id
+            },
+            attributes: {
+                exclude: ['password']
+            },
+            include: [
+                {
+                    model: db.Doctor_info, as: 'dataIdDoctor', attributes: ['clinicId', 'specialtyId', 'priceId', 'provinceId', 'paymentId'
+                        , 'addressClinic', 'nameClinic', 'note'],
+                    include: [
+                        {
+                            model: db.Markdown, as: 'dataMarkdown', attributes: ['textMarkdown', 'textHTML', 'description']
+                        },
+                    ]
+                },
+
+            ]
+        })
+
+        if (doctor) {
+            res.EC = 0
+            res.EM = 'Get info detail doctor successfully'
+            res.DT = doctor
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Get info detail doctor failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get info detail doctor service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
+const getAllScheduleService = async () => {
+    try {
+        let res = {}
+        let schedules = await db.Allcode.findAll({
+            where: { type: 'TIME' }
+        })
+
+        if (schedules) {
+            res.EC = 0
+            res.EM = 'Get all schedules successfully'
+            res.DT = schedules
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Get all schedules failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get all schedules service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
+const createScheduleService = async (data) => {
+    try {
+        let res = {}
+        let dataSchedule = data.schedules
+        let idDoctor = data.doctorId
+        let dateFormat = data.date
+        if (!dataSchedule || !idDoctor || !dateFormat) {
+            res.EC = 1
+            res.EM = 'Missing parameters! '
+            res.DT = {}
+            return res
+        }
+        if (dataSchedule) {
+            if (dataSchedule.length > 0) {
+                dataSchedule.map((item, index) => {
+                    item.maxNumber = 10
+                    return item
+                })
+            }
+            let exist = await db.Schedule.findAll({
+                where: { doctorId: idDoctor, date: dateFormat },
+                attributes: ['timeType', 'date', 'doctorId', 'maxNumber']
+            })
+
+
+            let checkExisting = _.differenceWith(dataSchedule, exist, (a, b) => {
+                return a.timeType === b.timeType && a.date === b.date
+            })
+
+            if (checkExisting && checkExisting.length > 0) {
+                await db.Schedule.bulkCreate(checkExisting)
+                res.EC = 0
+                res.EM = 'Create schedules successfully'
+                res.DT = {}
+            } else {
+                res.EC = 100
+                res.EM = 'Schedule already exists'
+                res.DT = {}
+            }
+
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Missing data from create schedule service'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with create schedules service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     getAllDoctorService, getInfoDoctorService, getAllPriceService, getAllPaymentsService, getAllProvincesService,
-    getAllSpecialtiesService, getAllClinicService, updateInfoDoctorService
+    getAllSpecialtiesService, getAllClinicService, updateInfoDoctorService, getDetailDoctorService, getAllScheduleService,
+    createScheduleService
 }

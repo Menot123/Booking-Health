@@ -255,7 +255,6 @@ function ManageDoctors() {
         setDefaultDataInput()
         if (idDoctor) {
             let res = await getInfoDoctor(idDoctor)
-            console.log(res)
             if (res.EC === 0 && res.DT) {
                 let dataSet = {
                     doctorId: res.DT.doctorId,

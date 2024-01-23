@@ -1,0 +1,123 @@
+.banner-spacing {
+    height: 20px;
+}
+
+.detail-doctor-container {
+    .detail-information {
+        .avatar-doctor {
+            width   : 10%;
+            margin  : 0px;
+            padding : 0px;
+            position: relative;
+
+            .avatar-element {
+                position     : absolute;
+                height       : 100%;
+                width        : 100%;
+                inset        : 0px;
+                object-fit   : cover;
+                color        : transparent;
+                border-radius: 50%;
+                min-width    : 120px;
+
+            }
+        }
+
+        .detail-content {
+            width      : 90%;
+            margin-left: 20px;
+
+            .detail-title {
+                font-weight: bold;
+                font-size  : 18px;
+            }
+
+            .detail-description {
+                color: #555;
+            }
+
+            .detail-location {
+                .text-location {
+                    color: #555;
+                }
+            }
+        }
+
+    }
+
+    .detail-schedule-price {
+
+        margin-top: 42px;
+
+        .detail-schedule {
+            width       : 50%;
+            border-right: 1px solid rgb(219, 214, 214);
+        }
+
+        .detail-price-address {
+            width  : 50%;
+            padding: 12px;
+
+            .detail-address {
+                .detail-address-title {
+                    text-transform: uppercase;
+                    color         : #666;
+                    font-weight   : 500;
+                }
+
+                .detail-address-content {
+                    .text-clinic {
+                        font-weight: bold;
+                        font-size  : 0.9rem;
+                    }
+
+                    .text-address {
+                        font-size: 0.9rem;
+
+                    }
+                }
+            }
+
+            .detail-price {
+                .text-price {
+                    text-transform: uppercase;
+                    color         : #666;
+                    font-weight   : 500;
+                    margin-right  : 4px;
+                }
+
+                .detail-price-more,
+                .more-info {
+                    border : 1px solid #ccc;
+                    padding: 4px;
+                }
+
+                .detail-price-more {
+                    .price-more {
+                        float: right;
+                    }
+                }
+
+                .hide-view-more {
+                    float: right;
+                    color: #48C4D3;
+
+                    &:hover {
+                        cursor : pointer;
+                        opacity: 0.8;
+                    }
+                }
+
+                .show-view-more {
+                    color: #48C4D3;
+
+                    &:hover {
+                        cursor : pointer;
+                        opacity: 0.8;
+                    }
+                }
+            }
+
+        }
+    }
+}
