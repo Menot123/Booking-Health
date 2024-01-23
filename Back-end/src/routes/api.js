@@ -4,6 +4,7 @@ import loginController from "../controllers/loginController"
 import userController from '../controllers/userController'
 import { checkUserJWT } from '../middleware/JWTServices'
 import doctorController from '../controllers/doctorController'
+import postController from '../controllers/postController'
 
 const router = express.Router()
 
@@ -37,12 +38,19 @@ const initApiRoutes = (app) => {
     router.get('/get-info-doctor', doctorController.getInfoDoctor)
     router.post('/update-info-doctor', doctorController.updateInfoDoctor)
 
+<<<<<<< HEAD
     // Detail doctor
     router.get('/get-info-detail-doctor', doctorController.getDetailDoctor)
 
     // Manage schedule
     router.get('/get-all-schedule', doctorController.getAllSchedule)
     router.post('/create-schedule', doctorController.createSchedule)
+=======
+
+    // manage posts route
+    router.get('/get-posts', postController.getAllPost)
+    router.delete('/delete-post', postController.handleDeletePost)
+>>>>>>> 6fd448c8834edce85073486afc2d0a21a9d65034
 
     return app.use("/api/", router)
 

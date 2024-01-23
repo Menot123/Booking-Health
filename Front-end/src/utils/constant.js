@@ -8,6 +8,7 @@ export const path = {
     HO_TRO: '/ho-tro',
     ADMIN: '/admin',
     MANAGE_DOCTORS: '/admin/manage-doctors',
+    MANAGE_POSTS: '/admin/manage-posts',
     MANAGE_SCHEDULES: '/admin/manage-schedules',
     BLOG: '/cam-nang',
     BLOGDETAIL: '/cam-nang/chi-tiet',

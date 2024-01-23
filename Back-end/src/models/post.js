@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         descriptionVi: DataTypes.TEXT,
         descriptionEn: DataTypes.TEXT,
         image: DataTypes.STRING,
+        status: DataTypes.STRING,
     }, {
         sequelize,
         modelName: 'Post',
