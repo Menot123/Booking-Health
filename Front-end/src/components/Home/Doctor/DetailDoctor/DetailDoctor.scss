@@ -5,12 +5,14 @@
 .detail-doctor-container {
     .detail-information {
         .avatar-doctor {
-            width   : 10%;
-            margin  : 0px;
-            padding : 0px;
-            position: relative;
+            width     : 10%;
+            margin    : 0px;
+            padding   : 0px;
+            position  : relative;
+            min-height: 120px;
 
             .avatar-element {
+                min-width    : 120px;
                 position     : absolute;
                 height       : 100%;
                 width        : 100%;
@@ -29,7 +31,7 @@
 
             .detail-title {
                 font-weight: bold;
-                font-size  : 18px;
+                font-size  : 26px;
             }
 
             .detail-description {
@@ -37,6 +39,8 @@
             }
 
             .detail-location {
+                margin-top: 4px;
+
                 .text-location {
                     color: #555;
                 }

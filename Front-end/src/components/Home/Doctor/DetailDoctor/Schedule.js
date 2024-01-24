@@ -8,16 +8,40 @@ import localization from 'moment/locale/vi'
 import { LANGUAGES } from '../../../../utils/index'
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react'
+import { getSchedulesByDate } from '../../../../services/userService'
+import { v4 as uuidv4 } from 'uuid';
+import { FormattedMessage } from 'react-intl'
 
 
-function Schedule() {
+
+function Schedule(props) {
 
     const language = useSelector(state => state.userRedux.language)
     const [listday, setListday] = useState([])
-
+    const [schedules, setSchedules] = useState([])
+    const [dateSelected, setDateSelected] = useState(moment(new Date()).format('DD/MM/YYYY'))
     useEffect(() => {
         setListday(getDays(language))
     }, [language])
+
+    useEffect(() => {
+        let isMounted = true; // Biến flag để kiểm tra component có còn tồn tại hay không
+
+        const fetchSchedulesByDate = async (doctorId, date) => {
+            let res = await getSchedulesByDate(doctorId, date);
+            if (isMounted && res.EC === 0) { // Kiểm tra biến flag trước khi cập nhật state
+                setSchedules(res.DT);
+            }
+        };
+
+        fetchSchedulesByDate(props.doctorId, dateSelected);
+
+        return () => {
+            isMounted = false; // Đặt biến flag về false khi component unmount
+        };
+    }, [dateSelected]);
+
+
 
     const capitalizeFirstLetter = (content) => {
         return content.charAt(0).toUpperCase() + content.slice(1);
@@ -59,12 +83,17 @@ function Schedule() {
     }
 
 
+    const handleChangeDate = (e) => {
+        let dateFormat = moment(Number(e.target.value)).format('DD/MM/YYYY');
+        setDateSelected(dateFormat)
+    }
+
     return (
 
         <div className='doctor-schedule'>
 
             <div className='select-date'>
-                <select>
+                <select onChange={(e) => handleChangeDate(e)}>
                     {
                         listday && listday.length > 0 &&
                         listday.map((item, index) => {
@@ -77,24 +106,22 @@ function Schedule() {
             </div>
 
             <div className='title-schedule'>
-                <FaCalendarAlt className='icon-calendar' /> <span className='text-title'>Lịch khám</span>
+                <FaCalendarAlt className='icon-calendar' /> <span className='text-title'><FormattedMessage id='homepage.detail-doctor.examination-schedule' /></span>
             </div>
 
             <div className='schedule-item'>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
-                <span className='btn btn-schedule'>9:00 - 9:30</span>
+                {
+                    schedules && schedules.length > 0 &&
+                    schedules.map((item, index) => {
+                        return (
+                            <span key={uuidv4()} className='btn btn-schedule'>{language === LANGUAGES.VI ? item.dataTime.valueVi : item.dataTime.valueEn}</span>
+                        )
+                    })
+                }
             </div>
 
             <div className='instruct'>
-                <span>Chọn <FaRegHandPointUp />  và đặt lịch (phí đặt lịch 0đ)</span>
+                <span><FormattedMessage id='homepage.detail-doctor.select' /> <FaRegHandPointUp />  <FormattedMessage id='homepage.detail-doctor.booking-free' /></span>
 
             </div>
             <BookingModal

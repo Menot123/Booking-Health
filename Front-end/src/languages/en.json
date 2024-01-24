@@ -61,5 +61,12 @@
     "admin-manage-doctor.select-specialty": "Select specialty",
     "admin-manage-doctor.select-clinic": "Select clinic",
     "admin-manage-doctor.save-info": "Save info",
-    "admin-manage-schedule.title": "MANAGE DOCTOR'S MEDICAL EXAMINATION PLAN"
+    "admin-manage-schedule.title": "MANAGE DOCTOR'S MEDICAL EXAMINATION PLAN",
+    "homepage.detail-doctor.examination-schedule": "Examination schedule",
+    "homepage.detail-doctor.medical-examination-address": "Medical examination address",
+    "homepage.detail-doctor.see-detail": "See detail",
+    "homepage.detail-doctor.hide-price-list": "Hide price list",
+    "homepage.detail-doctor.select": "Select",
+    "homepage.detail-doctor.booking-free": "and make an appointment (booking fee 0 VND)",
+    "homepage.detail-doctor.examination-price": "Examination price"
 }

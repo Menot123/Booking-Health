@@ -61,8 +61,7 @@ const getInfoDoctorService = async (id) => {
             include: [
                 { model: db.Markdown, as: 'dataMarkdown', attributes: ['textMarkdown', 'textHTML', 'description'] },
             ]
-
-        })
+        });
         if (doctor) {
             res.EC = 0
             res.EM = 'Get info doctor successfully'
@@ -262,7 +261,7 @@ const updateInfoDoctorService = async (data) => {
 
         let dataUpdateMarkdown = {
             textMarkdown: data.textMarkdown,
-            textHtml: data.textHtml,
+            textHTML: data.textHTML,
             description: data.introduction
         }
 
@@ -308,12 +307,18 @@ const getDetailDoctorService = async (id) => {
                 exclude: ['password']
             },
             include: [
+                { model: db.Allcode, as: 'positionData', attributes: ['valueVi', 'valueEn'] },
                 {
                     model: db.Doctor_info, as: 'dataIdDoctor', attributes: ['clinicId', 'specialtyId', 'priceId', 'provinceId', 'paymentId'
                         , 'addressClinic', 'nameClinic', 'note'],
                     include: [
                         {
                             model: db.Markdown, as: 'dataMarkdown', attributes: ['textMarkdown', 'textHTML', 'description']
+
+                        },
+                        {
+                            model: db.Allcode, as: 'dataPrice', attributes: ['valueVi', 'valueEn']
+
                         },
                     ]
                 },
@@ -430,8 +435,48 @@ const createScheduleService = async (data) => {
     }
 }
 
+const getScheduleByDateService = async (dataSend) => {
+    try {
+        let res = {}
+        let idDoctor = dataSend.doctorId
+        let date = dataSend.date
+        let schedules = []
+        if (idDoctor && date) {
+            schedules = await db.Schedule.findAll({
+                where: {
+                    doctorId: idDoctor,
+                    date: date
+                },
+                include: [
+                    { model: db.Allcode, as: 'dataTime', attributes: ['valueVi', 'valueEn'] },
+                ]
+            })
+        }
+
+        if (schedules) {
+            res.EC = 0
+            res.EM = 'Get all schedules by date successfully'
+            res.DT = schedules
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Get all schedules by date failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get all schedules by date service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     getAllDoctorService, getInfoDoctorService, getAllPriceService, getAllPaymentsService, getAllProvincesService,
     getAllSpecialtiesService, getAllClinicService, updateInfoDoctorService, getDetailDoctorService, getAllScheduleService,
-    createScheduleService
+    createScheduleService, getScheduleByDateService
 }

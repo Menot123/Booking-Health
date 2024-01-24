@@ -13,19 +13,22 @@ import { LANGUAGES } from '../../../utils/index'
 import { useSelector } from 'react-redux';
 import moment from 'moment'
 import _ from 'lodash';
+import Loader from '../Loader/Loader';
+registerLocale('vi', vi)
 
 
 function ManageSchedules() {
     const language = useSelector(state => state.userRedux.language)
 
 
-    registerLocale('vi', vi)
+
 
     const [doctors, setDoctors] = useState([])
     const [schedules, setSchedules] = useState([])
     const [doctorSelect, setDoctorSelect] = useState(null)
     const [selectedDoctor, setSelectedDoctor] = useState(null)
-    const [currentDate, setCurrentDate] = useState(new Date())
+    const [currentDate, setCurrentDate] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         Promise.all([getListDoctor(), getAllScheduleDoctor()])
@@ -33,15 +36,19 @@ function ManageSchedules() {
 
 
     const getListDoctor = async () => {
+        await setIsLoading(true)
         let res = await getAllDoctor()
         if (res.EC === 0 && res.DT.length > 0) {
             setDoctors(buildDataSelectDoctor(res.DT))
         } else {
             toast.error(res.EM)
         }
+        await setIsLoading(false)
+
     }
 
     const getAllScheduleDoctor = async () => {
+        await setIsLoading(true)
         let res = await getAllSchedule()
         if (res.EC === 0 && res.DT.length > 0) {
             res.DT.map((item, index) => {
@@ -52,6 +59,8 @@ function ManageSchedules() {
         } else {
             toast.error(res.EM)
         }
+        await setIsLoading(false)
+
 
     }
 
@@ -131,6 +140,9 @@ function ManageSchedules() {
         })
         if (res.EC === 0) {
             toast.success(res.EM)
+            setDoctorSelect(null)
+            setCurrentDate(null)
+            getAllScheduleDoctor()
         } else if (res.EC === 100) {
             toast.warning(res.EM)
 
@@ -145,44 +157,52 @@ function ManageSchedules() {
                 <span className='manage-schedule-title'><FormattedMessage id='admin-manage-schedule.title' /></span>
             </div>
 
-            <div className='manage-schedule-content'>
-                <div className='select-doctors'>
-                    <Select
-                        value={doctorSelect && doctorSelect}
-                        options={doctors.length > 0 ? doctors : []}
-                        placeholder={<FormattedMessage id='admin-manage-doctor.select-doctor' />}
-                        onChange={(e) => handleSelectDoctor(e)}
-                    />
-                </div>
+            {isLoading ?
+                <Loader loading={isLoading} />
+                :
+                <>
+                    <div className='manage-schedule-content'>
+                        <div className='select-doctors'>
+                            <Select
+                                value={doctorSelect && doctorSelect}
+                                options={doctors.length > 0 ? doctors : []}
+                                placeholder={<FormattedMessage id='admin-manage-doctor.select-doctor' />}
+                                onChange={(e) => handleSelectDoctor(e)}
+                            />
+                        </div>
 
-                <div className='select-date'>
-                    <DatePicker className='form-select select-date-picker w-100'
-                        selected={currentDate}
-                        onChange={(date) => handleChangeDatePicker(date)}
-                        minDate={new Date()}
-                    />
-                </div>
+                        <div className='select-date'>
+                            <DatePicker className='form-select select-date-picker w-100'
+                                selected={currentDate}
+                                onChange={(date) => handleChangeDatePicker(date)}
+                                minDate={new Date()}
+                                locale={language === LANGUAGES.VI ? "vi" : 'en'}
+                            />
+                        </div>
 
-            </div>
+                    </div>
 
-            <div className='select-schedules'>
-                {schedules && schedules.length > 0 &&
-                    schedules.map((item, index) => {
-                        return (
-                            <span key={index + 'schedule'}
-                                className={item.selected === true ? 'btn btn-schedule active' : 'btn btn-schedule'}
-                                onClick={() => handleChooseSchedule(item)}
-                            >{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</span>
-                        )
-                    })
+                    <div className='select-schedules'>
+                        {schedules && schedules.length > 0 &&
+                            schedules.map((item, index) => {
+                                return (
+                                    <span key={index + 'schedule'}
+                                        className={item.selected === true ? 'btn btn-schedule active' : 'btn btn-schedule'}
+                                        onClick={() => handleChooseSchedule(item)}
+                                    >{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</span>
+                                )
+                            })
 
-                }
-            </div>
-            <div className="btn-save">
-                <button className='btn btn-primary'
-                    onClick={() => handleSaveSchedule()}
-                ><FormattedMessage id='admin-manage-doctor.save-info' /></button>
-            </div>
+                        }
+                    </div>
+                    <div className="btn-save">
+                        <button className='btn btn-primary'
+                            onClick={() => handleSaveSchedule()}
+                        ><FormattedMessage id='admin-manage-doctor.save-info' /></button>
+                    </div>
+                </>
+            }
+
         </div>
     )
 }

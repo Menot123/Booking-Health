@@ -66,8 +66,10 @@ function App() {
             </Route>
 
             <Route path={path.DETAIL_DOCTOR}>
-              <DetailDoctor />
+              <DetailDoctor scrollToTop={scrollToTop} />
             </Route>
+
+
 
             {/* Blog */}
             <Route

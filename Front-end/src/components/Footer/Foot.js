@@ -15,11 +15,11 @@ const Foot = (props) => {
     };
     return (
         <>
-            <div className="bg-body-tertiary bg-light">
+            <div className="bg-body-tertiary bg-footer">
                 <section>
                     <div className="container text-center text-md-start">
                         <div className="row mt-3">
-                            <div className="col-md-5 col-lg-6 col-xl-5 mx-auto mb-4 mt-4">
+                            <div className="col-md-5 col-lg-6 col-xl-5 mb-4 mt-4">
                                 <h6 className="text-uppercase fw-bold mb-4">
                                     <FormattedMessage id='footer.about-us-title' />
                                 </h6>
@@ -51,7 +51,7 @@ const Foot = (props) => {
                                 </p>
                             </div>
 
-                            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 mt-4">
+                            <div className="col-md-4 col-lg-3 col-xl-3 mb-md-0 mb-4 mt-4">
                                 <h6 className="text-uppercase fw-bold mb-4">
                                     <FormattedMessage id='footer.contact' />
                                 </h6>
@@ -62,7 +62,7 @@ const Foot = (props) => {
                         </div>
                     </div>
                 </section>
-                <div className="text-center p-4 " style={{ backgroundColor: 'rgba(0, 0, 0, 0.025)' }}>
+                <div className="text-center p-4 " style={{ backgroundColor: '#64b9e5' }}>
                     © 2023 BookingHealth:
                     <a className="text-reset fw-bold ms-1" href="https://gitlab.duthu.net/S52000035/it42day_n01t1_hk1_2324_dacntt">IT24Day</a>
                 </div>

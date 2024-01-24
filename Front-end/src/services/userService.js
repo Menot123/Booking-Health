@@ -77,8 +77,12 @@ const createSchedule = (dataSchedule) => {
     return axios.post('/api/create-schedule', { data: dataSchedule })
 }
 
+const getSchedulesByDate = (doctorId, date) => {
+    return axios.get(`/api/get-schedule-by-date?doctorId=${doctorId}&date=${date}`)
+}
+
 export {
     fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
     updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
-    getAllClinic, updateInfoDoctor, getInfoDetailDoctor, getAllSchedule, createSchedule
+    getAllClinic, updateInfoDoctor, getInfoDetailDoctor, getAllSchedule, createSchedule, getSchedulesByDate
 }

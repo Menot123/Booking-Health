@@ -213,8 +213,29 @@ const createSchedule = async (req, res, next) => {
     }
 }
 
+const getScheduleByDate = async (req, res, next) => {
+    try {
+        let response = await doctorService.getScheduleByDateService(req.query)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from get schedules doctor by date ')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+
+
 module.exports = {
     getAllDoctor, getAllPrice, getInfoDoctor, getAllPayments, getAllProvinces,
     getAllSpecialties, getAllClinics, updateInfoDoctor, getDetailDoctor, getAllSchedule,
-    createSchedule
+    createSchedule, getScheduleByDate
 }
