@@ -27,7 +27,11 @@ function Navbar() {
     }
 
     const language = useSelector(state => state.userRedux.language)
-    const nameUser = useSelector(state => state.userRedux.account.lastName)
+    const nameUserVi = useSelector(state => state.userRedux.account?.firstName +
+        ' ' + state.userRedux.account?.lastName)
+
+    const nameUserEn = useSelector(state => state.userRedux.account?.lastName +
+        ' ' + state.userRedux.account?.firstName)
 
     useEffect(() => {
         dispatch(translate(language))
@@ -85,7 +89,7 @@ function Navbar() {
                 </div>
 
                 <div className='nav-content-right'>
-                    <div className='hello-user'><FormattedMessage id='admin-header.welcome' /> {nameUser && nameUser.toUpperCase()}</div>
+                    <div className='hello-user'><FormattedMessage id='admin-header.welcome' /> {nameUserVi && nameUserEn && language === 'vi' ? nameUserVi.toUpperCase() : nameUserEn.toUpperCase()}</div>
                     <div className='change-language'>
                         <span onClick={() => handleChangeLanguage('vi')} className={language === 'vi' ? 'lang-vi active' : 'lang-vi '}>VN</span>
                         <span onClick={() => handleChangeLanguage('en')} className={language === 'en' ? 'lang-en active' : 'lang-en '}>EN</span>

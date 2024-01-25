@@ -75,7 +75,9 @@ function DetailDoctor(props) {
                                 :
                                 infoDoctor.positionData?.valueEn}  {infoDoctor.firstName} {infoDoctor.lastName}</div>
                             <div className='detail-description'>
-                                {infoDoctor && infoDoctor.dataIdDoctor && infoDoctor.dataIdDoctor?.dataMarkdown && infoDoctor.dataIdDoctor?.dataMarkdown?.description}
+                                <span className='detail-description-text'>
+                                    {infoDoctor && infoDoctor.dataIdDoctor && infoDoctor.dataIdDoctor?.dataMarkdown && infoDoctor.dataIdDoctor?.dataMarkdown?.description}
+                                </span>
                             </div>
                             <div className='detail-location'>
                                 <IoLocationSharp /> <span className='text-location'>Thành phố Hồ Chí Minh</span>

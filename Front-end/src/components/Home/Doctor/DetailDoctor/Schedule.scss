@@ -1,4 +1,15 @@
 .doctor-schedule {
+
+    .select-date {
+        .select-date-element {
+            border       : none;
+            color        : #337Ab7;
+            border-bottom: 1.5px solid rgb(122, 121, 121);
+            font-style   : 14px;
+            font-weight  : 500;
+        }
+    }
+
     .title-schedule {
         margin-top : 4px;
         display    : flex;
