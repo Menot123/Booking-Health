@@ -48,7 +48,10 @@ const initApiRoutes = (app) => {
 
     // manage posts route
     router.get('/get-posts', postController.getAllPost)
+    router.get('/get-post', postController.getPostWithId)
+    router.post('/create-post', postController.handleCreatePost)
     router.delete('/delete-post', postController.handleDeletePost)
+    router.put('/update-post', postController.handleUpdatePost)
 
     return app.use("/api/", router)
 

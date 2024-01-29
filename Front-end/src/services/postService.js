@@ -9,6 +9,18 @@ const deletePost = (post) => {
     return axios.delete('/api/delete-post', { data: { post: post } })
 }
 
+const getDataUpdatePost = (data) => {
+    return axios.get(`/api/get-post?postId=${data.postId}`)
+}
+
+const createPost = (data) => {
+    return axios.post(`/api/create-post`, { data: data })
+}
+
+const updatePost = (id, data) => {
+    return axios.put(`/api/update-post?postId=${id}`, { data: data })
+}
+
 export {
-    fetchAllPost, deletePost
+    fetchAllPost, deletePost, getDataUpdatePost, updatePost, createPost
 }
