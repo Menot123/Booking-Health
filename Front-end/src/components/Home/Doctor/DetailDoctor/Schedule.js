@@ -93,7 +93,7 @@ function Schedule(props) {
         <div className='doctor-schedule'>
 
             <div className='select-date'>
-                <select onChange={(e) => handleChangeDate(e)}>
+                <select className='select-date-element' onChange={(e) => handleChangeDate(e)}>
                     {
                         listday && listday.length > 0 &&
                         listday.map((item, index) => {

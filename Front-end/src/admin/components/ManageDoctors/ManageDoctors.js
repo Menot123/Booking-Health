@@ -104,7 +104,7 @@ function ManageDoctors() {
                 data.forEach((item) => {
                     let doctorDataBuild = {
                         value: item.id,
-                        label: item.lastName + ' ' + item.firstName
+                        label: item.firstName + ' ' + item.lastName
                     }
                     arrDoctor.push(doctorDataBuild)
                 })

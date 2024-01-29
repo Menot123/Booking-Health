@@ -36,6 +36,11 @@
 
             .detail-description {
                 color: #555;
+
+                .detail-description-text {
+                    display  : block;
+                    max-width: 60%;
+                }
             }
 
             .detail-location {
@@ -118,6 +123,104 @@
                     &:hover {
                         cursor : pointer;
                         opacity: 0.8;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+
+    .detail-doctor-container {
+        .detail-information {
+            .avatar-doctor {
+                min-height: 80px;
+                width     : 20%;
+
+                .avatar-element {
+                    min-width: 80px;
+                    height   : 80px;
+                }
+            }
+
+            .detail-content {
+
+                .detail-title {
+                    font-size: 20px;
+                }
+
+                .detail-description {
+
+                    .detail-description-text {
+                        max-width: 100%;
+                    }
+                }
+
+
+            }
+
+        }
+    }
+
+}
+
+@media screen and (min-width: 577px) and (max-width: 767px) {
+    .detail-doctor-container {
+        .detail-information {
+            .avatar-doctor {
+                min-height: 100px;
+                width     : 20%;
+
+                .avatar-element {
+                    min-width: 100px;
+                    height   : 100px;
+                }
+            }
+
+            .detail-content {
+
+                .detail-title {
+                    font-size: 20px;
+                }
+
+                .detail-description {
+
+                    .detail-description-text {
+                        max-width: 100%;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .detail-doctor-container {
+        .detail-information {
+            .avatar-doctor {
+                min-height: 120px;
+                width     : 16%;
+
+                .avatar-element {
+                    width : 120px;
+                    height: 120px;
+                }
+            }
+
+            .detail-content {
+                margin-left: 28px;
+
+                .detail-title {
+                    font-size: 20px;
+                }
+
+                .detail-description {
+
+                    .detail-description-text {
+                        max-width: 100%;
                     }
                 }
             }

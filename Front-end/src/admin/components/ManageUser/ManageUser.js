@@ -14,9 +14,12 @@ import { FormattedMessage } from 'react-intl'
 import { useSelector } from 'react-redux';
 import { LANGUAGES } from '../../../utils/index'
 import ReactPaginate from 'react-paginate';
+import { useHistory } from 'react-router-dom';
 
 
 function ManageUser() {
+
+    const history = useHistory()
 
     const currentLang = useSelector(state => state.userRedux.language)
 
@@ -67,10 +70,28 @@ function ManageUser() {
         getUsersWithPagination()
     }, [currentPage])
 
+    useEffect(() => {
+        const handleBeforeUnload = (e) => {
+            if (inputData.email !== '') {
+                e.preventDefault();
+                toast.warning('Data may be not saved')
+            }
+        };
+
+
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [history, inputData.email]);
+
+
+
     const getUsers = async (page) => {
         setIsLoading(true)
         let res = await fetchAllUser(currentPage, currentLimit)
-        console.log(res)
         if (res.EC === 0 && res.DT.users.length > 0) {
             setUsers(res.DT.users)
             setTotalPage(res.DT.totalPage)
@@ -162,6 +183,7 @@ function ManageUser() {
             /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
     };
+
 
     const handleCreateUser = async () => {
         let user = {
@@ -298,6 +320,7 @@ function ManageUser() {
 
     return (
         <div>
+
             <h3 className='text-center mt-3'>Manage User</h3>
             <div className='container'>
                 {isLoading ? <Loader loading={isLoading} /> :
