@@ -47,29 +47,30 @@ function BlogDetail() {
         ]
     };
 
+    let catalogue = `<li><a href="#section1" >Xét nghiệm NIPT có những ưu điểm gì?</a></li>
+    <li><a href="#section2">Top 3 địa chỉ xét nghiệm NIPT tại Vũng Tàu</a>
+    <!-- Write your comments here -->
+        <ol className='level2'>
+            <li><a href="#subsection2.1">Phòng xét nghiệm Y khoa C- STAR Vũng Tàu</a></li>
+            <li><a href="#subsection2.2">Phòng khám chuyên khoa xét nghiệm MEDLATEC Vũng Tàu</a></li>
+            <li><a href="#subsection2.3">Trung tâm xét nghiệm Gentis</a></li>
+        </ol>
+    </li>`;
     return (
         <div className='container post-container'>
             <div className='row '>
                 <div className="detail">
                     {/* OffCanvas Table Content*/}
-                    <button class="btn btn-primary offcanvas-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><FormattedMessage id='blog.catalogue' defaultMessage={'Mục lục'} /></button>
-                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-                        <div class="offcanvas-header" style={{ borderBottom: '4px solid orange' }}>
-                            <h3 class="offcanvas-title" id="offcanvasScrollingLabel"><FormattedMessage id='blog.catalogue' defaultMessage={'Mục lục'} /></h3>
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <button className="btn btn-primary offcanvas-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><FormattedMessage id='blog.catalogue' defaultMessage={'Mục lục'} /></button>
+                    <div className="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+                        <div className="offcanvas-header" style={{ borderBottom: '4px solid orange' }}>
+                            <h3 className="offcanvas-title" id="offcanvasScrollingLabel"><FormattedMessage id='blog.catalogue' defaultMessage={'Mục lục'} /></h3>
+                            <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
-                        <div class="offcanvas-body border-top-1">
+                        <div className="offcanvas-body border-top-1">
                             <div className="offcanvas-table-content">
-                                <ul className='list level1'>
-                                    <li><a href="#section1" >Xét nghiệm NIPT có những ưu điểm gì?</a></li>
-                                    <li><a href="#section2">Top 3 địa chỉ xét nghiệm NIPT tại Vũng Tàu</a>
-                                        <ol className='level2'>
-                                            <li><a href="#subsection2.1">Phòng xét nghiệm Y khoa C- STAR Vũng Tàu</a></li>
-                                            <li><a href="#subsection2.2">Phòng khám chuyên khoa xét nghiệm MEDLATEC Vũng Tàu</a></li>
-                                            <li><a href="#subsection2.3">Trung tâm xét nghiệm Gentis</a></li>
-                                        </ol>
-                                    </li>
-                                </ul>
+                                <ul className='list level1' dangerouslySetInnerHTML={{ __html: catalogue }} />
+
                             </div>
                         </div>
                     </div>
@@ -77,16 +78,7 @@ function BlogDetail() {
                     {/* Table Content show */}
                     <div className="table-content">
                         <h3 className='title'><FormattedMessage id='blog.catalogue' defaultMessage={'Mục lục'} /></h3>
-                        <ul className='list level1'>
-                            <li><a href="#section1" >Xét nghiệm NIPT có những ưu điểm gì?</a></li>
-                            <li><a href="#section2">Top 3 địa chỉ xét nghiệm NIPT tại Vũng Tàu</a>
-                                <ol className='level2'>
-                                    <li><a href="#subsection2.1">Phòng xét nghiệm Y khoa C- STAR Vũng Tàu</a></li>
-                                    <li><a href="#subsection2.2">Phòng khám chuyên khoa xét nghiệm MEDLATEC Vũng Tàu</a></li>
-                                    <li><a href="#subsection2.3">Trung tâm xét nghiệm Gentis</a></li>
-                                </ol>
-                            </li>
-                        </ul>
+                        <ul className='list level1' dangerouslySetInnerHTML={{ __html: catalogue }} />
                     </div>
 
                     {/* Detail of content */}

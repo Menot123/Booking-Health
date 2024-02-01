@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Slider from "react-slick"
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './BlogListChild.scss'
 import blog_item from '../../assets/img/blog-list-child-item.png'
+import { useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl'
 import { FaSearch } from "react-icons/fa";
 
 
 function BlogListChild() {
+    const { type } = useParams();
+    console.log(type)
     return (
         <div className='container-bloglist-detail'>
             <div className='container '>

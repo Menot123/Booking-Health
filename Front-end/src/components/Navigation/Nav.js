@@ -49,9 +49,9 @@ const Nav = (props) => {
                             <img className='logo' alt='logo' src={logo}></img>
                         </div>
                         <div className='nav-link-items d-flex '>
-                            <NavLink to="chuyen-khoa"><FormattedMessage id='homepage.specialty' /></NavLink>
-                            <NavLink to="co-so-y-te"><FormattedMessage id='homepage.facilities' /></NavLink>
-                            <NavLink to="song-khoe"><FormattedMessage id='homepage.live-healthy' /></NavLink>
+                            <NavLink to="/chuyen-khoa"><FormattedMessage id='homepage.specialty' /></NavLink>
+                            <NavLink to="/co-so-y-te"><FormattedMessage id='homepage.facilities' /></NavLink>
+                            <NavLink to="/cam-nang"><FormattedMessage id='homepage.live-healthy' /></NavLink>
                             <Search className="search-input" />
                         </div>
 

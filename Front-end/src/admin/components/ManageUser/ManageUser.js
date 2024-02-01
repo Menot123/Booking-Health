@@ -268,6 +268,7 @@ function ManageUser() {
                     avatar: response.DT.image,
                 }
                 let imgReview = convertImgBase64(userData.avatar)
+                console.log(imgReview)
                 setAvatar(imgReview)
                 setInputData(userData)
                 setImgPreview(prevState => ({

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-    up: async (queryInterface, Sequelize) => {
+    up: async(queryInterface, Sequelize) => {
         await queryInterface.createTable('Post', {
             id: {
                 allowNull: false,
@@ -11,20 +11,20 @@ module.exports = {
             owner: {
                 type: Sequelize.STRING
             },
-            titleVi: {
+            type: {
                 type: Sequelize.STRING
             },
-            titleEn: {
+            title: {
                 type: Sequelize.STRING
             },
-            descriptionVi: {
+            titleImg: {
+                type: Sequelize.BLOB('long')
+            },
+            description: {
                 type: Sequelize.TEXT
             },
-            descriptionEn: {
-                type: Sequelize.TEXT
-            },
-            image: {
-                type: Sequelize.STRING
+            fullContent: {
+                type: Sequelize.TEXT('long')
             },
             createdAt: {
                 allowNull: false,
@@ -35,11 +35,12 @@ module.exports = {
                 type: Sequelize.DATE
             },
             status: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                defaultValue: 'active'
             }
         });
     },
-    down: async (queryInterface, Sequelize) => {
+    down: async(queryInterface, Sequelize) => {
         await queryInterface.dropTable('Post');
     }
 };

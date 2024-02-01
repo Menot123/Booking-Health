@@ -82,6 +82,15 @@ function App() {
               )}
             />
             {/* End Blog */}
+
+            <Route path={path.HO_TRO}>
+              <Sup />
+            </Route>
+
+            <Route path={path.DETAIL_DOCTOR}>
+              <DetailDoctor scrollToTop={scrollToTop} />
+            </Route>
+
             {/* Admin route */}
             <Route path={path.ADMIN} component={AdminRoute} />
             {/* End admin route */}

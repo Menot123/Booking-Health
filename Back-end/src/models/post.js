@@ -17,11 +17,11 @@ module.exports = (sequelize, DataTypes) => {
     };
     Post.init({
         owner: DataTypes.STRING,
-        titleVi: DataTypes.STRING,
-        titleEn: DataTypes.STRING,
-        descriptionVi: DataTypes.TEXT,
-        descriptionEn: DataTypes.TEXT,
-        image: DataTypes.STRING,
+        type: DataTypes.STRING,
+        title: DataTypes.STRING,
+        titleImg: DataTypes.BLOB('long'),
+        description: DataTypes.TEXT,
+        fullContent: DataTypes.TEXT('long'),
         status: DataTypes.STRING,
     }, {
         sequelize,

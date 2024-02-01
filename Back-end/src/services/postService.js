@@ -31,7 +31,7 @@ const getAllPostService = async () => {
     }
 }
 
-// Get post with pagination
+// Get posts with pagination
 const getPostsPagination = async (page, limit) => {
     try {
         let offset = (page - 1) * limit
@@ -70,6 +70,102 @@ const getPostsPagination = async (page, limit) => {
     }
 }
 
+// Get post with post ID
+const getPostWithIdService = async (postId) => {
+    try {
+        let res = {}
+        let post = await db.Post.findOne({
+            where: { id: postId }
+        })
+        if (post) {
+            // console.log(post)
+            res.EC = 0
+            res.EM = `Get post with id ${postId} successfully`
+            res.DT = { post }
+        } else {
+            res.EC = 1
+            res.EM = `Post with id ${postId} not found`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get post from id service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
+// Create post Service
+const createPostService = async (postData) => {
+    try {
+        let res = {}
+        if (postData) {
+            let checkDuplicate = await db.Post.findOne({
+                where: { title: postData.title }
+            })
+            if (checkDuplicate) {
+                res.EC = 2
+                res.EM = 'Post already exists'
+                res.DT = {}
+
+            } else {
+                await db.Post.create(postData)
+                res.EC = 0
+                res.EM = 'Create post successfully'
+                res.DT = {}
+            }
+        } else {
+            res.EC = 1
+            res.EM = 'Create post failed'
+            res.DT = {}
+        }
+        return res
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with createPostService service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
+// Update post service
+const updatePostService = async (id, data) => {
+    try {
+        let res = {}
+        let post = await db.Post.findOne({
+            where: { id: id }
+        })
+        // console.log(post)
+        if (post) {
+            // console.log(post)
+            await post.update({ ...data })
+            res.EC = 0
+            res.EM = `Update post with id ${id} successfully`
+            res.DT = {}
+        } else {
+            res.EC = 1
+            res.EM = `Update post failed`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with update post service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
+
 // Delete post
 const deletePostService = async (postDelete) => {
     try {
@@ -105,5 +201,8 @@ const deletePostService = async (postDelete) => {
 module.exports = {
     getAllPostService,
     getPostsPagination,
-    deletePostService
+    updatePostService,
+    deletePostService,
+    getPostWithIdService,
+    createPostService
 }
