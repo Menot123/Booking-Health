@@ -78,6 +78,7 @@
     "admin-manage-doctor.select-clinic": "Chọn phòng khám",
     "admin-manage-doctor.save-info": "Lưu thông tin",
     "admin-manage-schedule.title": "QUẢN LÝ KẾ HOẠCH KHÁM BỆNH CỦA BÁC SĨ",
+    "admin-manage-schedule.select-date": "Chọn ngày",
     "homepage.detail-doctor.examination-schedule": "Lịch khám",
     "homepage.detail-doctor.medical-examination-address": "Địa chỉ khám",
     "homepage.detail-doctor.examination-price": "Giá khám",
@@ -85,6 +86,15 @@
     "homepage.detail-doctor.hide-price-list": "Ẩn bảng giá",
     "homepage.detail-doctor.select": "Chọn",
     "homepage.detail-doctor.booking-free": "và đặt lịch (phí đặt lịch 0đ)",
+    "homepage.detail-doctor.message-validate": "Thiếu thông tin đặt lịch, vui lòng kiểm tra lại!",
     "verify-booking.status-success": "Xác nhận đặt lịch khám thành công!",
-    "verify-booking.status-failed": "Lịch hẹn không tồn tại hoặc đã được xác nhận"
+    "detail-doctor-booking-modal.free-booking": "Miễn phí đặt lịch",
+    "detail-doctor-booking-modal.price": "Giá khám: ",
+    "detail-doctor-booking-modal.full-name": "Họ tên",
+    "detail-doctor-booking-modal.phone": "Số điện thoại",
+    "detail-doctor-booking-modal.email": "Địa chỉ email",
+    "detail-doctor-booking-modal.address": "Địa chỉ liên hệ",
+    "detail-doctor-booking-modal.reason": "Lý do khám",
+    "detail-doctor-booking-modal.birth": "Ngày sinh",
+    "detail-doctor-booking-modal.gender": "Giới tính"
 }

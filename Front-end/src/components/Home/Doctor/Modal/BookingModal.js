@@ -23,6 +23,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { FormattedMessage } from 'react-intl'
 import { toast } from 'react-toastify';
 import moment from 'moment'
+import { FaBullseye } from 'react-icons/fa6';
 
 
 function BookingModal(props) {
@@ -33,6 +34,7 @@ function BookingModal(props) {
     const [price, setPrice] = useState('')
     const [timeBooking, setTimeBooking] = useState('')
     const [dateBooking, setDateBooking] = useState('')
+    const [isSendingEmail, setIsSendingEmail] = useState(false)
 
 
     const defaultBookingInput = {
@@ -50,6 +52,9 @@ function BookingModal(props) {
 
     const [bookingInput, setBookingInput] = useState(defaultBookingInput)
     const [allGender, setAllGender] = useState([])
+    const validateData = ['fullName', 'phoneNumber', 'email', 'contact', 'reason', 'dateOfBirth',
+        'gender', 'doctorId', 'timeTypeBooking', 'dateSelectBooking']
+
 
     useEffect(() => {
         if (!_.isEmpty(props.dataProfile)) {
@@ -141,7 +146,25 @@ function BookingModal(props) {
         return name
     }
 
+    const validateDataSend = (data) => {
+        const missingFields = [];
+
+        validateData.forEach((fieldName) => {
+            if (!data[fieldName]) {
+                missingFields.push(fieldName);
+            }
+        });
+        return missingFields;
+    }
+
     const handleClickBooking = async () => {
+        let checkValidateData = []
+        checkValidateData = validateDataSend(bookingInput)
+        if (checkValidateData.length > 0) {
+            toast.error(<FormattedMessage id='homepage.detail-doctor.message-validate' />)
+            return;
+        }
+        setIsSendingEmail(true)
         let nameDoctorBooking = buildNameDoctor(props.dataProfile)
         const formattedDate = moment(bookingInput.dateOfBirth).format('DD/MM/yyyy')
         let dateTimeMailer = timeBooking + ' Ngày ' + dateBooking
@@ -161,6 +184,9 @@ function BookingModal(props) {
             nameDoctorBooking: nameDoctorBooking
         }
         let res = await createBookingDoctor(dataSend)
+        setIsSendingEmail(false)
+        setBookingInput(defaultBookingInput)
+
         if (+res.EC === 0) {
             toast.success('Booking appointment was successfully')
             props.handleCloseModal()
@@ -170,110 +196,121 @@ function BookingModal(props) {
     }
 
     return (
-        <Modal
-            isOpen={props.isOpenModal}
-            toggle={props.handleCloseModal}
-            className={'modal-booking'}
-            backdrop={true}
-            size='lg'
-        >
-            <ModalHeader toggle={props.handleCloseModal}>Thông tin đặt lịch khám bệnh</ModalHeader>
-            <ModalBody>
-                <div className='modal-content-body p-3'>
-                    <div className='doctor-profile'>
-                        <div className='doctor-profile-avatar'>
-                            <img className='img-doctor' alt='img-doctor' src={props.dataProfile && props.dataProfile.image &&
-                                convertImgBase64(props.dataProfile.image)
-                            } />
-                        </div>
-                        <div className='doctor-profile-info'>
-                            <div className='doctor-profile-info-name'>
-                                <span className='profile-info-name-text'>
-                                    {position} {name}
-                                </span>
-                            </div>
-                            <div className='doctor-profile-info-description'>
-                                <span className='info-description-text'>
-                                    {timeBooking}  - {dateBooking}
-                                </span>
-                                <br />
-                                <span>Miễn phí đặt lịch</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='modal-content-price'>
-                        <span>Giá khám: {price}</span>
-                    </div>
-
-                    <div className='row'>
-
-                        <div className='modal-content-name col-6'>
-                            <label htmlFor='input-name'>Họ tên</label>
-                            <input className='form-control' type='text' id='input-name' value={bookingInput.fullName} onChange={(e) => handleOnchangeInputBooking(e, 'fullName')} />
-                        </div>
-
-                        <div className='modal-content-phone col-6'>
-                            <label htmlFor='input-phone'>Số điện thoại</label>
-                            <input className='form-control' type='tel' id='input-phone' value={bookingInput.phoneNumber} onChange={(e) => handleOnchangeInputBooking(e, 'phoneNumber')} />
-                        </div>
-
-                        <div className='modal-content-email col-6 my-2'>
-                            <label htmlFor='input-email'>Địa chỉ Email</label>
-                            <input className='form-control' type='tel' id='input-email' value={bookingInput.email} onChange={(e) => handleOnchangeInputBooking(e, 'email')} />
-                        </div>
-
-                        <div className='modal-content-contact col-6 my-2'>
-                            <label htmlFor='input-contact'>Địa chỉ liên hệ</label>
-                            <input className='form-control' type='tel' id='input-contact' value={bookingInput.contact} onChange={(e) => handleOnchangeInputBooking(e, 'contact')} />
-                        </div>
-
-                        <div className='modal-content-reason col-12 my-2'>
-                            <label htmlFor='input-reason'>Lý do khám</label>
-                            <input className='form-control' type='tel' id='input-reason' value={bookingInput.reason} onChange={(e) => handleOnchangeInputBooking(e, 'reason')} />
-                        </div>
-
-                        <div className='modal-content-birth col-6'>
-                            <label htmlFor='input-birth'>Ngày sinh</label>
-                            <DatePicker id='input-birth' className='form-control select-date-picker w-100'
-                                selected={bookingInput.dateOfBirth}
-                                onChange={(date) => handleChangeDatePicker(date)}
-                                locale={language === LANGUAGES.VI ? "vi" : 'en'}
-                            />
-                        </div>
-
-                        <div className='modal-content-gender col-6'>
-                            <label htmlFor='input-gender'>Giới tính</label>
-                            <select className='form-select' value={bookingInput.gender}
-                                onChange={(e) => handleOnchangeInputBooking(e, 'gender')} >
-
-                                <FormattedMessage id='admin-form-CRUD.select-gender'>
-                                    {(msg) => (<option hidden>{msg}</option>)}
-                                </FormattedMessage>
-                                {
-                                    allGender && allGender.length > 0 &&
-                                    allGender.map((item, index) => {
-                                        return (
-                                            <option key={uuidv4()} value={item.keyCode}>{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
-                                        )
-
-                                    })
-                                }
-                            </select>
-                        </div>
-
-                    </div>
-
+        <>
+            {isSendingEmail
+                ?
+                <div className="loading-overlay">
+                    <div className="loading-spinner"></div>
                 </div>
-            </ModalBody>
-            <ModalFooter>
-                <Button color="primary" onClick={() => handleClickBooking()}>
-                    Xác nhận
-                </Button>
-                <Button color="secondary" onClick={props.handleCloseModal}>
-                    Hủy bỏ
-                </Button>
-            </ModalFooter>
-        </Modal>
+                : ''
+            }
+            <Modal
+                isOpen={props.isOpenModal}
+                toggle={props.handleCloseModal}
+                className={'modal-booking'}
+                backdrop={true}
+                size='lg'
+            >
+                <ModalHeader toggle={props.handleCloseModal}>Thông tin đặt lịch khám bệnh</ModalHeader>
+                <ModalBody>
+                    <div className='modal-content-body p-3'>
+                        <div className='doctor-profile'>
+                            <div className='doctor-profile-avatar'>
+                                <img className='img-doctor' alt='img-doctor' src={props.dataProfile && props.dataProfile.image &&
+                                    convertImgBase64(props.dataProfile.image)
+                                } />
+                            </div>
+                            <div className='doctor-profile-info'>
+                                <div className='doctor-profile-info-name'>
+                                    <span className='profile-info-name-text'>
+                                        {position} {name}
+                                    </span>
+                                </div>
+                                <div className='doctor-profile-info-description'>
+                                    <span className='info-description-text'>
+                                        {timeBooking}  - {dateBooking}
+                                    </span>
+                                    <br />
+                                    <span>
+                                        <FormattedMessage id='detail-doctor-booking-modal.free-booking' />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='modal-content-price'>
+                            <span><FormattedMessage id='detail-doctor-booking-modal.price' /> {price}</span>
+                        </div>
+
+                        <div className='row'>
+
+                            <div className='modal-content-name col-6'>
+                                <label htmlFor='input-name'><FormattedMessage id='detail-doctor-booking-modal.full-name' /></label>
+                                <input className='form-control' type='text' id='input-name' value={bookingInput.fullName} onChange={(e) => handleOnchangeInputBooking(e, 'fullName')} />
+                            </div>
+
+                            <div className='modal-content-phone col-6'>
+                                <label htmlFor='input-phone'><FormattedMessage id='detail-doctor-booking-modal.phone' /></label>
+                                <input className='form-control' type='tel' id='input-phone' value={bookingInput.phoneNumber} onChange={(e) => handleOnchangeInputBooking(e, 'phoneNumber')} />
+                            </div>
+
+                            <div className='modal-content-email col-6 my-2'>
+                                <label htmlFor='input-email'><FormattedMessage id='detail-doctor-booking-modal.email' /></label>
+                                <input className='form-control' type='tel' id='input-email' value={bookingInput.email} onChange={(e) => handleOnchangeInputBooking(e, 'email')} />
+                            </div>
+
+                            <div className='modal-content-contact col-6 my-2'>
+                                <label htmlFor='input-contact'><FormattedMessage id='detail-doctor-booking-modal.address' /></label>
+                                <input className='form-control' type='tel' id='input-contact' value={bookingInput.contact} onChange={(e) => handleOnchangeInputBooking(e, 'contact')} />
+                            </div>
+
+                            <div className='modal-content-reason col-12 my-2'>
+                                <label htmlFor='input-reason'><FormattedMessage id='detail-doctor-booking-modal.reason' /></label>
+                                <input className='form-control' type='tel' id='input-reason' value={bookingInput.reason} onChange={(e) => handleOnchangeInputBooking(e, 'reason')} />
+                            </div>
+
+                            <div className='modal-content-birth col-6'>
+                                <label htmlFor='input-birth'><FormattedMessage id='detail-doctor-booking-modal.birth' /></label>
+                                <DatePicker id='input-birth' className='form-control select-date-picker w-100'
+                                    selected={bookingInput.dateOfBirth}
+                                    onChange={(date) => handleChangeDatePicker(date)}
+                                    locale={language === LANGUAGES.VI ? "vi" : 'en'}
+                                />
+                            </div>
+
+                            <div className='modal-content-gender col-6'>
+                                <label htmlFor='input-gender'><FormattedMessage id='detail-doctor-booking-modal.gender' /></label>
+                                <select className='form-select' value={bookingInput.gender}
+                                    onChange={(e) => handleOnchangeInputBooking(e, 'gender')} >
+
+                                    <FormattedMessage id='admin-form-CRUD.select-gender'>
+                                        {(msg) => (<option hidden>{msg}</option>)}
+                                    </FormattedMessage>
+                                    {
+                                        allGender && allGender.length > 0 &&
+                                        allGender.map((item, index) => {
+                                            return (
+                                                <option key={uuidv4()} value={item.keyCode}>{language === LANGUAGES.VI ? item.valueVi : item.valueEn}</option>
+                                            )
+
+                                        })
+                                    }
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={() => handleClickBooking()}>
+                        Xác nhận
+                    </Button>
+                    <Button color="secondary" onClick={props.handleCloseModal}>
+                        Hủy bỏ
+                    </Button>
+                </ModalFooter>
+            </Modal>
+        </>
     )
 }
 
