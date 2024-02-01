@@ -5,13 +5,14 @@ import userController from '../controllers/userController'
 import { checkUserJWT } from '../middleware/JWTServices'
 import doctorController from '../controllers/doctorController'
 import postController from '../controllers/postController'
+import uploadCloud from '../config/cloudinary.config'
 
 const router = express.Router()
 
 
 
 const initApiRoutes = (app) => {
-    router.all('*', checkUserJWT);
+    // router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
     router.get('/all-code', apiController.getAllCode);
@@ -45,6 +46,9 @@ const initApiRoutes = (app) => {
     // Manage schedule
     router.get('/get-all-schedule', doctorController.getAllSchedule)
     router.post('/create-schedule', doctorController.createSchedule)
+
+    // Image upload post
+    router.post('/upload-image', uploadCloud.single('image'), postController.uploadImage)
 
     // manage posts route
     router.get('/get-posts', postController.getAllPost)

@@ -6,7 +6,6 @@ const getAllPost = async (req, res, next) => {
         if (req.query.page && req.query.limit) {
             let { page, limit } = req.query
             let data = await postService.getPostsPagination(+page, +limit)
-            // console.log(data.DT.posts)
             return res.status(200).json({
                 EM: data.EM,
                 EC: data.EC,
@@ -14,7 +13,7 @@ const getAllPost = async (req, res, next) => {
             })
         } else {
             let data = await postService.getAllPostService()
-            // console.log(data)
+            console.log(data)
             return res.status(200).json({
                 EM: data.EM,
                 EC: data.EC,
@@ -126,7 +125,25 @@ const handleDeletePost = async (req, res, next) => {
         })
     }
 }
+const uploadImage = (req, res) => {
+    try {
+        console.log(req.file);
+        return res.status(200).json({
+            EM: "Upload Ok",
+            EC: 0,
+            DT: req.file.path
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from upload image')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
 
 module.exports = {
-    getAllPost, handleDeletePost, getPostWithId, handleUpdatePost, handleCreatePost
+    getAllPost, handleDeletePost, getPostWithId, handleUpdatePost, handleCreatePost, uploadImage
 }

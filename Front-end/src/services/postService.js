@@ -5,6 +5,10 @@ const fetchAllPost = (page, limit) => {
     return axios.get(`/api/get-posts?page=${page}&limit=${limit}`)
 }
 
+const fetchAllPostWithoutPage = () => {
+    return axios.get(`/api/get-posts`)
+}
+
 const deletePost = (post) => {
     return axios.delete('/api/delete-post', { data: { post: post } })
 }
@@ -21,6 +25,10 @@ const updatePost = (id, data) => {
     return axios.put(`/api/update-post?postId=${id}`, { data: data })
 }
 
+const uploadImage = (data) => {
+    return axios.post(`/api/upload-image`, data)
+}
+
 export {
-    fetchAllPost, deletePost, getDataUpdatePost, updatePost, createPost
+    fetchAllPost, fetchAllPostWithoutPage, deletePost, getDataUpdatePost, updatePost, createPost, uploadImage
 }

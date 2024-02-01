@@ -4,7 +4,7 @@ export const path = {
     LOGIN: '/login',
     LOG_OUT: '/logout',
     CO_SO_Y_TE: '/co-so-y-te',
-    SONG_KHOE: '/song-khoe',
+    SONG_KHOE: '/cam-nang',
     HO_TRO: '/ho-tro',
     ADMIN: '/admin',
     MANAGE_DOCTORS: '/admin/manage-doctors',
@@ -13,7 +13,9 @@ export const path = {
     BLOG: '/cam-nang',
     BLOGDETAIL: '/cam-nang/chi-tiet',
     BLOGLIST: '/cam-nang/danh-sach',
-    BLOGLISTCHILD: '/cam-nang/danh-sach/chi-tiet-danh-sach',
+    // BLOGLISTCHILD: '/cam-nang/danh-sach/chi-tiet-danh-sach',
+    BLOGLISTCHILDTEMP: '/cam-nang/danh-sach/:type',
+    BLOGDETAILTEMP: '/cam-nang/:id',
     DETAIL_DOCTOR: '/detail-doctor/:id'
 };
 

@@ -1,11 +1,12 @@
 import React from 'react';
+import { useState, useEffect, useRef } from 'react'
 import Slider from "react-slick"
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './BlogList.scss'
 import { useHistory } from "react-router-dom";
+import { fetchAllPostWithoutPage, createPost, getDataUpdatePost, updatePost, deletePost, uploadImage } from '../../services/postService'
 import { FormattedMessage } from 'react-intl'
-import { useEffect } from 'react'
 
 const BlogList = (props) => {
   let history = useHistory();
@@ -13,8 +14,31 @@ const BlogList = (props) => {
     history.push(path);
     props.scrollToTop()
   };
+
+  const [posts, setPosts] = useState([])
+  // Fetch data
+  useEffect(() => {
+    getPosts()
+  }, [])
+
+  const getPosts = async () => {
+    let res = await fetchAllPostWithoutPage()
+    if (res.EC === 0 && res.DT.length > 0) {
+      setPosts(res.DT)
+    }
+    else {
+      console.log("fail to get posts")
+    }
+  }
+
+  // Im in here
+  function Test() {
+    console.log(posts)
+  }
+
   return (
     <div className='container-bloglist'>
+      <button onClick={() => Test()}>aaa</button>
       <div className='container'>
         <div className='search-title border-bottom'>
           <h3> <FormattedMessage id='blog.search-by-char' defaultMessage={'Tìm kiếm theo chữ cái'} /></h3>

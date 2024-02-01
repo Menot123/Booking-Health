@@ -17,14 +17,14 @@ function BlogRoute(props) {
             <Route path={path.BLOG} exact >
                 <Blog scrollToTop={props.scrollToTop} />
             </Route>
-            <Route path={path.BLOGDETAIL} exact>
-                <BlogDetail scrollToTop={props.scrollToTop} />
-            </Route>
             <Route path={path.BLOGLIST} exact>
                 <BlogList scrollToTop={props.scrollToTop} />
             </Route>
-            <Route path={path.BLOGLISTCHILD} exact>
+            <Route path={path.BLOGLISTCHILDTEMP} exact>
                 <BlogListChild scrollToTop={props.scrollToTop} />
+            </Route>
+            <Route path={path.BLOGDETAILTEMP} exact>
+                <BlogDetail scrollToTop={props.scrollToTop} />
             </Route>
         </Switch>
 

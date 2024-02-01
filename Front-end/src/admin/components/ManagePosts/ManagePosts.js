@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import './ManagePosts.scss'
 import 'react-image-lightbox/style.css';
-import { fetchAllPost, createPost, getDataUpdatePost, updatePost, deletePost } from '../../../services/postService'
+import { fetchAllPost, createPost, getDataUpdatePost, updatePost, deletePost, uploadImage } from '../../../services/postService'
 import Loader from '../Loader/Loader';
 import { v4 as uuidv4 } from 'uuid';
 import { FaUpload } from "react-icons/fa";
@@ -48,6 +48,7 @@ function ManagePosts() {
         isOpen: false,
         imgReviewUrl: ''
     })
+    const [isLoadingUpload, setIsLoadingUpload] = useState(false);
     // Pagination
     const [currentPage, setCurrentPage] = useState(1)
     const [currentLimit, setCurrentLimit] = useState(5)
@@ -89,6 +90,7 @@ function ManagePosts() {
             setPosts(res.DT.posts)
             setTotalPage(res.DT.totalPage)
             setIsLoading(false)
+            console.log(res.DT.posts)
         }
         else {
             console.log("fail to get posts")
@@ -107,13 +109,14 @@ function ManagePosts() {
         let dataFile = e.target.files
         let img = dataFile[0]
         if (img) {
-            let imgBase64 = await getBase64(img)
+            let imgBase64 = await upAndGetCloudImg(img)
+            // console.log(imgBase64)
             let objUrl = URL.createObjectURL(img)
             setImgPreview(prevState => ({
                 ...prevState,
                 imgReviewUrl: objUrl
             }));
-            console.log(imgBase64)
+            // console.log(imgBase64)
             setPostImg(imgBase64)
             setPostData(prevData => ({
                 ...prevData,
@@ -132,13 +135,20 @@ function ManagePosts() {
         }));
     }
 
-    function getBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onload = () => resolve(reader.result)
-            reader.onerror = error => reject(error)
-        })
+    const upAndGetCloudImg = async (file) => {
+        const formData = new FormData();
+        formData.append('image', file);
+        try {
+            setIsLoadingUpload(true);
+            const response = await uploadImage(formData);
+            console.log(response.DT)
+            return response.DT
+        } catch (error) {
+            console.error("Error uploading image");
+        }
+        finally {
+            setIsLoadingUpload(false);
+        }
     }
 
     const handleOnchangeInput = (event, element) => {
@@ -191,7 +201,7 @@ function ManagePosts() {
         let validateArr = validateDataSend(post)
         if (validateArr.length === 0) {
             let response = await createPost(post)
-            console.log(response)
+            // console.log(response)
             if (response.EC === 0) {
                 toast.success(`Create new post successfully`)
                 setPostData(defaultPostData)
@@ -228,8 +238,8 @@ function ManagePosts() {
                     description: response.DT.post.description,
                     fullContent: response.DT.post.fullContent
                 }
-                let imgReview = convertImgBase64(postData.titleImg)
-                console.log(imgReview)
+                let imgReview = convertBlob2Img(postData.titleImg)
+                // console.log(imgReview)
                 setPostImg(imgReview)
                 setPostData(postData)
                 setImgPreview(prevState => ({
@@ -295,16 +305,24 @@ function ManagePosts() {
     };
 
 
-    const convertImgBase64 = (base64) => {
-        let imageBase64 = ''
-        imageBase64 = new Buffer(base64, 'base64').toString('binary')
-        return imageBase64
+    const convertBlob2Img = (blob) => {
+        let imageCloud = ''
+        imageCloud = new Buffer(blob, 'base64').toString('binary')
+        return imageCloud
     }
 
     return (
         <div>
             <h3 className='text-center mt-3'><FormattedMessage id='admin-blog-manage' /></h3>
             <div className='container'>
+                {isLoadingUpload
+                    ?
+                    <div className="loading-overlay">
+                        <div className="loading-spinner"></div>
+                    </div>
+                    : ''
+                }
+
                 {isLoading ? <Loader loading={isLoading} /> :
                     <>
                         {/* View Posts */}
@@ -409,7 +427,7 @@ function ManagePosts() {
                                                 value={postData.fullContent}
                                                 renderHTML={(text) => mdParser.render(text)}
                                                 onChange={handleEditorChange}
-                                                onImageUpload={getBase64}
+                                                onImageUpload={upAndGetCloudImg}
                                             />
                                         </div>
                                         {/* <div className="preview-pan">

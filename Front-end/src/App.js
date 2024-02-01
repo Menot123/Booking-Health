@@ -58,18 +58,6 @@ function App() {
             <Route path={path.CO_SO_Y_TE}>
               Co so y te
             </Route>
-            <Route path={path.SONG_KHOE}>
-              Song Khoe
-            </Route>
-            <Route path={path.HO_TRO}>
-              <Sup />
-            </Route>
-
-            <Route path={path.DETAIL_DOCTOR}>
-              <DetailDoctor scrollToTop={scrollToTop} />
-            </Route>
-
-
 
             {/* Blog */}
             <Route
@@ -79,6 +67,15 @@ function App() {
               )}
             />
             {/* End Blog */}
+
+            <Route path={path.HO_TRO}>
+              <Sup />
+            </Route>
+
+            <Route path={path.DETAIL_DOCTOR}>
+              <DetailDoctor scrollToTop={scrollToTop} />
+            </Route>
+
             {/* Admin route */}
             <Route path={path.ADMIN} component={AdminRoute} />
             {/* End admin route */}
