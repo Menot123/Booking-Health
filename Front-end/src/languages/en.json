@@ -68,5 +68,7 @@
     "homepage.detail-doctor.hide-price-list": "Hide price list",
     "homepage.detail-doctor.select": "Select",
     "homepage.detail-doctor.booking-free": "and make an appointment (booking fee 0 VND)",
-    "homepage.detail-doctor.examination-price": "Examination price"
+    "homepage.detail-doctor.examination-price": "Examination price",
+    "verify-booking.status-success": "Confirmation of successful appointment!",
+    "verify-booking.status-failed": "Appointment schedule does not exist or has been confirmed"
 }

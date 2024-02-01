@@ -14,7 +14,8 @@ export const path = {
     BLOGDETAIL: '/cam-nang/chi-tiet',
     BLOGLIST: '/cam-nang/danh-sach',
     BLOGLISTCHILD: '/cam-nang/danh-sach/chi-tiet-danh-sach',
-    DETAIL_DOCTOR: '/detail-doctor/:id'
+    DETAIL_DOCTOR: '/detail-doctor/:id',
+    VERIFY_BOOKING: '/verify-booking'
 };
 
 export const LANGUAGES = {

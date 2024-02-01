@@ -68,5 +68,7 @@
     "homepage.detail-doctor.see-detail": "Xem chi tiết",
     "homepage.detail-doctor.hide-price-list": "Ẩn bảng giá",
     "homepage.detail-doctor.select": "Chọn",
-    "homepage.detail-doctor.booking-free": "và đặt lịch (phí đặt lịch 0đ)"
+    "homepage.detail-doctor.booking-free": "và đặt lịch (phí đặt lịch 0đ)",
+    "verify-booking.status-success": "Xác nhận đặt lịch khám thành công!",
+    "verify-booking.status-failed": "Lịch hẹn không tồn tại hoặc đã được xác nhận"
 }

@@ -449,6 +449,7 @@ const getScheduleByDateService = async (dataSend) => {
                 },
                 include: [
                     { model: db.Allcode, as: 'dataTime', attributes: ['valueVi', 'valueEn'] },
+
                 ]
             })
         }
@@ -475,8 +476,63 @@ const getScheduleByDateService = async (dataSend) => {
     }
 }
 
+const getInfoProfileService = async (dataSend) => {
+    try {
+        let res = {}
+        let idDoctor = dataSend.doctorId
+        let dataProfile = []
+        if (idDoctor) {
+            dataProfile = await db.User.findOne({
+                where: {
+                    id: idDoctor,
+                },
+                attributes: {
+                    exclude: ['password']
+                },
+                include: [
+                    { model: db.Allcode, as: 'positionData', attributes: ['valueVi', 'valueEn'] },
+                    {
+                        model: db.Doctor_info, as: 'dataIdDoctor', attributes: ['clinicId', 'specialtyId', 'priceId', 'provinceId', 'paymentId'
+                            , 'addressClinic', 'nameClinic', 'note'],
+                        include: [
+                            {
+                                model: db.Markdown, as: 'dataMarkdown', attributes: ['description']
+
+                            },
+                            {
+                                model: db.Allcode, as: 'dataPrice', attributes: ['valueVi', 'valueEn']
+
+                            },
+                        ]
+                    },
+                ]
+            })
+        }
+
+        if (dataProfile) {
+            res.EC = 0
+            res.EM = 'Get data profile to modal successfully'
+            res.DT = dataProfile
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Get data profile to modal failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get dataProfile to modal service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     getAllDoctorService, getInfoDoctorService, getAllPriceService, getAllPaymentsService, getAllProvincesService,
     getAllSpecialtiesService, getAllClinicService, updateInfoDoctorService, getDetailDoctorService, getAllScheduleService,
-    createScheduleService, getScheduleByDateService
+    createScheduleService, getScheduleByDateService, getInfoProfileService
 }

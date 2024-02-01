@@ -1,0 +1,19 @@
+.message-status-booking {
+    font-weight    : bold;
+    font-size      : medium;
+    text-transform : uppercase;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    height         : 200px;
+
+
+    &.success {
+        color: rgb(8, 131, 19);
+    }
+
+    &.failed {
+        color: rgb(206, 6, 6);
+
+    }
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import './ManageUser.scss'
 import 'react-image-lightbox/style.css';
-import { fetchAllUser, fetchAllGender, createNewUser, deleteUser, getDataUpdateUser, updateUserData } from '../../../services/userService'
+import { fetchAllUser, fetchAllDataSelect, createNewUser, deleteUser, getDataUpdateUser, updateUserData } from '../../../services/userService'
 import Loader from '../Loader/Loader';
 import { v4 as uuidv4 } from 'uuid';
 import { FaUpload } from "react-icons/fa";
@@ -108,9 +108,9 @@ function ManageUser() {
     }
 
     const getSelectData = async () => {
-        let genderData = await fetchAllGender('gender')
-        let roleData = await fetchAllGender('role')
-        let positionData = await fetchAllGender('position')
+        let genderData = await fetchAllDataSelect('gender')
+        let roleData = await fetchAllDataSelect('role')
+        let positionData = await fetchAllDataSelect('position')
         if (genderData.EC === 0 && genderData.DT.length > 0) {
             setGender(genderData.DT)
         }

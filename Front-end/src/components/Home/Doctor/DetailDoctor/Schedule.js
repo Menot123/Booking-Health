@@ -11,8 +11,9 @@ import { useState, useEffect } from 'react'
 import { getSchedulesByDate } from '../../../../services/userService'
 import { v4 as uuidv4 } from 'uuid';
 import { FormattedMessage } from 'react-intl'
-
-
+import { getDataProfileDoctor } from '../../../../services/userService'
+import { toast } from 'react-toastify';
+import _ from 'lodash'
 
 function Schedule(props) {
 
@@ -20,6 +21,10 @@ function Schedule(props) {
     const [listday, setListday] = useState([])
     const [schedules, setSchedules] = useState([])
     const [dateSelected, setDateSelected] = useState(moment(new Date()).format('DD/MM/YYYY'))
+    const [isOpenModal, setIsOpenModal] = useState(false)
+    const [profile, setProfile] = useState(null)
+    const [selectTime, setSelectTime] = useState(null)
+
     useEffect(() => {
         setListday(getDays(language))
     }, [language])
@@ -40,6 +45,28 @@ function Schedule(props) {
             isMounted = false; // Đặt biến flag về false khi component unmount
         };
     }, [dateSelected]);
+
+    useEffect(() => {
+        let isMounted = true; // Biến đánh dấu thành phần có được mount hay không
+
+        const fetchDoctorProfile = async () => {
+            const res = await getDataProfileDoctor(props.doctorId);
+            if (isMounted) {
+                // Kiểm tra xem thành phần có được mount hay không trước khi cập nhật state
+                if (res.EC === 0) {
+                    setProfile(res.DT);
+                } else {
+                    toast.error(res.EM);
+                }
+            }
+        };
+
+        fetchDoctorProfile();
+
+        return () => {
+            isMounted = false; // Đánh dấu thành phần đã bị hủy khi useEffect được gọi lần tiếp theo
+        };
+    }, [props.doctorId]);
 
 
 
@@ -88,6 +115,11 @@ function Schedule(props) {
         setDateSelected(dateFormat)
     }
 
+    const handleClickBooking = (schedule) => {
+        Promise.all([setSelectTime(schedule), setIsOpenModal(true)])
+    }
+
+
     return (
 
         <div className='doctor-schedule'>
@@ -114,7 +146,7 @@ function Schedule(props) {
                     schedules && schedules.length > 0 &&
                     schedules.map((item, index) => {
                         return (
-                            <span key={uuidv4()} className='btn btn-schedule'>{language === LANGUAGES.VI ? item.dataTime.valueVi : item.dataTime.valueEn}</span>
+                            <span onClick={() => handleClickBooking(item)} key={uuidv4()} className='btn btn-schedule'>{language === LANGUAGES.VI ? item.dataTime.valueVi : item.dataTime.valueEn}</span>
                         )
                     })
                 }
@@ -125,9 +157,11 @@ function Schedule(props) {
 
             </div>
             <BookingModal
-                isOpenModal={true}
-                closeBookingModal={''}
-                dataTime={''}
+                isOpenModal={isOpenModal}
+                handleCloseModal={() => setIsOpenModal(false)}
+                doctorId={props.doctorId}
+                dataProfile={profile}
+                timeSchedule={selectTime}
             />
         </div>
     )

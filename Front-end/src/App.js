@@ -25,6 +25,7 @@ import NotFound from './components/404_Not_Found/NotFound';
 import AdminRoute from './routes/AdminRoute'
 import BlogRoute from './routes/BlogRoute';
 import DetailDoctor from './components/Home/Doctor/DetailDoctor/DetailDoctor';
+import VerifyBooking from './components/Home/Patient/VerifyBooking';
 
 
 function App() {
@@ -69,7 +70,9 @@ function App() {
               <DetailDoctor scrollToTop={scrollToTop} />
             </Route>
 
-
+            <Route path={path.VERIFY_BOOKING}>
+              <VerifyBooking scrollToTop={scrollToTop} />
+            </Route>
 
             {/* Blog */}
             <Route

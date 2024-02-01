@@ -1,7 +1,7 @@
 import allCodeService from '../services/allCodeService'
 import userService from '../services/userService'
 
-let getAllCode = async(req, res, next) => {
+let getAllCode = async (req, res, next) => {
     try {
         let data = await allCodeService.getAllCode(req.query.type)
         return res.status(200).json({
@@ -20,7 +20,7 @@ let getAllCode = async(req, res, next) => {
     }
 }
 
-let getUsers = async(req, res, next) => {
+let getUsers = async (req, res, next) => {
     try {
         if (req.query.page && req.query.limit) {
             let { page, limit } = req.query
@@ -53,7 +53,7 @@ let getUsers = async(req, res, next) => {
     }
 }
 
-let getTypeRole = async(req, res, next) => {
+let getTypeRole = async (req, res, next) => {
     try {
         let type = req.query.type;
         let data = await userService.getTypeRoleService(type)
@@ -71,6 +71,7 @@ let getTypeRole = async(req, res, next) => {
         })
     }
 }
+
 
 module.exports = {
     getAllCode,

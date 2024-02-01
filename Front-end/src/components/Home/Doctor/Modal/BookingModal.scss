@@ -1,0 +1,35 @@
+.modal-content-body {
+    .doctor-profile {
+        display: flex;
+
+        .doctor-profile-avatar {
+            margin-right: 12px;
+
+            .img-doctor {
+                width        : 80px;
+                height       : 80px;
+                border-radius: 50%;
+            }
+        }
+
+        .doctor-profile-info {
+            .doctor-profile-info-name {
+                .profile-info-name-text {
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .doctor-profile-info-description {
+            .info-description-text {}
+        }
+    }
+
+    .row {
+        .modal-content-birth {
+            .react-datepicker-wrapper {
+                width: 100%;
+            }
+        }
+    }
+}
