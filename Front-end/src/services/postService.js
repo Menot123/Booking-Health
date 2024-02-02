@@ -9,6 +9,10 @@ const fetchAllPostWithoutPage = () => {
     return axios.get(`/api/get-posts`)
 }
 
+const fetchPostsByType = (type) => {
+    return axios.get(`/api/get-posts-by-type?postType=${type}`)
+}
+
 const deletePost = (post) => {
     return axios.delete('/api/delete-post', { data: { post: post } })
 }
@@ -30,5 +34,12 @@ const uploadImage = (data) => {
 }
 
 export {
-    fetchAllPost, fetchAllPostWithoutPage, deletePost, getDataUpdatePost, updatePost, createPost, uploadImage
+    fetchAllPost,
+    fetchAllPostWithoutPage,
+    deletePost,
+    getDataUpdatePost,
+    updatePost,
+    createPost,
+    uploadImage,
+    fetchPostsByType
 }

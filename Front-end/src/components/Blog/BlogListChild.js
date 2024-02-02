@@ -8,11 +8,30 @@ import blog_item from '../../assets/img/blog-list-child-item.png'
 import { useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl'
 import { FaSearch } from "react-icons/fa";
-
+import { fetchPostsByType } from '../../services/postService'
 
 function BlogListChild() {
+    const [posts, setPosts] = useState([])
     const { type } = useParams();
-    console.log(type)
+    // Fetch posts
+    useEffect(() => {
+        getPostsByType()
+    }, [])
+
+    const getPostsByType = async () => {
+        let res = await fetchPostsByType(type)
+        if (res.EC === 0 && res.DT.post.length > 0) {
+            setPosts(res.DT.post)
+        }
+        else {
+            console.log("fail to get posts by type")
+        }
+    }
+    const convertBlob2Img = (blob) => {
+        let imageCloud = ''
+        imageCloud = new Buffer(blob, 'base64').toString('binary')
+        return imageCloud
+    }
     return (
         <div className='container-bloglist-detail'>
             <div className='container '>
@@ -22,85 +41,24 @@ function BlogListChild() {
                     <span className="icon-search"><FaSearch /></span>
                 </div>
 
-                {/* Blog Item (Loop)*/}
-                <a href="#">
-                    <div className='blog-card'>
-                        <div className='row'>
-                            <div className='img-card'>
-                                <img src={blog_item} alt="Blog Item" />
+                {posts.map((data, index) => {
+                    return (
+                        // Blog Item
+                        <a href={`/cam-nang/${data.id}`}>
+                            <div className='blog-card'>
+                                <div className='row'>
+                                    <div className='img-card'>
+                                        <img src={convertBlob2Img(data.titleImg)} alt={data.title} />
+                                    </div>
+                                    <div className='text-card col'>
+                                        <div className='title col-md-12'><h5>{data.title}</h5></div>
+                                        <div className='content col-md-12'><p>{data.description}</p></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className='text-card col'>
-                                <div className='title col-md-12'><h5>Nội soi dạ dày ở TP.HCM bao nhiêu tiền?</h5></div>
-                                <div className='content col-md-12'><p>Nội soi dạ dày là phương pháp hiệu quả trong khám và phát hiện bệnh dạ dày. Nhiều bệnh nhân đặt câu hỏi nội soi dạ dày bao nhiêu tiền để có thể chuẩn bị chi phí khi đi khám. BookingHealth xin giải đáp trong bài viết này.</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div className='blog-card'>
-                        <div className='row'>
-                            <div className='img-card'>
-                                <img src={blog_item} alt="Blog Item" />
-                            </div>
-                            <div className='text-card col'>
-                                <div className='title col-md-12'><h5>Nội soi dạ dày ở TP.HCM bao nhiêu tiền?</h5></div>
-                                <div className='content col-md-12'><p>Nội soi dạ dày là phương pháp hiệu quả trong khám và phát hiện bệnh dạ dày. Nhiều bệnh nhân đặt câu hỏi nội soi dạ dày bao nhiêu tiền để có thể chuẩn bị chi phí khi đi khám. BookingHealth xin giải đáp trong bài viết này.</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div className='blog-card'>
-                        <div className='row'>
-                            <div className='img-card'>
-                                <img src={blog_item} alt="Blog Item" />
-                            </div>
-                            <div className='text-card col'>
-                                <div className='title col-md-12'><h5>Nội soi dạ dày ở TP.HCM bao nhiêu tiền?</h5></div>
-                                <div className='content col-md-12'><p>Nội soi dạ dày là phương pháp hiệu quả trong khám và phát hiện bệnh dạ dày. Nhiều bệnh nhân đặt câu hỏi nội soi dạ dày bao nhiêu tiền để có thể chuẩn bị chi phí khi đi khám. BookingHealth xin giải đáp trong bài viết này.</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div className='blog-card'>
-                        <div className='row'>
-                            <div className='img-card'>
-                                <img src={blog_item} alt="Blog Item" />
-                            </div>
-                            <div className='text-card col'>
-                                <div className='title col-md-12'><h5>Nội soi dạ dày ở TP.HCM bao nhiêu tiền?</h5></div>
-                                <div className='content col-md-12'><p>Nội soi dạ dày là phương pháp hiệu quả trong khám và phát hiện bệnh dạ dày. Nhiều bệnh nhân đặt câu hỏi nội soi dạ dày bao nhiêu tiền để có thể chuẩn bị chi phí khi đi khám. BookingHealth xin giải đáp trong bài viết này.</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div className='blog-card'>
-                        <div className='row'>
-                            <div className='img-card'>
-                                <img src={blog_item} alt="Blog Item" />
-                            </div>
-                            <div className='text-card col'>
-                                <div className='title col-md-12'><h5>Nội soi dạ dày ở TP.HCM bao nhiêu tiền?</h5></div>
-                                <div className='content col-md-12'><p>Nội soi dạ dày là phương pháp hiệu quả trong khám và phát hiện bệnh dạ dày. Nhiều bệnh nhân đặt câu hỏi nội soi dạ dày bao nhiêu tiền để có thể chuẩn bị chi phí khi đi khám. BookingHealth xin giải đáp trong bài viết này.</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#">
-                    <div className='blog-card'>
-                        <div className='row'>
-                            <div className='img-card'>
-                                <img src={blog_item} alt="Blog Item" />
-                            </div>
-                            <div className='text-card col'>
-                                <div className='title col-md-12'><h5>Nội soi dạ dày ở TP.HCM bao nhiêu tiền?</h5></div>
-                                <div className='content col-md-12'><p>Nội soi dạ dày là phương pháp hiệu quả trong khám và phát hiện bệnh dạ dày. Nhiều bệnh nhân đặt câu hỏi nội soi dạ dày bao nhiêu tiền để có thể chuẩn bị chi phí khi đi khám. BookingHealth xin giải đáp trong bài viết này.</p></div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                        </a>
+                    )
+                })}
             </div>
 
 

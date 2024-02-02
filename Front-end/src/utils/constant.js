@@ -11,11 +11,11 @@ export const path = {
     MANAGE_POSTS: '/admin/manage-posts',
     MANAGE_SCHEDULES: '/admin/manage-schedules',
     BLOG: '/cam-nang',
-    BLOGDETAIL: '/cam-nang/chi-tiet',
     BLOGLIST: '/cam-nang/danh-sach',
     // BLOGLISTCHILD: '/cam-nang/danh-sach/chi-tiet-danh-sach',
-    BLOGLISTCHILDTEMP: '/cam-nang/danh-sach/:type',
-    BLOGDETAILTEMP: '/cam-nang/:id',
+    // BLOGDETAIL: '/cam-nang/chi-tiet',
+    BLOGLISTCHILD: '/cam-nang/danh-sach/:type',
+    BLOGDETAIL: '/cam-nang/:id',
     DETAIL_DOCTOR: '/detail-doctor/:id'
 };
 

@@ -13,7 +13,7 @@ const getAllPost = async (req, res, next) => {
             })
         } else {
             let data = await postService.getAllPostService()
-            console.log(data)
+            // console.log(data)
             return res.status(200).json({
                 EM: data.EM,
                 EC: data.EC,
@@ -47,6 +47,29 @@ const getPostWithId = async (req, res, next) => {
     }
     catch (e) {
         console.log('Something went wrong from get one post')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
+// Get posts by type
+const getPostsWithType = async (req, res, next) => {
+    try {
+        let postType = req.query.postType;
+        if (postType) {
+            let response = await postService.getPostsByType(postType)
+            return res.status(200).json({
+                EM: response.EM,
+                EC: response.EC,
+                DT: response.DT
+            })
+        }
+    }
+    catch (e) {
+        console.log('Something went wrong from get posts by type')
         return res.status(500).json({
             EM: 'error from server',
             EC: '-1',
@@ -145,5 +168,5 @@ const uploadImage = (req, res) => {
 }
 
 module.exports = {
-    getAllPost, handleDeletePost, getPostWithId, handleUpdatePost, handleCreatePost, uploadImage
+    getAllPost, handleDeletePost, getPostWithId, getPostsWithType, handleUpdatePost, handleCreatePost, uploadImage
 }
