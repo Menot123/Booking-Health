@@ -63,7 +63,7 @@ function Navbar() {
                         <span className='nav-item-title'><FormattedMessage id='admin-header.clinic' /></span>
                         <div className="sub-menu ">
                             <div className='wrapper-link'>
-                                <NavLink to="manage-clinics"><FormattedMessage id='admin-header.manage-clinics' /></NavLink>
+                                <NavLink to="/admin/manage-clinics"><FormattedMessage id='admin-header.manage-clinics' /></NavLink>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@ function Navbar() {
                         <span className='nav-item-title'><FormattedMessage id='admin-header.specialty' /></span>
                         <div className="sub-menu ">
                             <div className='wrapper-link'>
-                                <NavLink to="manage-specialties"><FormattedMessage id='admin-header.manage-specialties' /></NavLink>
+                                <NavLink to="/admin/manage-specialties"><FormattedMessage id='admin-header.manage-specialties' /></NavLink>
                             </div>
                         </div>
                     </div>

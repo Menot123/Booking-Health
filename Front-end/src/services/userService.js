@@ -94,9 +94,13 @@ const verifyBooking = (dataSend) => {
     return axios.post(`/api/verify-booking-schedule`, dataSend)
 }
 
+const postDataCreateSpecialty = (dataSend) => {
+    return axios.post(`/api/create-specialty`, dataSend)
+}
+
 export {
     fetchAllUser, fetchAllDataSelect, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
     updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
     getAllClinic, updateInfoDoctor, getInfoDetailDoctor, getAllSchedule, createSchedule, getSchedulesByDate,
-    getDataProfileDoctor, createBookingDoctor, verifyBooking
+    getDataProfileDoctor, createBookingDoctor, verifyBooking, postDataCreateSpecialty
 }

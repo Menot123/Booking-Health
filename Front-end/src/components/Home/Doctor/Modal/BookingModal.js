@@ -185,13 +185,24 @@ function BookingModal(props) {
         }
         let res = await createBookingDoctor(dataSend)
         setIsSendingEmail(false)
-        setBookingInput(defaultBookingInput)
 
         if (+res.EC === 0) {
-            toast.success('Booking appointment was successfully')
+            toast.success(<FormattedMessage id='homepage.detail-doctor.booking-message-success' />)
+            setBookingInput(prevState => ({
+                ...prevState,
+                fullName: '',
+                phoneNumber: '',
+                email: '',
+                contact: '',
+                reason: '',
+                dateOfBirth: null,
+                gender: '',
+            }))
             props.handleCloseModal()
+        } else if (+res.EC === 2) {
+            toast.warning(<FormattedMessage id='homepage.detail-doctor.booking-message-warning' />)
         } else {
-            toast.error('Booking appointment error!')
+            toast.error(<FormattedMessage id='homepage.detail-doctor.booking-message-error' />)
         }
     }
 

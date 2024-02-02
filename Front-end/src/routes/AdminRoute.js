@@ -11,6 +11,7 @@ import { path } from '../../src/utils/index'
 import ManageDoctors from '../admin/components/ManageDoctors/ManageDoctors';
 import ManageSchedules from '../admin/components/ManageSchedule/ManageSchedules';
 import ManagePosts from '../admin/components/ManagePosts/ManagePosts';
+import ManageSpecialty from '../admin/components/ManageSpecialty/ManageSpecialty';
 
 
 
@@ -20,6 +21,7 @@ function AdminRoute() {
             <Header />
             <Switch>
                 <PrivateRoutes exact path={path.ADMIN} component={ManageUser} />
+                <PrivateRoutes path={path.MANAGE_SPECIALTY} component={ManageSpecialty} />
                 <PrivateRoutes path={path.MANAGE_DOCTORS} component={ManageDoctors} />
                 <PrivateRoutes path={path.MANAGE_POSTS} component={ManagePosts} />
                 <PrivateRoutes path={path.MANAGE_SCHEDULES} component={ManageSchedules} />
