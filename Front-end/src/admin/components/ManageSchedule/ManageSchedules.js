@@ -177,6 +177,7 @@ function ManageSchedules() {
                                 onChange={(date) => handleChangeDatePicker(date)}
                                 minDate={new Date()}
                                 locale={language === LANGUAGES.VI ? "vi" : 'en'}
+                                placeholderText={language === LANGUAGES.VI ? "Chọn ngày" : "Select date"}
                             />
                         </div>
 

@@ -8,6 +8,7 @@ export const path = {
     HO_TRO: '/ho-tro',
     ADMIN: '/admin',
     MANAGE_DOCTORS: '/admin/manage-doctors',
+    MANAGE_SPECIALTY: '/admin/manage-specialties',
     MANAGE_POSTS: '/admin/manage-posts',
     MANAGE_SCHEDULES: '/admin/manage-schedules',
     BLOG: '/cam-nang',
@@ -16,7 +17,8 @@ export const path = {
     // BLOGDETAIL: '/cam-nang/chi-tiet',
     BLOGLISTCHILD: '/cam-nang/danh-sach/:type',
     BLOGDETAIL: '/cam-nang/:id',
-    DETAIL_DOCTOR: '/detail-doctor/:id'
+    DETAIL_DOCTOR: '/detail-doctor/:id',
+    VERIFY_BOOKING: '/verify-booking'
 };
 
 export const LANGUAGES = {

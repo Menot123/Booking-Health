@@ -5,6 +5,7 @@ import userController from '../controllers/userController'
 import { checkUserJWT } from '../middleware/JWTServices'
 import doctorController from '../controllers/doctorController'
 import postController from '../controllers/postController'
+import patientController from '../controllers/patientController'
 import uploadCloud from '../config/cloudinary.config'
 
 const router = express.Router()
@@ -12,12 +13,28 @@ const router = express.Router()
 
 
 const initApiRoutes = (app) => {
-    // router.all('*', checkUserJWT);
+
+    router.get('/get-doctors', doctorController.getAllDoctor)
+    // Detail doctor
+    router.get('/get-info-doctor', doctorController.getInfoDoctor)
+    router.get('/get-schedule-by-date', doctorController.getScheduleByDate)
+    router.get('/get-info-detail-doctor', doctorController.getDetailDoctor)
+
+    // Get data to Modal booking
+    router.get('/get-info-profile-doctor', doctorController.getInfoProfile)
+    // Create user when booking
+    router.post('/create-user-patient', patientController.createUser)
+
+    router.get('/type-role', apiController.getTypeRole)
+    router.post('/verify-booking-schedule', patientController.verifyBookingSchedule)
+
+
+
+    router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
     router.get('/all-code', apiController.getAllCode);
     router.get('/users', apiController.getUsers);
-    router.get('/type-role', apiController.getTypeRole)
     router.get('/account', userController.getAccount)
     router.post('/logout', userController.handleLogout)
     router.post('/create-user', userController.handleCreateUser)
@@ -29,19 +46,13 @@ const initApiRoutes = (app) => {
     // manage doctors route
 
     // + router get data select
-    router.get('/get-doctors', doctorController.getAllDoctor)
     router.get('/get-prices', doctorController.getAllPrice)
     router.get('/get-payments', doctorController.getAllPayments)
     router.get('/get-provinces', doctorController.getAllProvinces)
     router.get('/get-specialties', doctorController.getAllSpecialties)
     router.get('/get-clinics', doctorController.getAllClinics)
 
-    router.get('/get-info-doctor', doctorController.getInfoDoctor)
     router.post('/update-info-doctor', doctorController.updateInfoDoctor)
-
-    // Detail doctor
-    router.get('/get-info-detail-doctor', doctorController.getDetailDoctor)
-    router.get('/get-schedule-by-date', doctorController.getScheduleByDate)
 
     // Manage schedule
     router.get('/get-all-schedule', doctorController.getAllSchedule)

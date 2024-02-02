@@ -3,7 +3,6 @@ import Slider from "react-slick"
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './Doctor.scss'
-import bac_si from '../../../assets/img/bs-anh-thu1.jpg'
 import { FormattedMessage } from 'react-intl'
 import { getAllDoctor } from '../../../services/userService'
 import { useEffect, useState } from 'react'

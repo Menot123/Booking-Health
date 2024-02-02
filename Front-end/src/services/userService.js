@@ -5,7 +5,7 @@ const fetchAllUser = (page, limit) => {
     return axios.get(`/api/users?page=${page}&limit=${limit}`)
 }
 
-const fetchAllGender = (type) => {
+const fetchAllDataSelect = (type) => {
     return axios.get(`/api/type-role?type=${type}`)
 }
 
@@ -81,8 +81,26 @@ const getSchedulesByDate = (doctorId, date) => {
     return axios.get(`/api/get-schedule-by-date?doctorId=${doctorId}&date=${date}`)
 }
 
+const getDataProfileDoctor = (doctorId) => {
+    return axios.get(`/api/get-info-profile-doctor?doctorId=${doctorId}`)
+
+}
+
+const createBookingDoctor = (dataSend) => {
+    return axios.post(`/api/create-user-patient`, dataSend)
+}
+
+const verifyBooking = (dataSend) => {
+    return axios.post(`/api/verify-booking-schedule`, dataSend)
+}
+
+const postDataCreateSpecialty = (dataSend) => {
+    return axios.post(`/api/create-specialty`, dataSend)
+}
+
 export {
-    fetchAllUser, fetchAllGender, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
+    fetchAllUser, fetchAllDataSelect, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
     updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
-    getAllClinic, updateInfoDoctor, getInfoDetailDoctor, getAllSchedule, createSchedule, getSchedulesByDate
+    getAllClinic, updateInfoDoctor, getInfoDetailDoctor, getAllSchedule, createSchedule, getSchedulesByDate,
+    getDataProfileDoctor, createBookingDoctor, verifyBooking, postDataCreateSpecialty
 }

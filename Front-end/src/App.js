@@ -25,6 +25,7 @@ import NotFound from './components/404_Not_Found/NotFound';
 import AdminRoute from './routes/AdminRoute'
 import BlogRoute from './routes/BlogRoute';
 import DetailDoctor from './components/Home/Doctor/DetailDoctor/DetailDoctor';
+import VerifyBooking from './components/Home/Patient/VerifyBooking';
 
 
 function App() {
@@ -57,6 +58,20 @@ function App() {
             <LoginRoute path={path.LOGIN} component={Login} />
             <Route path={path.CO_SO_Y_TE}>
               Co so y te
+            </Route>
+            <Route path={path.SONG_KHOE}>
+              Song Khoe
+            </Route>
+            <Route path={path.HO_TRO}>
+              <Sup />
+            </Route>
+
+            <Route path={path.DETAIL_DOCTOR}>
+              <DetailDoctor scrollToTop={scrollToTop} />
+            </Route>
+
+            <Route path={path.VERIFY_BOOKING}>
+              <VerifyBooking scrollToTop={scrollToTop} />
             </Route>
 
             {/* Blog */}

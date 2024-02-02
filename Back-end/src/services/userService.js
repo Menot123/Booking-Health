@@ -282,17 +282,6 @@ const getDataUserUpdate = async (userInfo) => {
                 exclude: ['createdAt', 'updatedAt']
             },
             raw: false
-            // include: [
-            //     {
-            //         model: db.Allcode, as: 'genderUser', attributes: ['valueVi', 'valueEn']
-            //     },
-            //     {
-            //         model: db.Allcode, as: 'positionUser', attributes: ['valueVi', 'valueEn']
-            //     },
-            //     {
-            //         model: db.Allcode, as: 'roleUser', attributes: ['valueVi', 'valueEn']
-            //     }
-            // ],
         })
         if (user) {
             res.EC = 0
@@ -324,7 +313,7 @@ const updateUserService = async (userData) => {
         })
 
         if (user) {
-            await user.update({ ...userData, image: userData.avatar })
+            await user.update({ ...userData, image: userData.avatar, phoneNumber: userData.phone })
             res.EC = 0
             res.EM = `Update info user ${email} successfully`
             res.DT = {}

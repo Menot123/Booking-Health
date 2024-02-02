@@ -27,22 +27,30 @@ function DetailDoctor(props) {
 
 
     useEffect(() => {
-        props.scrollToTop()
-        fetchInfoDoctor()
-    }, [])
+        let isMounted = true; // Biến đánh dấu thành phần có được mount hay không
 
-    const fetchInfoDoctor = async () => {
-        setIsLoading(true)
-        let res = await getInfoDetailDoctor(id)
-        if (res && res.EC === 0) {
-            setIsLoading(false)
-            setInfoDoctor(res.DT)
-            if (!_.isEmpty(res.DT) && res.DT.image) {
-                let avatarBase64 = convertImgBase64(res.DT.image)
-                setAvatar(avatarBase64)
+        const fetchInfoDoctor = async () => {
+            setIsLoading(true);
+            let res = await getInfoDetailDoctor(id);
+            if (isMounted) {
+                // Kiểm tra xem thành phần có được mount hay không trước khi cập nhật state
+                if (res && res.EC === 0) {
+                    setIsLoading(false);
+                    setInfoDoctor(res.DT);
+                    if (!_.isEmpty(res.DT) && res.DT.image) {
+                        let avatarBase64 = convertImgBase64(res.DT.image);
+                        setAvatar(avatarBase64);
+                    }
+                }
             }
-        }
-    }
+        };
+
+        fetchInfoDoctor();
+
+        return () => {
+            isMounted = false; // Đánh dấu thành phần đã bị hủy khi useEffect được gọi lần tiếp theo
+        };
+    }, []);
 
 
     const handleShowDetailPrice = () => {
