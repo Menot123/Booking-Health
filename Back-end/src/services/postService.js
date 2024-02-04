@@ -75,7 +75,13 @@ const getPostWithIdService = async (postId) => {
     try {
         let res = {}
         let post = await db.Post.findOne({
-            where: { id: postId }
+            order: [['createdAt', 'DESC']],
+            where: {
+                id: postId,
+                status: {
+                    [Op.not]: 'deleted'
+                }
+            }
         })
         if (post) {
             // console.log(post)
@@ -85,6 +91,41 @@ const getPostWithIdService = async (postId) => {
         } else {
             res.EC = 1
             res.EM = `Post with id ${postId} not found`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get post from id service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
+// Get post with post type
+const getPostsByType = async (type) => {
+    try {
+        let res = {}
+        let post = await db.Post.findAll({
+            order: [['createdAt', 'DESC']],
+            where: {
+                type: type,
+                status: {
+                    [Op.not]: 'deleted'
+                }
+            }
+        })
+        if (post) {
+            // console.log(post)
+            res.EC = 0
+            res.EM = `Get post with type ${type} successfully`
+            res.DT = { post }
+        } else {
+            res.EC = 1
+            res.EM = `Post with type ${type} not found`
             res.DT = {}
         }
         return res
@@ -204,5 +245,6 @@ module.exports = {
     updatePostService,
     deletePostService,
     getPostWithIdService,
-    createPostService
+    createPostService,
+    getPostsByType
 }

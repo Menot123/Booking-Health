@@ -26,6 +26,10 @@ module.exports = {
             fullContent: {
                 type: Sequelize.TEXT('long')
             },
+            viewCount: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
@@ -37,7 +41,7 @@ module.exports = {
             status: {
                 type: Sequelize.STRING,
                 defaultValue: 'active'
-            }
+            },
         });
     },
     down: async(queryInterface, Sequelize) => {

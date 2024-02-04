@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         titleImg: DataTypes.BLOB('long'),
         description: DataTypes.TEXT,
         fullContent: DataTypes.TEXT('long'),
+        viewCount: DataTypes.INTEGER,
         status: DataTypes.STRING,
     }, {
         sequelize,

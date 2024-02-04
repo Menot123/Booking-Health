@@ -58,8 +58,14 @@
             max-height: 100%;
         }
     }
-    .detail {
-        font-size: 80%;
+    .items {
+        height: 88px;
+        @media screen and (max-width: 270px) {
+            height: 110px;
+        }
+        .detail {
+            font-size: 80%;
+        }
     }
 }
 
