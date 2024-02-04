@@ -9,6 +9,7 @@ export const path = {
     ADMIN: '/admin',
     MANAGE_DOCTORS: '/admin/manage-doctors',
     MANAGE_SPECIALTY: '/admin/manage-specialties',
+    MANAGE_CLINIC: '/admin/manage-clinics',
     MANAGE_POSTS: '/admin/manage-posts',
     MANAGE_SCHEDULES: '/admin/manage-schedules',
     BLOG: '/cam-nang',

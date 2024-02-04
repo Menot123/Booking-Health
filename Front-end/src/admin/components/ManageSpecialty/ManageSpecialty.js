@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import './ManageSpecialty.scss'
 import { FormattedMessage } from 'react-intl'
 import Select from 'react-select'
 import { useState } from 'react'
@@ -242,7 +241,7 @@ function ManageSpecialty() {
     const handleDeleteSpecialty = async (id) => {
         let res = await postDataDeleteSpecialty(id)
         fetchSpecialtiesPagination(false)
-        if (res === 0) {
+        if (res.EC === 0) {
             toast.success(res.EM)
         } else {
             toast.error(res.EM)
