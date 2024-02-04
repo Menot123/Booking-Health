@@ -9,7 +9,7 @@ import {
   useLocation
 } from "react-router-dom";
 // import { Context } from './HOC/Wrapper'
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars'
 import { path } from './utils/index'
 import { ToastContainer } from 'react-toastify';
@@ -30,7 +30,6 @@ import VerifyBooking from './components/Home/Patient/VerifyBooking';
 
 function App() {
 
-
   const scrollbarsRef = useRef(null);
 
   const scrollToTop = () => {
@@ -41,8 +40,6 @@ function App() {
 
   const url = window.location.pathname;
 
-
-
   return (
     <BrowserRouter>
 
@@ -50,7 +47,8 @@ function App() {
         <Scrollbars ref={scrollbarsRef} className='scroll-bars'
           renderThumbVertical={({ style, ...props }) => (
 
-            <div {...props} className="custom-thumb-vertical" style={{ padding: '0 17px 0 0' }} />
+            <div {...props} className="custom-thumb-vertical" style={{ padding: '0 17px 0 0' }}
+            />
           )}
           autoHide autoHideTimeout={1000} autoHideDuration={200} style={{ width: '100%', height: '100%' }}>
           {url === '/login' || url.includes('/admin') ? ' ' : <Nav />}
@@ -87,9 +85,9 @@ function App() {
               <Sup />
             </Route>
 
-            <Route path={path.DETAIL_DOCTOR}>
+            {/* <Route path={path.DETAIL_DOCTOR}>
               <DetailDoctor scrollToTop={scrollToTop} />
-            </Route>
+            </Route> */}
 
             {/* Admin route */}
             <Route path={path.ADMIN} component={AdminRoute} />
@@ -98,7 +96,7 @@ function App() {
               <Home />
             </Route>
             <Route exact path={path.HOME}>
-              <Home />
+              <Home scrollBar={scrollbarsRef} />
             </Route>
 
             <Route path="*">

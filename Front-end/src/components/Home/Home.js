@@ -5,7 +5,7 @@ import Specialty from './Specialty/Specialty'
 import Clinic from './Clinic/Clinic'
 import Doctor from './Doctor/Doctor'
 import background_doctor from '../../../src/assets/img/background_doctors.png'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { translate } from '../../redux/slices/languageSlice'
 
 const Home = () => {
@@ -16,6 +16,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(translate(language))
     }, [])
+
 
     return (
         <>
