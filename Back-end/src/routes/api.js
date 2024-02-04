@@ -7,6 +7,7 @@ import doctorController from '../controllers/doctorController'
 import postController from '../controllers/postController'
 import patientController from '../controllers/patientController'
 import uploadCloud from '../config/cloudinary.config'
+import specialty from '../controllers/specialtyController'
 
 const router = express.Router()
 
@@ -28,6 +29,9 @@ const initApiRoutes = (app) => {
     router.get('/type-role', apiController.getTypeRole)
     router.post('/verify-booking-schedule', patientController.verifyBookingSchedule)
 
+    // Manage specialty
+    router.get('/get-specialties', specialty.getSpecialties)
+    router.get('/get-detail-specialty', specialty.getDetailSpecialty)
 
 
     router.all('*', checkUserJWT);
@@ -67,6 +71,11 @@ const initApiRoutes = (app) => {
     router.post('/create-post', postController.handleCreatePost)
     router.delete('/delete-post', postController.handleDeletePost)
     router.put('/update-post', postController.handleUpdatePost)
+
+    // Manage specialty
+    router.post('/create-specialty', specialty.createSpecialty)
+    router.post('/post-data-update-specialty', specialty.updateSpecialty)
+    router.post('/delete-specialty', specialty.deleteSpecialty)
 
     return app.use("/api/", router)
 

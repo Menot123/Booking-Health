@@ -250,7 +250,6 @@ const deleteUserService = async (userDelete) => {
         })
         // console.log(user)
         if (user) {
-            console.log(user)
             await user.update({ status: 'deleted' })
             res.EC = 0
             res.EM = `Delete user ${userEmail} successfully`

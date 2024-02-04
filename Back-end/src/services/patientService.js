@@ -22,14 +22,6 @@ const createUserPatientService = async (dataSend) => {
 
             let tokenVerify = uuidv4()
 
-            await testSendEmail({
-                receiver: dataSend.email,
-                name: dataSend.fullName,
-                timeBooking: dataSend.dateTimeMailer,
-                currentLang: dataSend.currentLang,
-                doctorBooking: dataSend.nameDoctorBooking,
-                redirectLink: buildTokenVerify(tokenVerify, dataSend.doctorId),
-            })
 
             const [patient, created] = await db.User.findOrCreate({
                 where: { email: dataSend.email },
@@ -41,7 +33,7 @@ const createUserPatientService = async (dataSend) => {
 
             if (patient) {
 
-                await db.Booking_doctor.findOrCreate({
+                const [newBooking, createdBooking] = await db.Booking_doctor.findOrCreate({
                     where: {
                         date: dataSend.dateSelectBooking,
                         timeType: dataSend.timeTypeBooking
@@ -55,12 +47,30 @@ const createUserPatientService = async (dataSend) => {
                         verify: tokenVerify
                     }
                 })
+
+                if (createdBooking) {
+
+
+                    await sendEmail({
+                        receiver: dataSend.email,
+                        name: dataSend.fullName,
+                        timeBooking: dataSend.dateTimeMailer,
+                        currentLang: dataSend.currentLang,
+                        doctorBooking: dataSend.nameDoctorBooking,
+                        redirectLink: buildTokenVerify(tokenVerify, dataSend.doctorId),
+                    })
+
+                    res.EC = 0
+                    res.EM = 'Create user patient successfully'
+                    res.DT = {}
+                    return res
+                }
             }
 
-
-            res.EC = 0
-            res.EM = 'Create user patient successfully'
+            res.EC = 2
+            res.EM = 'You have another appointment scheduled today, please check back!'
             res.DT = {}
+
             return res
         }
 
