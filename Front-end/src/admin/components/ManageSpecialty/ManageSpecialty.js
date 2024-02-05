@@ -252,6 +252,11 @@ function ManageSpecialty() {
         setCurrentPage(+e.selected + 1)
     };
 
+    const handleCancelUpdate = () => {
+        setIsUpdate(false)
+        setDefaultState()
+    }
+
 
     return (
 
@@ -264,8 +269,8 @@ function ManageSpecialty() {
                         <table className="table table-striped table-bordered mt-3">
                             <thead className='table-header'>
                                 <tr>
-                                    <th scope="col"><FormattedMessage id='admin-manage-specialty.table-name-specialty' /></th>
-                                    <th className='text-center' scope="col"><FormattedMessage id='admin-manage-specialty.table-actions' /></th>
+                                    <th style={{ width: '85%' }} scope="col"><FormattedMessage id='admin-manage-specialty.table-name-specialty' /></th>
+                                    <th style={{ width: '15%' }} className='text-center' scope="col"><FormattedMessage id='admin-manage-specialty.table-actions' /></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -362,9 +367,13 @@ function ManageSpecialty() {
                                         onClick={() => handleCreateSpecialty()}
                                     ><FormattedMessage id='admin-manage-specialty.btn-create-specialty' /></button>
                                     :
-                                    <button className='btn btn-warning mt-3'
-                                        onClick={() => handleSaveInfoSpecialty()}
-                                    ><FormattedMessage id='admin-manage-doctor.save-info' /></button>
+                                    <>
+                                        <button className='btn btn-warning mt-3'
+                                            onClick={() => handleSaveInfoSpecialty()}
+                                        ><FormattedMessage id='admin-manage-doctor.save-info' /></button>
+                                        <button className='btn btn-secondary mt-3 ms-3' onClick={() => handleCancelUpdate()}><FormattedMessage id='admin-manage-clinic.btn-cancel' /></button>
+                                    </>
+
                                 }
                             </div>
                         </div>

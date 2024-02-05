@@ -99,6 +99,7 @@
     "admin-manage-clinic.table-name-clinic": "Name clinic",
     "admin-manage-clinic.table-actions": "Actions",
     "admin-manage-clinic.btn-create-clinic": "Create info",
+    "admin-manage-clinic.btn-cancel": "Cancel",
     "homepage.detail-doctor.examination-schedule": "Examination schedule",
     "homepage.detail-doctor.medical-examination-address": "Medical examination address",
     "homepage.detail-doctor.see-detail": "See detail",

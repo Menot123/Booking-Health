@@ -276,6 +276,11 @@ function ManageClinic() {
         setCurrentPage(+e.selected + 1)
     };
 
+    const handleCancelUpdate = () => {
+        setIsUpdate(false)
+        setDefaultState()
+    }
+
 
     return (
 
@@ -288,8 +293,8 @@ function ManageClinic() {
                         <table className="table table-striped table-bordered mt-3">
                             <thead className='table-header'>
                                 <tr>
-                                    <th scope="col"><FormattedMessage id='admin-manage-clinic.table-name-clinic' /></th>
-                                    <th className='text-center' scope="col"><FormattedMessage id='admin-manage-clinic.table-actions' /></th>
+                                    <th style={{ width: '85%' }} scope="col"><FormattedMessage id='admin-manage-clinic.table-name-clinic' /></th>
+                                    <th style={{ width: '15%' }} className='text-center' scope="col"><FormattedMessage id='admin-manage-clinic.table-actions' /></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -364,6 +369,7 @@ function ManageClinic() {
                                     renderHTML={text => mdParser.render(text)}
                                     value={markdownVi.textMarkdown}
                                     onChange={(e) => handleChangeMarkdown(e, 'vi')}
+                                    onImageUpload={(e) => getBase64(e)}
                                 />
                             </div>
 
@@ -374,6 +380,8 @@ function ManageClinic() {
                                     renderHTML={text => mdParser.render(text)}
                                     value={markdownEn.textMarkdown}
                                     onChange={(e) => handleChangeMarkdown(e, 'en')}
+                                    onImageUpload={(e) => getBase64(e)}
+
                                 />
                             </div>
 
@@ -398,9 +406,12 @@ function ManageClinic() {
                                         onClick={() => handleCreateClinic()}
                                     ><FormattedMessage id='admin-manage-clinic.btn-create-clinic' /></button>
                                     :
-                                    <button className='btn btn-warning mt-3'
-                                        onClick={() => handleSaveInfoClinic()}
-                                    ><FormattedMessage id='admin-manage-doctor.save-info' /></button>
+                                    <>
+                                        <button className='btn btn-warning mt-3'
+                                            onClick={() => handleSaveInfoClinic()}
+                                        ><FormattedMessage id='admin-manage-doctor.save-info' /></button>
+                                        <button className='btn btn-secondary mt-3 ms-3' onClick={() => handleCancelUpdate()}><FormattedMessage id='admin-manage-clinic.btn-cancel' /></button>
+                                    </>
                                 }
                             </div>
                         </div>

@@ -26,7 +26,7 @@ import AdminRoute from './routes/AdminRoute'
 import BlogRoute from './routes/BlogRoute';
 import DetailDoctor from './components/Home/Doctor/DetailDoctor/DetailDoctor';
 import VerifyBooking from './components/Home/Patient/VerifyBooking';
-
+import DetailSpecialty from './components/Home/Specialty/DetailSpecialty';
 
 function App() {
 
@@ -70,6 +70,10 @@ function App() {
 
             <Route path={path.VERIFY_BOOKING}>
               <VerifyBooking scrollToTop={scrollToTop} />
+            </Route>
+
+            <Route path={path.DETAIL_SPECIALTY}>
+              <DetailSpecialty scrollToTop={scrollToTop} />
             </Route>
 
             {/* Blog */}

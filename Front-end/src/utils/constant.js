@@ -19,7 +19,8 @@ export const path = {
     BLOGLISTCHILD: '/cam-nang/danh-sach/:type',
     BLOGDETAIL: '/cam-nang/:id',
     DETAIL_DOCTOR: '/detail-doctor/:id',
-    VERIFY_BOOKING: '/verify-booking'
+    VERIFY_BOOKING: '/verify-booking',
+    DETAIL_SPECIALTY: '/specialty/detail',
 };
 
 export const LANGUAGES = {
