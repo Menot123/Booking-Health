@@ -27,6 +27,7 @@ import BlogRoute from './routes/BlogRoute';
 import DetailDoctor from './components/Home/Doctor/DetailDoctor/DetailDoctor';
 import VerifyBooking from './components/Home/Patient/VerifyBooking';
 import DetailSpecialty from './components/Home/Specialty/DetailSpecialty';
+import DetailClinic from './components/Home/Clinic/DetailClinic';
 
 function App() {
 
@@ -74,6 +75,10 @@ function App() {
 
             <Route path={path.DETAIL_SPECIALTY}>
               <DetailSpecialty scrollToTop={scrollToTop} />
+            </Route>
+
+            <Route path={path.DETAIL_CLINIC}>
+              <DetailClinic scrollToTop={scrollToTop} />
             </Route>
 
             {/* Blog */}

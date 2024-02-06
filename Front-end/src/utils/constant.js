@@ -21,6 +21,7 @@ export const path = {
     DETAIL_DOCTOR: '/detail-doctor/:id',
     VERIFY_BOOKING: '/verify-booking',
     DETAIL_SPECIALTY: '/specialty/detail',
+    DETAIL_CLINIC: '/clinic/detail',
 };
 
 export const LANGUAGES = {

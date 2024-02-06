@@ -1,0 +1,17 @@
+.doctor-specialty-container {
+    background-color: #eee;
+    padding-bottom  : 16px;
+
+    .container {
+        .doctor-specialty-select-position {
+            padding: 8px 0;
+            margin : 8px 0;
+        }
+
+        .detail-doctor-container {
+            background-color: #fff;
+            border-radius   : 8px;
+            margin          : 16px 0;
+        }
+    }
+}

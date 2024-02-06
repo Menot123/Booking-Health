@@ -1,0 +1,37 @@
+.detail-clinic-container {
+    .container {
+        .title-clinic {
+            padding-top     : 20px;
+            background-color: rgb(182 210 231 / 80%);
+            box-shadow      : rgba(32, 33, 36, 0.28) 0px 1px 6px;
+            display         : flex;
+            border-radius   : 8px;
+
+            .img-clinic {
+                height: 112px;
+                width : 112px;
+                margin: 0 20px;
+
+                .element-img {
+                    height    : 100%;
+                    width     : 100%;
+                    object-fit: contain;
+                    inset     : 0px;
+
+                }
+            }
+
+            .title-text-clinic {
+                display        : flex;
+                justify-content: center;
+                flex-direction : column;
+
+                .title-text-address {
+                    font-size  : 18px;
+                    color      : rgb(40, 49, 63);
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}

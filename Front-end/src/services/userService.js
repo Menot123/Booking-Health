@@ -142,6 +142,10 @@ const postDataUpdateClinic = (dataSend) => {
     return axios.post(`/api/post-data-update-clinic`, dataSend)
 }
 
+const getDoctorsBySpecialtyAndLocation = (dataSend) => {
+    return axios.get(`/api/get-doctors-specialty-location?provinceId=${dataSend.provinceId}&specialtyId=${dataSend.specialtyId}`,)
+}
+
 export {
     fetchAllUser, fetchAllDataSelect, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
     updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
@@ -149,5 +153,5 @@ export {
     getDataProfileDoctor, createBookingDoctor, verifyBooking, postDataCreateSpecialty, getSpecialties,
     getDetailSpecialty, postDataUpdateSpecialty, postDataDeleteSpecialty, getSpecialtiesPagination,
     getClinics, getClinicsPagination, postDataCreateClinic, getDetailClinic, postDataDeleteClinic,
-    postDataUpdateClinic
+    postDataUpdateClinic, getDoctorsBySpecialtyAndLocation
 }

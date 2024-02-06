@@ -9,9 +9,11 @@ import { useState, useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { LANGUAGES } from '../../../utils'
 import { useSelector } from 'react-redux'
-
+import { useHistory } from 'react-router-dom'
 
 function Clinic() {
+    const history = useHistory()
+
 
     const language = useSelector(state => state.userRedux.language)
 
@@ -49,6 +51,10 @@ function Clinic() {
         return imageBase64
     }
 
+    const handleDetailClinic = (id) => {
+        history.push(`/clinic/detail?id=${id}`)
+    }
+
     return (
 
         <div className='slider-content mr17 '>
@@ -61,7 +67,7 @@ function Clinic() {
 
                     {clinics.map((item, index) => {
                         return (
-                            <div key={index + 'clinic'} className='wrapper-clinic-item'>
+                            <div onClick={() => handleDetailClinic(item.id)} key={index + 'clinic'} className='wrapper-clinic-item'>
                                 <div className='clinic-item'>
                                     <div className='wrapper-img-clinic'>
                                         <img className='img-clinic' src={convertImgBase64(item.image)} />

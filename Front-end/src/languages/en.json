@@ -121,5 +121,7 @@
     "detail-doctor-booking-modal.address": "Address",
     "detail-doctor-booking-modal.reason": "Reason for examination",
     "detail-doctor-booking-modal.birth": "Date of birth",
-    "detail-doctor-booking-modal.gender": "Gender"
+    "detail-doctor-booking-modal.gender": "Gender",
+    "detail-specialty.view-more": "View more",
+    "detail-specialty.hidden": "Hidden"
 }

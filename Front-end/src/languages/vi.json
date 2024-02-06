@@ -121,5 +121,7 @@
     "detail-doctor-booking-modal.address": "Địa chỉ liên hệ",
     "detail-doctor-booking-modal.reason": "Lý do khám",
     "detail-doctor-booking-modal.birth": "Ngày sinh",
-    "detail-doctor-booking-modal.gender": "Giới tính"
+    "detail-doctor-booking-modal.gender": "Giới tính",
+    "detail-specialty.view-more": "Xem thêm",
+    "detail-specialty.hidden": "Ẩn bớt"
 }

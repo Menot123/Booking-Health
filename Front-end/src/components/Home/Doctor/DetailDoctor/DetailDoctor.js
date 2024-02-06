@@ -5,7 +5,6 @@ import { getInfoDetailDoctor } from '../../../../services/userService'
 import { toast } from 'react-toastify';
 import { useState } from 'react'
 import { IoLocationSharp } from "react-icons/io5";
-import bac_si from '../../../../assets/img/bs-anh-thu1.jpg'
 import Schedule from './Schedule';
 import _ from 'lodash';
 import { LANGUAGES } from '../../../../utils';
@@ -25,27 +24,40 @@ function DetailDoctor(props) {
     const [avatar, setAvatar] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
-
     useEffect(() => {
         let isMounted = true; // Biến đánh dấu thành phần có được mount hay không
-
+        let idDoctor = props.idDoctor ? props.idDoctor : id
         const fetchInfoDoctor = async () => {
-            setIsLoading(true);
-            let res = await getInfoDetailDoctor(id);
-            if (isMounted) {
-                // Kiểm tra xem thành phần có được mount hay không trước khi cập nhật state
-                if (res && res.EC === 0) {
-                    setIsLoading(false);
-                    setInfoDoctor(res.DT);
-                    if (!_.isEmpty(res.DT) && res.DT.image) {
-                        let avatarBase64 = convertImgBase64(res.DT.image);
-                        setAvatar(avatarBase64);
+            if (!props.idDoctor) {
+                setIsLoading(true);
+                let res = await getInfoDetailDoctor(idDoctor);
+                if (isMounted) {
+                    // Kiểm tra xem thành phần có được mount hay không trước khi cập nhật state
+                    if (res && res.EC === 0) {
+                        setIsLoading(false);
+                        setInfoDoctor(res.DT);
+                        if (!_.isEmpty(res.DT) && res.DT.image) {
+                            let avatarBase64 = convertImgBase64(res.DT.image);
+                            setAvatar(avatarBase64);
+                        }
+                    }
+                }
+            } else {
+                if (isMounted) {
+                    // Kiểm tra xem thành phần có được mount hay không trước khi cập nhật state
+                    if (props.dataDoctor) {
+                        setInfoDoctor(props.dataDoctor);
+                        if (!_.isEmpty(props.dataDoctor) && props.dataDoctor.image) {
+                            let avatarBase64 = convertImgBase64(props.dataDoctor.image);
+                            setAvatar(avatarBase64);
+                        }
                     }
                 }
             }
         };
 
         fetchInfoDoctor();
+
 
         return () => {
             isMounted = false; // Đánh dấu thành phần đã bị hủy khi useEffect được gọi lần tiếp theo
@@ -88,23 +100,31 @@ function DetailDoctor(props) {
                                 </span>
                             </div>
                             <div className='detail-location'>
-                                <IoLocationSharp /> <span className='text-location'>Thành phố Hồ Chí Minh</span>
+                                <IoLocationSharp /> <span className='text-location'>{
+                                    language === LANGUAGES.VI ? infoDoctor.dataIdDoctor?.dataProvince?.valueVi
+                                        :
+                                        infoDoctor.dataIdDoctor?.dataProvince?.valueEn
+                                }</span>
                             </div>
                         </div>
                     </div>
 
                     <div className='detail-schedule-price d-flex'>
                         <div className='detail-schedule'>
-                            <Schedule doctorId={id} />
+                            <Schedule doctorId={props.idDoctor ? props.idDoctor : id} />
                         </div>
 
                         <div className='detail-price-address'>
                             <div className='detail-address'>
                                 <span className='detail-address-title'><FormattedMessage id='homepage.detail-doctor.medical-examination-address' /></span>
                                 <div className='detail-address-content'>
-                                    <span className='text-clinic'>Phòng Khám chuyên khoa phụ sản Hoa Sen Lotus Clinic</span>
+                                    <span className='text-clinic'>{
+                                        language === LANGUAGES.VI ? infoDoctor.dataIdDoctor?.dataClinic?.nameVi
+                                            :
+                                            infoDoctor.dataIdDoctor?.dataClinic?.nameEn
+                                    }</span>
                                     <br />
-                                    <span className='text-address'> Số 36, Đường số 3 KDC Him Lam, Phường Tân Hưng, Quận 7, Tp. Hồ Chí Minh</span>
+                                    <span className='text-address'>{infoDoctor?.address}</span>
                                 </div>
                             </div>
                             <hr />
@@ -139,12 +159,19 @@ function DetailDoctor(props) {
                             </div>
                         </div>
                     </div>
-                    <hr />
 
-                    <div className='content-markdown-doctor mt-4 mb-3'>
-                        <div dangerouslySetInnerHTML={{ __html: infoDoctor.dataIdDoctor?.dataMarkdown?.textHTML }} />
+                    {!props.idDoctor ? <hr /> : ''}
 
-                    </div>
+
+                    {!props.showMarkdown ?
+
+                        <div className='content-markdown-doctor mt-4 mb-3'>
+                            <div dangerouslySetInnerHTML={{ __html: infoDoctor.dataIdDoctor?.dataMarkdown?.textHTML }} />
+
+                        </div>
+                        :
+                        ''
+                    }
                 </>
             }
         </div>
