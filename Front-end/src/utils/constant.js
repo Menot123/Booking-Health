@@ -22,6 +22,8 @@ export const path = {
     VERIFY_BOOKING: '/verify-booking',
     DETAIL_SPECIALTY: '/specialty/detail',
     DETAIL_CLINIC: '/clinic/detail',
+    LIST_SPECIALTY: '/list-specialty',
+    LIST_CLINIC: '/list-clinic',
 };
 
 export const LANGUAGES = {

@@ -9,7 +9,7 @@ import DetailDoctor from '../Doctor/DetailDoctor/DetailDoctor'
 import { v4 as uuidv4 } from 'uuid';
 
 
-function DoctorSpecialty() {
+function DoctorSpecialty(props) {
 
     const language = useSelector(state => state.userRedux.language)
 
@@ -33,8 +33,8 @@ function DoctorSpecialty() {
         }
 
         let dataSend = {
-            provinceId: 'PRO1',
-            specialtyId: 1
+            provinceId: selectedPosition ? selectedPosition : 'ALL',
+            specialtyId: props.specialtyId ? props.specialtyId : 1
         }
 
         fetchDoctorSpecialtyLocation(dataSend)
@@ -43,7 +43,7 @@ function DoctorSpecialty() {
             isMounted = false; // Đánh dấu thành phần đã bị hủy khi useEffect được gọi lần tiếp theo
         };
 
-    }, [])
+    }, [selectedPosition])
 
 
     const handleChangeSelectLocation = (e) => {

@@ -8,7 +8,7 @@ import background_doctor from '../../../src/assets/img/background_doctors.png'
 import { useEffect, useState } from 'react'
 import { translate } from '../../redux/slices/languageSlice'
 
-const Home = () => {
+const Home = (props) => {
 
     const dispatch = useDispatch()
     const language = useSelector(state => state.userRedux.language)
@@ -18,11 +18,12 @@ const Home = () => {
     }, [])
 
 
+
     return (
         <>
             <div className='container home-container'>
-                <Specialty />
-                <Clinic />
+                <Specialty scrollToTop={props.scrollToTop} />
+                <Clinic scrollToTop={props.scrollToTop} />
             </div>
             <div className='doctor-wrapper'>
                 <div className='background-doctors'>

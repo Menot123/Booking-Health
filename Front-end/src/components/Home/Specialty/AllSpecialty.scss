@@ -1,0 +1,47 @@
+.all-specialty-container {
+    .location-href {
+        display    : flex;
+        align-items: center;
+
+        .icon-home {
+            color: blue;
+        }
+
+        .location-href-text {}
+    }
+
+    .title-all-specialty {
+        margin: 16px 0;
+
+        .title-all-specialty-text {
+            font-size  : 20px;
+            font-weight: bold;
+        }
+    }
+
+    .all-specialty-item {
+        &:hover {
+            cursor: pointer;
+        }
+
+        display    : flex;
+        align-items: center;
+        padding    : 10px 0;
+
+        .img-specialty {
+            width: 20%;
+        }
+
+        .name-specialty {
+            width: 80%;
+
+            .name-specialty-text {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .hr-line {
+        margin-top: 0px !important;
+    }
+}

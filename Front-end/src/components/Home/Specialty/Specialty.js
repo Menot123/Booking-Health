@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom'
 
 
 
-function Specialty() {
+function Specialty(props) {
 
     const history = useHistory()
 
@@ -55,6 +55,12 @@ function Specialty() {
 
     const handleDetailSpecialty = (id) => {
         history.push(`/specialty/detail?id=${id}`)
+        props.scrollToTop()
+    }
+
+
+    const handleViewMoreSpecialty = () => {
+        history.push('/list-specialty')
     }
 
     return (
@@ -62,7 +68,9 @@ function Specialty() {
         <div className='slider-content mr17'>
             <div className='title w-100 d-flex align-items-center justify-content-between'>
                 <h4><FormattedMessage id='homepage.specialty' defaultMessage={'Chuyên khoa'} /></h4>
-                <span key='btn-view-more-specialty' className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
+                <span key='btn-view-more-specialty' className='btn btn-primary btn-view-more'
+                    onClick={() => handleViewMoreSpecialty()}
+                ><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
             </div>
 
             {specialties && specialties.length > 0 &&

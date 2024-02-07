@@ -11,7 +11,7 @@ import { LANGUAGES } from '../../../utils'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
-function Clinic() {
+function Clinic(props) {
     const history = useHistory()
 
 
@@ -53,6 +53,11 @@ function Clinic() {
 
     const handleDetailClinic = (id) => {
         history.push(`/clinic/detail?id=${id}`)
+        props.scrollToTop()
+    }
+
+    const handleViewMoreClinic = () => {
+        history.push('/list-clinic')
     }
 
     return (
@@ -60,7 +65,9 @@ function Clinic() {
         <div className='slider-content mr17 '>
             <div className='title w-100 d-flex align-items-center justify-content-between'>
                 <h4><FormattedMessage id='homepage.facilities' defaultMessage={'Cơ sở y tế'} /></h4>
-                <span key='btn-view-more-clinic' className='btn btn-primary btn-view-more'><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
+                <span key='btn-view-more-clinic' className='btn btn-primary btn-view-more'
+                    onClick={() => handleViewMoreClinic()}
+                ><span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span> </span>
             </div>
             {clinics && clinics.length > 0 &&
                 <Slider {...settings}>
