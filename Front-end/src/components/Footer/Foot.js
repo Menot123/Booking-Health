@@ -18,7 +18,7 @@ const Foot = (props) => {
             <div className="bg-body-tertiary bg-footer">
                 <section>
                     <div className="container text-center text-md-start">
-                        <div className="row mt-3">
+                        <div className="row">
                             <div className="col-md-5 col-lg-6 col-xl-5 mb-4 mt-4">
                                 <h6 className="text-uppercase fw-bold mb-4">
                                     <FormattedMessage id='footer.about-us-title' />

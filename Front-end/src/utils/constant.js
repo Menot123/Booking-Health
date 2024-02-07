@@ -9,6 +9,7 @@ export const path = {
     ADMIN: '/admin',
     MANAGE_DOCTORS: '/admin/manage-doctors',
     MANAGE_SPECIALTY: '/admin/manage-specialties',
+    MANAGE_CLINIC: '/admin/manage-clinics',
     MANAGE_POSTS: '/admin/manage-posts',
     MANAGE_SCHEDULES: '/admin/manage-schedules',
     BLOG: '/cam-nang',
@@ -18,7 +19,11 @@ export const path = {
     BLOGLISTCHILD: '/cam-nang/danh-sach/:type',
     BLOGDETAIL: '/cam-nang/:id',
     DETAIL_DOCTOR: '/detail-doctor/:id',
-    VERIFY_BOOKING: '/verify-booking'
+    VERIFY_BOOKING: '/verify-booking',
+    DETAIL_SPECIALTY: '/specialty/detail',
+    DETAIL_CLINIC: '/clinic/detail',
+    LIST_SPECIALTY: '/list-specialty',
+    LIST_CLINIC: '/list-clinic',
 };
 
 export const LANGUAGES = {

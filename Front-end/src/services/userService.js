@@ -98,9 +98,60 @@ const postDataCreateSpecialty = (dataSend) => {
     return axios.post(`/api/create-specialty`, dataSend)
 }
 
+const getSpecialties = () => {
+    return axios.get('/api/get-specialties')
+}
+
+const getDetailSpecialty = (id) => {
+    return axios.get(`/api/get-detail-specialty?idSpecialty=${id}`)
+}
+
+const postDataUpdateSpecialty = (dataSend) => {
+    return axios.post(`/api/post-data-update-specialty`, dataSend)
+}
+
+const postDataDeleteSpecialty = (id) => {
+    return axios.post(`/api/delete-specialty`, { id: id })
+}
+
+const getSpecialtiesPagination = (page, limit) => {
+    return axios.get(`/api/get-specialties?page=${page}&limit=${limit}`)
+}
+
+const getClinics = () => {
+    return axios.get('/api/get-clinics')
+}
+
+const getClinicsPagination = (page, limit) => {
+    return axios.get(`/api/get-clinics?page=${page}&limit=${limit}`)
+}
+
+const postDataCreateClinic = (dataSend) => {
+    return axios.post(`/api/create-clinic`, dataSend)
+}
+
+const getDetailClinic = (id) => {
+    return axios.get(`/api/get-detail-clinic?idClinic=${id}`)
+}
+
+const postDataDeleteClinic = (id) => {
+    return axios.post(`/api/delete-clinic`, { id: id })
+}
+
+const postDataUpdateClinic = (dataSend) => {
+    return axios.post(`/api/post-data-update-clinic`, dataSend)
+}
+
+const getDoctorsBySpecialtyAndLocation = (dataSend) => {
+    return axios.get(`/api/get-doctors-specialty-location?provinceId=${dataSend.provinceId}&specialtyId=${dataSend.specialtyId}`,)
+}
+
 export {
     fetchAllUser, fetchAllDataSelect, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
     updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
     getAllClinic, updateInfoDoctor, getInfoDetailDoctor, getAllSchedule, createSchedule, getSchedulesByDate,
-    getDataProfileDoctor, createBookingDoctor, verifyBooking, postDataCreateSpecialty
+    getDataProfileDoctor, createBookingDoctor, verifyBooking, postDataCreateSpecialty, getSpecialties,
+    getDetailSpecialty, postDataUpdateSpecialty, postDataDeleteSpecialty, getSpecialtiesPagination,
+    getClinics, getClinicsPagination, postDataCreateClinic, getDetailClinic, postDataDeleteClinic,
+    postDataUpdateClinic, getDoctorsBySpecialtyAndLocation
 }

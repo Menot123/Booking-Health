@@ -1,0 +1,19 @@
+.detail-specialty-container {
+    .detail-specialty-content {
+        .detail-specialty-text {
+            overflow: hidden;
+
+            &.h220 {
+                height: 210px;
+            }
+        }
+
+        .view-more-info {
+            color: #288AD6;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
