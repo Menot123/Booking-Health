@@ -28,9 +28,13 @@ const initApiRoutes = (app) => {
     router.get('/type-role', apiController.getTypeRole)
     router.post('/verify-booking-schedule', patientController.verifyBookingSchedule)
 
+    // Post Router for user
+    router.get('/get-posts', postController.getAllPost)
+    router.get('/get-post', postController.getPostWithId)
+    router.get('/get-posts-by-type', postController.getPostsWithType)
+    router.get('/get-posts-by-popular', postController.getPostsWithPopular)
 
-
-    router.all('*', checkUserJWT);
+    // router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
     router.get('/all-code', apiController.getAllCode);
@@ -61,10 +65,7 @@ const initApiRoutes = (app) => {
     // Image upload post
     router.post('/upload-image', uploadCloud.single('image'), postController.uploadImage)
 
-    // manage posts route
-    router.get('/get-posts', postController.getAllPost)
-    router.get('/get-post', postController.getPostWithId)
-    router.get('/get-posts-by-type', postController.getPostsWithType)
+    // manage posts admin route
     router.post('/create-post', postController.handleCreatePost)
     router.delete('/delete-post', postController.handleDeletePost)
     router.put('/update-post', postController.handleUpdatePost)

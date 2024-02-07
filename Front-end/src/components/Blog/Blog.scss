@@ -4,17 +4,6 @@
     padding-bottom: 30px;
     .title {
         margin-bottom: 32px;
-        .btn-view-more {
-            background-color: gainsboro;
-            padding: 8px;
-            border-radius: 0px;
-            border: none;
-            margin-bottom: 7px;
-            font-size: 16px;
-            color: black;
-            font-weight: 600;
-            cursor: pointer;
-        }
     }
     .slick-slider {
         .slick-arrow {
@@ -58,11 +47,20 @@
             max-height: 100%;
         }
     }
-    .items {
+    .items-new {
         height: 88px;
-        @media screen and (max-width: 270px) {
-            height: 110px;
+        // @media screen and (max-width: 270px) {
+        //     height: 110px;
+        // }
+        .detail {
+            font-size: 80%;
         }
+    }
+    .items-relevant {
+        height: 98px;
+        // @media screen and (max-width: 270px) {
+        //     height: 110px;
+        // }
         .detail {
             font-size: 80%;
         }
@@ -82,33 +80,5 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-}
-
-//Handbook
-.handbook-item {
-    background-color: rgb(255, 255, 255);
-    border: 2px solid rgb(241, 241, 241);
-    margin: 0px 10px;
-    width: 250px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.handbook-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.content-handbook {
-    margin-top: 10px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
+    -webkit-line-clamp: 2;
 }

@@ -167,6 +167,26 @@ const uploadImage = (req, res) => {
     }
 }
 
+// Get all posts
+const getPostsWithPopular = async (req, res, next) => {
+    try {
+        let data = await postService.getPostsByPopular()
+        // console.log(data)
+        return res.status(200).json({
+            EM: data.EM,
+            EC: data.EC,
+            DT: data.DT
+        })
+    } catch (e) {
+        console.log('Something went wrong from get popular posts')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
 module.exports = {
-    getAllPost, handleDeletePost, getPostWithId, getPostsWithType, handleUpdatePost, handleCreatePost, uploadImage
+    getAllPost, handleDeletePost, getPostWithId, getPostsWithType, getPostsWithPopular, handleUpdatePost, handleCreatePost, uploadImage
 }

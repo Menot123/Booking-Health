@@ -105,6 +105,39 @@ const getPostWithIdService = async (postId) => {
     }
 }
 
+// Get post by popular
+const getPostsByPopular = async () => {
+    try {
+        let res = {}
+        let posts = await db.Post.findAll({
+            order: [
+                ['viewCount', 'DESC'],
+                ['createdAt', 'DESC']
+            ],
+            where: {
+                status: {
+                    [Op.not]: 'deleted'
+                }
+            }
+        })
+
+        if (posts) {
+            res.EC = 0
+            res.EM = 'Get posts by popular successfully'
+            res.DT = posts
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Get posts by popular failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+    }
+}
+
 // Get post with post type
 const getPostsByType = async (type) => {
     try {
@@ -246,5 +279,6 @@ module.exports = {
     deletePostService,
     getPostWithIdService,
     createPostService,
-    getPostsByType
+    getPostsByType,
+    getPostsByPopular
 }

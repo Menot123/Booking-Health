@@ -9,7 +9,7 @@ import {
   useLocation
 } from "react-router-dom";
 // import { Context } from './HOC/Wrapper'
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars'
 import { path } from './utils/index'
 import { ToastContainer } from 'react-toastify';
@@ -42,7 +42,6 @@ function App() {
   const url = window.location.pathname;
 
 
-
   return (
     <BrowserRouter>
 
@@ -59,9 +58,9 @@ function App() {
             <Route path={path.CO_SO_Y_TE}>
               Co so y te
             </Route>
-            <Route path={path.SONG_KHOE}>
+            {/* <Route path={path.SONG_KHOE}>
               Song Khoe
-            </Route>
+            </Route> */}
             <Route path={path.HO_TRO}>
               <Sup />
             </Route>
