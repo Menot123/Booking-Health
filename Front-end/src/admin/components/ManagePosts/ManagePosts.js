@@ -341,6 +341,7 @@ function ManagePosts() {
                                             <th scope="col"><FormattedMessage id='admin-blog-owner' /></th>
                                             <th scope="col"><FormattedMessage id='admin-blog-created-at' /></th>
                                             <th scope="col"><FormattedMessage id='admin-blog-updated-at' /></th>
+                                            <th scope="col"><FormattedMessage id='blog-view-count' defaultMessage={'Lượt xem'} /></th>
                                             {/* <th scope="col">Ảnh tiêu đề</th> */}
                                             <th scope="col"><FormattedMessage id='admin-blog-action' /></th>
                                         </tr>
@@ -357,6 +358,7 @@ function ManagePosts() {
                                                         <td>{item.owner}</td>
                                                         <td>{formattedCreatedAt}</td>
                                                         <td>{formattedUpdatedAt}</td>
+                                                        <td className='text-center'>{item.viewCount}</td>
                                                         {/* <td><img className='w-25' src={item.image} alt="Ảnh bài đăng" /></td> */}
                                                         <td className='align-middle text-center'>
                                                             <div className='d-flex justify-content-center'>

@@ -72,7 +72,7 @@ function BlogListChild(props) {
     }
     return (
         <>
-            <div className='container-bloglist-detail'>
+            <div className='container-bloglist-detail mb-3'>
                 <div className='container '>
                     {/* Search Box */}
                     <div className='search-box'>

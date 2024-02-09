@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import './BlogDetail.scss'
 import { FaHome, FaArrowUp } from "react-icons/fa";
 import new_blog from '../../assets/img/new-blog.png'
-import { getDataUpdatePost, fetchPostsByType } from '../../services/postService'
+import { getDataUpdatePost, fetchPostsByType, addPostViewCount } from '../../services/postService'
 import NotFound from '../404_Not_Found/NotFound';
 import { useParams, useHistory } from 'react-router-dom';
 import detail_in_blog from '../../assets/img/detail-in-blog.png'
@@ -36,6 +36,11 @@ function BlogDetail(props) {
         }
         let res = await getDataUpdatePost(data)
         if (res.EC === 0) {
+            // setTimeout(, 60000)
+            setTimeout(() => {
+                addPostViewCount(id)
+            }, 30000);
+
             setIsExistingPost(true)
             setPost(res.DT.post)
             setPostImg(convertBlob2Img(res.DT.post.titleImg))

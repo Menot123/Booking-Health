@@ -38,6 +38,7 @@ const initApiRoutes = (app) => {
     router.get('/get-post', postController.getPostWithId)
     router.get('/get-posts-by-type', postController.getPostsWithType)
     router.get('/get-posts-by-popular', postController.getPostsWithPopular)
+    router.put('/add-post-view-count', postController.handleUpdatePostViewCount)
 
     // router.all('*', checkUserJWT);
 

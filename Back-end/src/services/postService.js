@@ -239,6 +239,41 @@ const updatePostService = async (id, data) => {
     }
 }
 
+// Post view count + 1
+const postViewCountAddOne = async (id) => {
+    try {
+        let res = {}
+        let post = await db.Post.findOne({
+            where: { id: id },
+        })
+        // console.log(post)
+        if (post) {
+            const view = post.dataValues.viewCount
+            const currentUpdateAt = post.dataValues.updatedAt
+            // console.log(currentUpdateAt)
+            await post.update(
+                { viewCount: view + 1 },
+                { silent: true }
+            )
+            res.EC = 0
+            res.EM = `Update post view count with id ${id} successfully`
+            res.DT = {}
+        } else {
+            res.EC = 1
+            res.EM = `Update post view count failed`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with update post service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
 
 // Delete post
 const deletePostService = async (postDelete) => {
@@ -280,5 +315,6 @@ module.exports = {
     getPostWithIdService,
     createPostService,
     getPostsByType,
-    getPostsByPopular
+    getPostsByPopular,
+    postViewCountAddOne
 }
