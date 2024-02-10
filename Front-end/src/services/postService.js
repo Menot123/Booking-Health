@@ -13,6 +13,14 @@ const fetchPostsByType = (type) => {
     return axios.get(`/api/get-posts-by-type?postType=${type}`)
 }
 
+const fetchPostsByPopular = () => {
+    return axios.get(`/api/get-posts-by-popular`)
+}
+
+const addPostViewCount = (id) => {
+    return axios.put(`/api/add-post-view-count?postId=${id}`)
+}
+
 const deletePost = (post) => {
     return axios.delete('/api/delete-post', { data: { post: post } })
 }
@@ -41,5 +49,7 @@ export {
     updatePost,
     createPost,
     uploadImage,
-    fetchPostsByType
+    fetchPostsByType,
+    fetchPostsByPopular,
+    addPostViewCount
 }

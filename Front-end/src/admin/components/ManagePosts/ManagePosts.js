@@ -311,6 +311,10 @@ function ManagePosts() {
         return imageCloud
     }
 
+    const blankViewPost = (path) => {
+        window.open(path, '_blank');
+    }
+
     return (
         <div>
             <h3 className='text-center mt-3'><FormattedMessage id='admin-blog-manage' /></h3>
@@ -337,6 +341,7 @@ function ManagePosts() {
                                             <th scope="col"><FormattedMessage id='admin-blog-owner' /></th>
                                             <th scope="col"><FormattedMessage id='admin-blog-created-at' /></th>
                                             <th scope="col"><FormattedMessage id='admin-blog-updated-at' /></th>
+                                            <th scope="col"><FormattedMessage id='blog-view-count' defaultMessage={'Lượt xem'} /></th>
                                             {/* <th scope="col">Ảnh tiêu đề</th> */}
                                             <th scope="col"><FormattedMessage id='admin-blog-action' /></th>
                                         </tr>
@@ -348,15 +353,18 @@ function ManagePosts() {
                                                 const formattedUpdatedAt = moment(item.updatedAt).format("HH:mm DD/MM/YYYY");
                                                 return (
                                                     <tr key={uuidv4()}>
-                                                        <td style={{ cursor: "pointer", color: "blue" }}>{item.title} </td>
+                                                        <td onClick={() => blankViewPost('/cam-nang/' + item.id)} style={{ cursor: "pointer", color: "blue" }}>{item.title} </td>
                                                         <td>{item.type}</td>
                                                         <td>{item.owner}</td>
                                                         <td>{formattedCreatedAt}</td>
                                                         <td>{formattedUpdatedAt}</td>
+                                                        <td className='text-center'>{item.viewCount}</td>
                                                         {/* <td><img className='w-25' src={item.image} alt="Ảnh bài đăng" /></td> */}
-                                                        <td className='w-100 d-flex justify-content-center'>
-                                                            <span onClick={() => handleGetDataEditPost(item.id)} className='icon-action-edit'><FaPencil /></span>
-                                                            <span onClick={() => handleDeletePost(item.id)} className='icon-action-delete ms-4' ><FaTrashAlt /></span>
+                                                        <td className='align-middle text-center'>
+                                                            <div className='d-flex justify-content-center'>
+                                                                <span onClick={() => handleGetDataEditPost(item.id)} className='icon-action-edit'><FaPencil /></span>
+                                                                <span onClick={() => handleDeletePost(item.id)} className='icon-action-delete ms-4' ><FaTrashAlt /></span>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 )

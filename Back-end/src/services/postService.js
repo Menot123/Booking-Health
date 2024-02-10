@@ -105,6 +105,39 @@ const getPostWithIdService = async (postId) => {
     }
 }
 
+// Get post by popular
+const getPostsByPopular = async () => {
+    try {
+        let res = {}
+        let posts = await db.Post.findAll({
+            order: [
+                ['viewCount', 'DESC'],
+                ['createdAt', 'DESC']
+            ],
+            where: {
+                status: {
+                    [Op.not]: 'deleted'
+                }
+            }
+        })
+
+        if (posts) {
+            res.EC = 0
+            res.EM = 'Get posts by popular successfully'
+            res.DT = posts
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Get posts by popular failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+    }
+}
+
 // Get post with post type
 const getPostsByType = async (type) => {
     try {
@@ -206,6 +239,41 @@ const updatePostService = async (id, data) => {
     }
 }
 
+// Post view count + 1
+const postViewCountAddOne = async (id) => {
+    try {
+        let res = {}
+        let post = await db.Post.findOne({
+            where: { id: id },
+        })
+        // console.log(post)
+        if (post) {
+            const view = post.dataValues.viewCount
+            const currentUpdateAt = post.dataValues.updatedAt
+            // console.log(currentUpdateAt)
+            await post.update(
+                { viewCount: view + 1 },
+                { silent: true }
+            )
+            res.EC = 0
+            res.EM = `Update post view count with id ${id} successfully`
+            res.DT = {}
+        } else {
+            res.EC = 1
+            res.EM = `Update post view count failed`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with update post service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
 
 // Delete post
 const deletePostService = async (postDelete) => {
@@ -246,5 +314,7 @@ module.exports = {
     deletePostService,
     getPostWithIdService,
     createPostService,
-    getPostsByType
+    getPostsByType,
+    getPostsByPopular,
+    postViewCountAddOne
 }
