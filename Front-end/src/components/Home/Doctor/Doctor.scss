@@ -9,90 +9,99 @@
         margin-bottom: 32px;
 
         .btn-view-more {
+
+
             background-color: rgb(218, 243, 246);
             padding         : 10px 8px;
             border-radius   : 16px;
             border          : none;
 
-            .text-btn-view-more {
-                font-size  : 20px;
-                color      : rgb(52, 146, 158);
-                font-weight: 600;
-            }
-        }
-    }
 
-    .slick-slider {
-
-        .slick-arrow {
-            z-index      : 10;
-            box-shadow   : 0 0 5px rgba(201, 236, 240, 0.5);
-            border-color : rgb(181, 231, 237);
-            border-radius: 30px;
-            width        : 40px;
-            height       : 40px;
-            padding-top  : 2px;
-            margin-left  : 20px;
-
-        }
-
-        .slick-prev:before,
-        .slick-next:before {
-            color    : rgb(173 178 179) !important;
-            font-size: 40px;
-        }
-
-        .slick-disabled {
-            display: none !important;
-        }
-
-        .wrapper-doctor-item {
-            width : 260px !important;
-            height: 270px;
-
-            .doctor-item {
-                display        : flex;
-                flex-direction : column;
-                justify-content: flex-start;
-                align-items    : center;
-                margin-left    : 20px;
-                cursor         : pointer;
-
-                .wrapper-img-doctor {
-                    width         : 84%;
-                    // height     : 100%;
-                    padding-top   : 84%;
-                    position      : relative;
-
-
-                    .img-doctor {
-                        border-radius: 500px;
-
-                        position  : absolute;
-                        height    : 100%;
-                        width     : 100%;
-                        inset     : 0px;
-                        object-fit: cover;
-                        color     : transparent;
-                    }
-                }
-
-                .title_doctor {
-                    padding-top  : 16px;
-                    margin-bottom: 4px;
-                    text-align   : center;
-                    font-size    : 18px;
-                    font-weight  : 600;
-                    color        : rgb(26, 26, 26);
-                }
+            &:hover {
+                cursor: pointer;
             }
 
+            font-size  : 20px;
+            color      : rgb(52, 146, 158);
+            font-weight: 600;
         }
     }
-
-
-
 }
+
+.slick-slider {
+
+    .slick-arrow {
+        z-index      : 10;
+        box-shadow   : 0 0 5px rgba(201, 236, 240, 0.5);
+        border-color : rgb(181, 231, 237);
+        border-radius: 30px;
+        width        : 40px;
+        height       : 40px;
+        padding-top  : 2px;
+        margin-left  : 20px;
+
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color    : rgb(173 178 179) !important;
+        font-size: 40px;
+    }
+
+    .slick-disabled {
+        display: none !important;
+    }
+
+    .wrapper-doctor-item {
+        &:hover {
+            cursor: pointer;
+        }
+
+        width : 260px !important;
+        height: 270px;
+
+        .doctor-item {
+            display        : flex;
+            flex-direction : column;
+            justify-content: flex-start;
+            align-items    : center;
+            margin-left    : 20px;
+            cursor         : pointer;
+
+            .wrapper-img-doctor {
+                width         : 84%;
+                // height     : 100%;
+                padding-top   : 84%;
+                position      : relative;
+
+
+                .img-doctor {
+                    border-radius: 500px;
+
+                    position  : absolute;
+                    height    : 100%;
+                    width     : 100%;
+                    inset     : 0px;
+                    object-fit: cover;
+                    color     : transparent;
+                }
+            }
+
+            .title_doctor {
+                padding-top  : 16px;
+                margin-bottom: 4px;
+                text-align   : center;
+                font-size    : 18px;
+                font-weight  : 600;
+                color        : rgb(26, 26, 26);
+            }
+        }
+
+    }
+}
+
+
+
 
 @media screen and (max-width: 576px) {
     .slider-doctor-content {

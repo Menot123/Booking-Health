@@ -114,6 +114,7 @@
     "homepage.all-specialty-examination-specialist": "Examination specialist",
     "homepage.all-clinics": "All medical facilities",
     "homepage.clinics": "Health facilities",
+    "homepage.all-doctors": "All doctors",
     "verify-booking.status-success": "Confirmation of successful appointment!",
     "verify-booking.status-failed": "Appointment schedule does not exist or has been confirmed",
     "detail-doctor-booking-modal.free-booking": "Free booking",

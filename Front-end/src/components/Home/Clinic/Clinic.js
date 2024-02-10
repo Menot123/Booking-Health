@@ -58,6 +58,7 @@ function Clinic(props) {
 
     const handleViewMoreClinic = () => {
         history.push('/list-clinic')
+        props.scrollToTop()
     }
 
     return (

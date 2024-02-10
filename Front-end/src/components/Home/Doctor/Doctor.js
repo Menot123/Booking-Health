@@ -52,12 +52,16 @@ function Doctor() {
         history.push(`/detail-doctor/${doctorId}`)
     }
 
+    const handleViewMoreDoctor = () => {
+        history.push('/list-doctor')
+    }
+
     return (
 
         <div className='slider-doctor-content '>
             <div className='title w-100 d-flex align-items-center justify-content-between'>
                 <h4><FormattedMessage id='homepage.outstanding-doctor' defaultMessage={'Bác sĩ nổi bật'} /></h4>
-                <span className='text-btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span>
+                <span onClick={() => handleViewMoreDoctor()} className='text-btn-view-more btn-view-more'><FormattedMessage id='homepage.view-more' defaultMessage={'Xem thêm'} /></span>
             </div>
             {doctors && doctors.length > 0 &&
                 <Slider {...settings}>

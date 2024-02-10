@@ -2,7 +2,6 @@ import React from 'react';
 import './Nav.scss'
 import { NavLink } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
-import Search from '../Search/Search';
 import { FaQuestionCircle } from "react-icons/fa";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,6 +10,7 @@ import { changeUserLanguage, setCarousel } from '../../redux/slices/userSlice'
 import { FormattedMessage } from 'react-intl'
 import Carousel from './Carousel'
 import { useEffect } from 'react'
+import Search from '../Search/Search';
 
 
 
@@ -48,11 +48,11 @@ const Nav = (props) => {
                         <div className='img-logo' onClick={() => handleClickLogo()}>
                             <img className='logo' alt='logo' src={logo}></img>
                         </div>
-                        <div className='nav-link-items d-flex '>
-                            <NavLink to="/chuyen-khoa"><FormattedMessage id='homepage.specialty' /></NavLink>
-                            <NavLink to="/co-so-y-te"><FormattedMessage id='homepage.facilities' /></NavLink>
+                        <div className='nav-link-items d-flex  flex-grow-1'>
+                            <NavLink to="/list-specialty"><FormattedMessage id='homepage.specialty' /></NavLink>
+                            <NavLink to="/list-clinic"><FormattedMessage id='homepage.facilities' /></NavLink>
                             <NavLink to="/cam-nang"><FormattedMessage id='homepage.live-healthy' /></NavLink>
-                            <Search className="search-input" />
+                            {/* <Search className="search-input" /> */}
                         </div>
 
                         <div className='content-nav-right d-flex'>

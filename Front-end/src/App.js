@@ -30,6 +30,7 @@ import DetailSpecialty from './components/Home/Specialty/DetailSpecialty';
 import DetailClinic from './components/Home/Clinic/DetailClinic';
 import AllSpecialty from './components/Home/Specialty/AllSpecialty';
 import AllClinic from './components/Home/Clinic/AllClinic';
+import ViewMoreDoctor from './components/Home/Doctor/ListDoctor/ViewMoreDoctor';
 
 function App() {
 
@@ -89,6 +90,10 @@ function App() {
 
             <Route path={path.LIST_CLINIC}>
               <AllClinic scrollToTop={scrollToTop} />
+            </Route>
+
+            <Route path={path.LIST_DOCTOR}>
+              <ViewMoreDoctor scrollToTop={scrollToTop} />
             </Route>
 
             {/* Blog */}
