@@ -11,9 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Doctor_info.belongsTo(models.Allcode, { foreignKey: 'priceId', targetKey: 'keyCode', as: 'dataPrice' })
+      Doctor_info.belongsTo(models.Allcode, { foreignKey: 'provinceId', targetKey: 'keyCode', as: 'dataProvince' })
       Doctor_info.belongsTo(models.Markdown, { foreignKey: 'doctorId', targetKey: 'doctorId', as: 'dataMarkdown' })
       Doctor_info.belongsTo(models.User, { foreignKey: 'doctorId', as: 'dataIdDoctor' })
       Doctor_info.belongsTo(models.Specialty, { foreignKey: 'specialtyId', targetKey: 'id', as: 'dataSpecialty' })
+      Doctor_info.belongsTo(models.Clinic, { foreignKey: 'clinicId', targetKey: 'id', as: 'dataClinic' })
     }
   };
   Doctor_info.init({

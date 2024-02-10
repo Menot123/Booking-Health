@@ -1,5 +1,5 @@
 import db from '../models/index'
-import { testSendEmail } from '../services/mailerService'
+import { sendEmail } from '../services/mailerService'
 import { v4 as uuidv4 } from 'uuid';
 require('dotenv').config()
 

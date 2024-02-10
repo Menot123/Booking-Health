@@ -21,13 +21,22 @@ module.exports = {
                 type: Sequelize.STRING
             },
             descriptionEn: {
-                type: Sequelize.TEXT
+                type: Sequelize.TEXT('long')
             },
             descriptionVi: {
-                type: Sequelize.TEXT
+                type: Sequelize.TEXT('long')
             },
             image: {
-                type: Sequelize.BLOB
+                type: Sequelize.BLOB('long')
+            },
+            markdownVi: {
+                type: Sequelize.TEXT('long')
+            },
+            markdownEn: {
+                type: Sequelize.TEXT('long')
+            },
+            status: {
+                type: Sequelize.STRING
             },
             createdAt: {
                 allowNull: false,

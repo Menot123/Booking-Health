@@ -320,6 +320,13 @@ const getDetailDoctorService = async (id) => {
                             model: db.Allcode, as: 'dataPrice', attributes: ['valueVi', 'valueEn']
 
                         },
+                        {
+                            model: db.Allcode, as: 'dataProvince', attributes: ['valueVi', 'valueEn']
+
+                        },
+                        {
+                            model: db.Clinic, as: 'dataClinic', attributes: ['nameVi', 'nameEn']
+                        }
                     ]
                 },
 

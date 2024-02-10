@@ -8,6 +8,7 @@ import postController from '../controllers/postController'
 import patientController from '../controllers/patientController'
 import uploadCloud from '../config/cloudinary.config'
 import specialty from '../controllers/specialtyController'
+import clinic from '../controllers/ClinicController'
 
 const router = express.Router()
 
@@ -32,6 +33,14 @@ const initApiRoutes = (app) => {
     // Manage specialty
     router.get('/get-specialties', specialty.getSpecialties)
     router.get('/get-detail-specialty', specialty.getDetailSpecialty)
+
+    // Manage clinic
+    router.get('/get-clinics', clinic.getClinics)
+    router.get('/get-detail-clinic', clinic.getDetailClinic)
+
+    // Get doctor by specialty and location
+    router.get('/get-doctors-specialty-location', specialty.getDoctorSpecialtyLocation)
+
 
 
     router.all('*', checkUserJWT);
@@ -77,6 +86,12 @@ const initApiRoutes = (app) => {
     router.post('/create-specialty', specialty.createSpecialty)
     router.post('/post-data-update-specialty', specialty.updateSpecialty)
     router.post('/delete-specialty', specialty.deleteSpecialty)
+
+    // Manage clinic
+    router.post('/create-clinic', clinic.createClinic)
+    router.post('/delete-clinic', clinic.deleteClinic)
+    router.post('/post-data-update-clinic', clinic.updateClinic)
+
 
     return app.use("/api/", router)
 

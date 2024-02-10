@@ -52,7 +52,6 @@ const Nav = (props) => {
                             <NavLink to="/list-specialty"><FormattedMessage id='homepage.specialty' /></NavLink>
                             <NavLink to="/list-clinic"><FormattedMessage id='homepage.facilities' /></NavLink>
                             <NavLink to="/cam-nang"><FormattedMessage id='homepage.live-healthy' /></NavLink>
-                            {/* <Search className="search-input" /> */}
                         </div>
 
                         <div className='content-nav-right d-flex'>

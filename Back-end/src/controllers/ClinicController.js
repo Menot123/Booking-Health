@@ -1,9 +1,9 @@
-import specialtyService from '../services/specialtyService'
+import clinicService from '../services/clinicService'
 
 
-const createSpecialty = async (req, res, next) => {
+const createClinic = async (req, res, next) => {
     try {
-        let response = await specialtyService.createSpecialtyService(req.body)
+        let response = await clinicService.createClinicService(req.body)
         return res.status(200).json({
             EM: response.EM,
             EC: response.EC,
@@ -11,7 +11,7 @@ const createSpecialty = async (req, res, next) => {
         })
 
     } catch (e) {
-        console.log('Something went wrong from create specialty')
+        console.log('Something went wrong from create Clinic')
         return res.status(500).json({
             EM: 'error from server',
             EC: '-1',
@@ -20,11 +20,11 @@ const createSpecialty = async (req, res, next) => {
     }
 }
 
-const getSpecialties = async (req, res, next) => {
+const getClinics = async (req, res, next) => {
     try {
         if (req.query.page && req.query.limit) {
             let { page, limit } = req.query
-            let data = await specialtyService.getSpecialtiesPaginationService(+page, +limit)
+            let data = await clinicService.getClinicsServicePaginationService(+page, +limit)
 
             return res.status(200).json({
                 EM: data.EM,
@@ -32,7 +32,7 @@ const getSpecialties = async (req, res, next) => {
                 DT: data.DT
             })
         } else {
-            let response = await specialtyService.getSpecialtiesService()
+            let response = await clinicService.getClinicsService()
             return res.status(200).json({
                 EM: response.EM,
                 EC: response.EC,
@@ -51,9 +51,9 @@ const getSpecialties = async (req, res, next) => {
     }
 }
 
-const getDetailSpecialty = async (req, res, next) => {
+const getDetailClinic = async (req, res, next) => {
     try {
-        let response = await specialtyService.getDetailSpecialtyService(req.query.idSpecialty)
+        let response = await clinicService.getDetailClinicService(req.query.idClinic)
         return res.status(200).json({
             EM: response.EM,
             EC: response.EC,
@@ -61,7 +61,7 @@ const getDetailSpecialty = async (req, res, next) => {
         })
 
     } catch (e) {
-        console.log('Something went wrong from get detail specialty')
+        console.log('Something went wrong from get detail Clinic')
         return res.status(500).json({
             EM: 'error from server',
             EC: '-1',
@@ -70,9 +70,9 @@ const getDetailSpecialty = async (req, res, next) => {
     }
 }
 
-const updateSpecialty = async (req, res, next) => {
+const updateClinic = async (req, res, next) => {
     try {
-        let response = await specialtyService.updateSpecialtyService(req.body)
+        let response = await clinicService.updateClinicService(req.body)
         return res.status(200).json({
             EM: response.EM,
             EC: response.EC,
@@ -80,7 +80,7 @@ const updateSpecialty = async (req, res, next) => {
         })
 
     } catch (e) {
-        console.log('Something went wrong from update specialty')
+        console.log('Something went wrong from update Clinic')
         return res.status(500).json({
             EM: 'error from server',
             EC: '-1',
@@ -89,9 +89,9 @@ const updateSpecialty = async (req, res, next) => {
     }
 }
 
-const deleteSpecialty = async (req, res, next) => {
+const deleteClinic = async (req, res, next) => {
     try {
-        let response = await specialtyService.deleteSpecialtyService(req.body)
+        let response = await clinicService.deleteClinicService(req.body)
         return res.status(200).json({
             EM: response.EM,
             EC: response.EC,
@@ -99,7 +99,7 @@ const deleteSpecialty = async (req, res, next) => {
         })
 
     } catch (e) {
-        console.log('Something went wrong from delete specialty')
+        console.log('Something went wrong from delete Clinic')
         return res.status(500).json({
             EM: 'error from server',
             EC: '-1',
@@ -108,27 +108,8 @@ const deleteSpecialty = async (req, res, next) => {
     }
 }
 
-const getDoctorSpecialtyLocation = async (req, res, next) => {
-    try {
-        let response = await specialtyService.getDoctorSpecialtyLocationService(req.query)
-        return res.status(200).json({
-            EM: response.EM,
-            EC: response.EC,
-            DT: response.DT
-        })
-
-    } catch (e) {
-        console.log('Something went wrong from get doctor by specialty and location')
-        return res.status(500).json({
-            EM: 'error from server',
-            EC: '-1',
-            DT: ''
-        })
-    }
-}
 
 
 module.exports = {
-    createSpecialty, getSpecialties, getDetailSpecialty, updateSpecialty, deleteSpecialty,
-    getDoctorSpecialtyLocation
+    createClinic, getClinics, getDetailClinic, updateClinic, deleteClinic
 }

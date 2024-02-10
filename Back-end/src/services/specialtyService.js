@@ -202,7 +202,114 @@ const getSpecialtiesPaginationService = async (page, limit) => {
     }
 }
 
+const getDoctorSpecialtyLocationService = async (dataSend) => {
+    try {
+        let res = {}
+
+        let doctors = []
+
+        if (dataSend.provinceId === 'ALL') {
+            doctors = await db.User.findAll({
+                where: {
+                    roleId: 'R2'
+                },
+                attributes: {
+                    exclude: ['password']
+                },
+                include: [
+                    { model: db.Allcode, as: 'positionData', attributes: ['valueVi', 'valueEn'] },
+                    {
+                        model: db.Doctor_info, as: 'dataIdDoctor',
+                        where: {
+                            specialtyId: dataSend.specialtyId
+                        },
+                        attributes: ['clinicId', 'specialtyId', 'priceId', 'provinceId', 'paymentId'
+                            , 'addressClinic', 'nameClinic', 'note'],
+                        include: [
+                            {
+                                model: db.Markdown, as: 'dataMarkdown', attributes: ['textMarkdown', 'textHTML', 'description']
+
+                            },
+                            {
+                                model: db.Allcode, as: 'dataPrice', attributes: ['valueVi', 'valueEn']
+
+                            },
+                            {
+                                model: db.Allcode, as: 'dataProvince', attributes: ['valueVi', 'valueEn']
+
+                            },
+                            {
+                                model: db.Clinic, as: 'dataClinic', attributes: ['nameVi', 'nameEn']
+                            }
+                        ]
+                    },
+
+                ]
+            })
+        } else {
+            doctors = await db.User.findAll({
+                where: {
+                    roleId: 'R2'
+                },
+                attributes: {
+                    exclude: ['password']
+                },
+                include: [
+                    { model: db.Allcode, as: 'positionData', attributes: ['valueVi', 'valueEn'] },
+                    {
+                        model: db.Doctor_info, as: 'dataIdDoctor',
+                        where: {
+                            provinceId: dataSend.provinceId,
+                            specialtyId: dataSend.specialtyId
+                        },
+                        attributes: ['clinicId', 'specialtyId', 'priceId', 'provinceId', 'paymentId'
+                            , 'addressClinic', 'nameClinic', 'note'],
+                        include: [
+                            {
+                                model: db.Markdown, as: 'dataMarkdown', attributes: ['textMarkdown', 'textHTML', 'description']
+
+                            },
+                            {
+                                model: db.Allcode, as: 'dataPrice', attributes: ['valueVi', 'valueEn']
+
+                            },
+                            {
+                                model: db.Allcode, as: 'dataProvince', attributes: ['valueVi', 'valueEn']
+
+                            },
+                            {
+                                model: db.Clinic, as: 'dataClinic', attributes: ['nameVi', 'nameEn']
+                            }
+                        ]
+                    },
+
+                ]
+            })
+        }
+
+
+
+        if (doctors) {
+            res.EC = 0
+            res.EM = 'Get doctors specialty and location successfully'
+            res.DT = doctors
+        } else {
+            res.EC = 2
+            res.EM = 'Get doctors specialty and location fail'
+            res.DT = {}
+        }
+        return res
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get doctors specialty and location service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     createSpecialtyService, getSpecialtiesService, getDetailSpecialtyService, updateSpecialtyService,
-    deleteSpecialtyService, getSpecialtiesPaginationService
+    deleteSpecialtyService, getSpecialtiesPaginationService, getDoctorSpecialtyLocationService
 }
