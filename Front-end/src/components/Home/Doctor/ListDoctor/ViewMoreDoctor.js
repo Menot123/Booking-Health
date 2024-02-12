@@ -60,7 +60,7 @@ function ViewMoreDoctor(props) {
                                     <img alt='img-element' className='img-doctor' src={convertImgBase64(item.image)} />
                                 </div>
                                 <div className='name-doctor'>
-                                    <span className='name-doctor-text'>{language === LANGUAGES.VI ? item.firstName + item.lastName : item.lastName + item.firstName}</span>
+                                    <span className='name-doctor-text'>{language === LANGUAGES.VI ? item.firstName + ' ' + item.lastName : item.lastName + ' ' + item.firstName}</span>
                                     <div className='specialty-doctor'>
                                         <span className='specialty-doctor-text'>{language === LANGUAGES.VI ? item?.dataIdDoctor?.dataSpecialty?.nameVi
                                             :

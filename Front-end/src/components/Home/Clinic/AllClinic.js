@@ -57,14 +57,12 @@ function AllClinic() {
                 {Clinics && Clinics.length > 0 &&
                     Clinics.map((item, index) => {
                         return (
-                            <>
-                                <div key={'all-clinic' + index} className='all-clinic-item col-3 mb-2' onClick={() => handleDetailClinic(item.id)}>
-                                    <img alt='img-element' className='img-clinic' src={convertImgBase64(item.image)} />
-                                    <div className='name-clinic'>
-                                        <span className='name-clinic-text'>{language === LANGUAGES.VI ? item.nameVi : item.nameEn}</span>
-                                    </div>
+                            <div key={'all-clinic' + index} className='all-clinic-item col-6 mb-2 col-md-4 col-xl-3' onClick={() => handleDetailClinic(item.id)}>
+                                <img alt='img-element' className='img-clinic' src={convertImgBase64(item.image)} />
+                                <div className='name-clinic'>
+                                    <span className='name-clinic-text'>{language === LANGUAGES.VI ? item.nameVi : item.nameEn}</span>
                                 </div>
-                            </>
+                            </div>
                         )
                     })}
 

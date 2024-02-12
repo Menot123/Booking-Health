@@ -49,3 +49,29 @@
     }
 
 }
+
+@media screen and (max-width: 576px) {
+    .all-clinic-container {
+        .all-clinic-item {
+            .img-clinic {
+                height: 120px;
+                width : 220px;
+
+            }
+
+        }
+    }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+    .all-clinic-container {
+        .all-clinic-item {
+            .img-clinic {
+                height: 120px;
+                width : 220px;
+            }
+
+        }
+    }
+}
