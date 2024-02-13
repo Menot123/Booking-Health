@@ -9,16 +9,20 @@
         .slick-arrow {
             z-index: 10;
             box-shadow: 0 0 5px rgba(201, 236, 240, 0.5);
-            border-color: rgb(181, 231, 237);
+            border-color: rgb(181, 231, 237) !important;
             border-radius: 30px;
-            width: 40px;
-            height: 40px;
             padding-top: 2px;
+            background-color: #0e7163;
         }
         .slick-prev:before,
         .slick-next:before {
-            color: rgb(52, 146, 158);
-            font-size: 40px;
+            color: rgb(255 255 255) !important;
+        }
+        .slick-next {
+            right: -13px;
+        }
+        .slick-prev {
+            left: -35px;
         }
         .slick-disabled {
             display: none !important;

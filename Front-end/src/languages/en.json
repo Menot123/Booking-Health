@@ -121,6 +121,7 @@
     "homepage.all-doctors": "All doctors",
     "verify-booking.status-success": "Confirmation of successful appointment!",
     "verify-booking.status-failed": "Appointment schedule does not exist or has been confirmed",
+    "doctor.not-found": "Doctor is not found!",
     "detail-doctor-booking-modal.free-booking": "Free booking",
     "detail-doctor-booking-modal.price": "Price: ",
     "detail-doctor-booking-modal.full-name": "Full name",

@@ -121,6 +121,7 @@
     "homepage.all-doctors": "Tất cả bác sĩ",
     "verify-booking.status-success": "Xác nhận đặt lịch khám thành công!",
     "verify-booking.status-failed": "Lịch hẹn không tồn tại hoặc đã được xác nhận",
+    "doctor.not-found": "Không tìm thấy bác sĩ",
     "detail-doctor-booking-modal.free-booking": "Miễn phí đặt lịch",
     "detail-doctor-booking-modal.price": "Giá khám: ",
     "detail-doctor-booking-modal.full-name": "Họ tên",
