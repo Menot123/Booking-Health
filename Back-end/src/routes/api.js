@@ -49,7 +49,7 @@ const initApiRoutes = (app) => {
 
 
 
-    // router.all('*', checkUserJWT);
+    router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
     router.get('/all-code', apiController.getAllCode);
