@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login } from '../../services/userService'
 import { useDispatch } from 'react-redux'
-import { setAuth, fetchAccount } from '../../redux/slices/userSlice'
-import { getUserAccount } from '../../services/userService'
+import { setAuth, fetchAccount, setRole } from '../../redux/slices/userSlice'
+import { getUserAccount, getRoleUser } from '../../services/userService'
 
 const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -31,8 +31,7 @@ const Login = (props) => {
     };
   }, []);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
     if (!username) {
       setIsValidInput({ ...defaultIsValidInput, usernameValid: false })
       toast.error('Please enter your username')
@@ -59,16 +58,23 @@ const Login = (props) => {
             account: response.DT.username
           }
           let account = await getUserAccount()
+          let userRole = await getRoleUser(username)
           if (account && account.EC === 0) {
             if (isMounted.current) {
               dispatch(fetchAccount(account.DT));
+              dispatch(setRole(userRole?.DT?.roleId))
             }
           }
           dispatch(setAuth(payload))
           if (isMounted.current) {
             setUsername('');
             setPassword('');
-            history.push('/admin');
+
+            if (userRole?.DT?.roleId === 'R2') {
+              history.push('/doctor/manage-schedules')
+            } else {
+              history.push('/admin');
+            }
           }
         }
         else {
@@ -97,7 +103,7 @@ const Login = (props) => {
       <div className="container">
         <div className="row justify-content-center align-items-center vh-100">
           <div className="col-md-4">
-            <form className="card" onSubmit={handleLogin}>
+            <div className="card" >
               <div className="card-body">
                 <h3 className="card-title text-center">Login</h3>
 
@@ -132,13 +138,13 @@ const Login = (props) => {
                 </div>
 
                 <div className="d-grid gap-2 pt-4">
-                  <button type="submit" className="btn btn-primary custom-gradient">Login</button>
+                  <button className="btn btn-primary custom-gradient" onClick={() => handleLogin()}>Login</button>
                 </div>
                 <p className="card-text text-end mt-2">
                   <a href="/home">Forgot password?</a>
                 </p>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>

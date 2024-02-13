@@ -49,6 +49,7 @@
     "admin-header.manage-users": "Quản lý người dùng",
     "admin-header.manage-doctors": "Quản lý bác sĩ",
     "admin-header.manage-schedules": "Quản lý kế hoạch khám bệnh",
+    "admin-header.manage-patients": "Quản lý bệnh nhân khám bệnh",
     "admin-header.manage-clinics": "Quản lý phòng khám",
     "admin-header.manage-specialties": "Quản lý chuyên khoa",
     "admin-header.manage-handbooks": "Quản lý cẩm nang",

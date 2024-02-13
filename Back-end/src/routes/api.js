@@ -49,7 +49,7 @@ const initApiRoutes = (app) => {
 
 
 
-    router.all('*', checkUserJWT);
+    // router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
     router.get('/all-code', apiController.getAllCode);
@@ -58,6 +58,7 @@ const initApiRoutes = (app) => {
     router.post('/logout', userController.handleLogout)
     router.post('/create-user', userController.handleCreateUser)
     router.delete('/delete-user', userController.handleDeleteUser)
+    router.get('/get-role-user', userController.handleGetRoleUser)
 
     router.get('/data-update-user', userController.handleGetDataUpdateUser)
     router.patch('/update-user', userController.handleUpdateUser)
@@ -94,6 +95,9 @@ const initApiRoutes = (app) => {
     router.post('/create-clinic', clinic.createClinic)
     router.post('/delete-clinic', clinic.deleteClinic)
     router.post('/post-data-update-clinic', clinic.updateClinic)
+
+    // Manage patients
+    router.get('/get-all-patients', patientController.getAllPatients)
 
 
     return app.use("/api/", router)

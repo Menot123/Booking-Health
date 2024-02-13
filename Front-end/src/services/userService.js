@@ -146,6 +146,10 @@ const getDoctorsBySpecialtyAndLocation = (dataSend) => {
     return axios.get(`/api/get-doctors-specialty-location?provinceId=${dataSend.provinceId}&specialtyId=${dataSend.specialtyId}`,)
 }
 
+const getRoleUser = (email) => {
+    return axios.get(`/api/get-role-user?email=${email}`)
+}
+
 export {
     fetchAllUser, fetchAllDataSelect, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
     updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
@@ -153,5 +157,5 @@ export {
     getDataProfileDoctor, createBookingDoctor, verifyBooking, postDataCreateSpecialty, getSpecialties,
     getDetailSpecialty, postDataUpdateSpecialty, postDataDeleteSpecialty, getSpecialtiesPagination,
     getClinics, getClinicsPagination, postDataCreateClinic, getDetailClinic, postDataDeleteClinic,
-    postDataUpdateClinic, getDoctorsBySpecialtyAndLocation
+    postDataUpdateClinic, getDoctorsBySpecialtyAndLocation, getRoleUser
 }

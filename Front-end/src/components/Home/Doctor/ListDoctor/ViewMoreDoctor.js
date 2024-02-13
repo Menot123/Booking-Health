@@ -54,8 +54,9 @@ function ViewMoreDoctor(props) {
             {doctors && doctors.length > 0 &&
                 doctors.map((item, index) => {
                     return (
-                        <>
-                            <div key={'all-doctor' + index} className='all-doctor-item' onClick={() => handleDetailDoctor(item.id)}>
+                        <div key={'all-doctor' + index}>
+
+                            <div className='all-doctor-item' onClick={() => handleDetailDoctor(item.id)}>
                                 <div className='avatar-doctor'>
                                     <img alt='img-element' className='img-doctor' src={convertImgBase64(item.image)} />
                                 </div>
@@ -70,7 +71,7 @@ function ViewMoreDoctor(props) {
                                 </div>
                             </div>
                             <hr className='hr-line' />
-                        </>
+                        </div>
                     )
                 })}
         </div>

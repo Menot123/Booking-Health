@@ -17,6 +17,25 @@ const getAccount = async (req, res) => {
     })
 }
 
+const handleGetRoleUser = async (req, res, next) => {
+    try {
+        let response = await userService.handleGetRoleUserService(req.query)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from create user')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
 const handleLogout = (req, res, next) => {
     try {
         res.clearCookie('jwt')
@@ -119,5 +138,5 @@ const handleUpdateUser = async (req, res, next) => {
 
 module.exports = {
     getUser, getAccount, handleLogout, handleCreateUser, handleDeleteUser,
-    handleGetDataUpdateUser, handleUpdateUser
+    handleGetDataUpdateUser, handleUpdateUser, handleGetRoleUser
 }
