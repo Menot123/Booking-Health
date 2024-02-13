@@ -56,7 +56,7 @@ function App() {
                         <div {...props} className="custom-thumb-vertical" style={{ padding: '0 17px 0 0' }} />
                     )}
                     autoHide autoHideTimeout={1000} autoHideDuration={200} style={{ width: '100%', height: '100%' }}>
-                    {url === '/login' || url.includes('/admin') ? ' ' : <Nav />}
+                    {url === '/login' || url.includes('/admin') || url.includes('/doctor') ? ' ' : <Nav />}
                     <Switch>
                         <LoginRoute path={path.LOGIN} component={Login} />
                         <Route path={path.CO_SO_Y_TE}>
@@ -114,6 +114,10 @@ function App() {
                         <Route path={path.ADMIN} component={AdminRoute} />
                         {/* End admin route */}
 
+                        {/* Doctor route */}
+                        <Route path={path.DOCTOR} component={AdminRoute} />
+                        {/* End doctor route */}
+
                         <Route path={path.HOMEPAGE}>
                             <Home scrollToTop={scrollToTop} />
                         </Route>
@@ -128,7 +132,7 @@ function App() {
                             <NotFound />
                         </Route>
                     </Switch>
-                    {url === '/login' || url.includes('/admin') ? ' ' : <Foot />}
+                    {url === '/login' || url.includes('/admin') || url.includes('/doctor') ? ' ' : <Foot />}
                 </Scrollbars>
                 <ToastContainer
                     position="bottom-right"

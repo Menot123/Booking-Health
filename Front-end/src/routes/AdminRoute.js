@@ -13,7 +13,7 @@ import ManageSchedules from '../admin/components/ManageSchedule/ManageSchedules'
 import ManagePosts from '../admin/components/ManagePosts/ManagePosts';
 import ManageSpecialty from '../admin/components/ManageSpecialty/ManageSpecialty';
 import ManageClinic from '../admin/components/ManageClinic/ManageClinic';
-
+import ManagePatients from '../admin/components/ManagePatients/ManagePatients';
 
 function AdminRoute() {
     return (
@@ -25,7 +25,9 @@ function AdminRoute() {
                 <PrivateRoutes path={path.MANAGE_DOCTORS} component={ManageDoctors} />
                 <PrivateRoutes path={path.MANAGE_POSTS} component={ManagePosts} />
                 <PrivateRoutes path={path.MANAGE_SCHEDULES} component={ManageSchedules} />
+                <PrivateRoutes path={path.MANAGE_SCHEDULES_DOCTOR} component={ManageSchedules} />
                 <PrivateRoutes path={path.MANAGE_CLINIC} component={ManageClinic} />
+                <PrivateRoutes path={path.MANAGE_PATIENTS} component={ManagePatients} />
             </Switch>
 
         </>

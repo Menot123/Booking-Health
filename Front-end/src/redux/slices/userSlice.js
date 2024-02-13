@@ -5,6 +5,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     isAuthenticated: false,
     token: '',
+    role: '',
     account: {
         username: '',
         firstName: '',
@@ -12,6 +13,7 @@ const initialState = {
     },
     currentLang: '',
     isShowCarousel: false,
+
 }
 
 
@@ -40,12 +42,15 @@ export const userSlice = createSlice({
         },
         setCarousel: (state, action) => {
             state.isShowCarousel = action.payload
+        },
+        setRole: (state, action) => {
+            state.role = action.payload
         }
 
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setAuth, logout, fetchAccount, changeUserLanguage, setCarousel } = userSlice.actions
+export const { setAuth, logout, fetchAccount, changeUserLanguage, setCarousel, setRole } = userSlice.actions
 
 export default userSlice.reducer

@@ -49,6 +49,7 @@
     "admin-header.manage-users": "Manage users",
     "admin-header.manage-doctors": "Manage doctors",
     "admin-header.manage-schedules": "Manage schedules",
+    "admin-header.manage-patients": "Manage patients",
     "admin-header.manage-clinics": "Manage clinics",
     "admin-header.manage-specialties": "Manage specialties",
     "admin-header.manage-handbooks": "Manage handbooks",

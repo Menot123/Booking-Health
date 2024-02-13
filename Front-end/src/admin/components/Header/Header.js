@@ -27,6 +27,7 @@ function Navbar() {
     }
 
     const language = useSelector(state => state.userRedux.language)
+    const role = useSelector(state => state.userRedux.role)
     const nameUserVi = useSelector(state => state.userRedux.account?.firstName +
         ' ' + state.userRedux.account?.lastName)
 
@@ -42,49 +43,74 @@ function Navbar() {
         <>
             <div className='navigation-bar d-flex justify-content-between'>
                 <div className='nav-content-left d-flex '>
-                    <div className='nav-item'>
-                        <span className='nav-item-title'><FormattedMessage id='admin-header.user' /></span>
-                        <div className="sub-menu sub-menu-long">
-                            <div className='wrapper-link'>
-                                <NavLink to="/admin"><FormattedMessage id='admin-header.manage-users' /></NavLink>
 
-                            </div>
-                            <div className='wrapper-link'>
-                                <NavLink to="/admin/manage-doctors"><FormattedMessage id='admin-header.manage-doctors' /></NavLink>
+                    {role !== 'R2' ?
+                        <>
+                            <div className='nav-item'>
+                                <span className='nav-item-title'><FormattedMessage id='admin-header.user' /></span>
+                                <div className="sub-menu sub-menu-long">
 
+                                    <div div className='wrapper-link'>
+                                        <NavLink to="/admin"><FormattedMessage id='admin-header.manage-users' /></NavLink>
+
+                                    </div>
+
+                                    <div className='wrapper-link'>
+                                        <NavLink to="/admin/manage-doctors"><FormattedMessage id='admin-header.manage-doctors' /></NavLink>
+
+                                    </div>
+
+                                    <div className='wrapper-link'>
+                                        <NavLink to="/admin/manage-schedules"><FormattedMessage id='admin-header.manage-schedules' /></NavLink>
+                                    </div>
+                                </div>
                             </div>
-                            <div className='wrapper-link'>
-                                <NavLink to="/admin/manage-schedules"><FormattedMessage id='admin-header.manage-schedules' /></NavLink>
+
+                            <div className='nav-item'>
+                                <span className='nav-item-title'><FormattedMessage id='admin-header.clinic' /></span>
+                                <div className="sub-menu ">
+                                    <div className='wrapper-link'>
+                                        <NavLink to="/admin/manage-clinics"><FormattedMessage id='admin-header.manage-clinics' /></NavLink>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='nav-item'>
+                                <span className='nav-item-title'><FormattedMessage id='admin-header.specialty' /></span>
+                                <div className="sub-menu ">
+                                    <div className='wrapper-link'>
+                                        <NavLink to="/admin/manage-specialties"><FormattedMessage id='admin-header.manage-specialties' /></NavLink>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='nav-item'>
+                                <span className='nav-item-title'><FormattedMessage id='admin-header.handbook' /></span>
+                                <div className="sub-menu ">
+                                    <div className='wrapper-link'>
+                                        <NavLink to="/admin/manage-posts"><FormattedMessage id='admin-header.manage-handbooks' /></NavLink>
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                        :
+                        <div className='nav-item'>
+                            <span className='nav-item-title'><FormattedMessage id='admin-header.user' /></span>
+                            <div className="sub-menu sub-menu-long">
+
+                                <div className='wrapper-link'>
+                                    <NavLink to="/doctor/manage-schedules"><FormattedMessage id='admin-header.manage-schedules' /></NavLink>
+                                </div>
+
+                                <div className='wrapper-link'>
+                                    <NavLink to="/doctor/manage-patients"><FormattedMessage id='admin-header.manage-patients' /></NavLink>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
 
-                    <div className='nav-item'>
-                        <span className='nav-item-title'><FormattedMessage id='admin-header.clinic' /></span>
-                        <div className="sub-menu ">
-                            <div className='wrapper-link'>
-                                <NavLink to="/admin/manage-clinics"><FormattedMessage id='admin-header.manage-clinics' /></NavLink>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className='nav-item'>
-                        <span className='nav-item-title'><FormattedMessage id='admin-header.specialty' /></span>
-                        <div className="sub-menu ">
-                            <div className='wrapper-link'>
-                                <NavLink to="/admin/manage-specialties"><FormattedMessage id='admin-header.manage-specialties' /></NavLink>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className='nav-item'>
-                        <span className='nav-item-title'><FormattedMessage id='admin-header.handbook' /></span>
-                        <div className="sub-menu ">
-                            <div className='wrapper-link'>
-                                <NavLink to="/admin/manage-posts"><FormattedMessage id='admin-header.manage-handbooks' /></NavLink>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 

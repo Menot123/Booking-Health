@@ -334,7 +334,41 @@ const updateUserService = async (userData) => {
     }
 }
 
+const handleGetRoleUserService = async (data) => {
+    try {
+        let res = {}
+        let email = data.email
+        let user = await db.User.findOne({
+            where: { email: email },
+            attributes: {
+                exclude: ['password', 'image']
+            }
+        })
+
+        if (user) {
+            res.EC = 0
+            res.EM = `Get role user successfully`
+            res.DT = user
+        } else {
+            res.EC = 1
+            res.EM = `Get role user failed`
+            res.DT = {}
+        }
+
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get data update user service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     loginChecked, getAllCode, getAllUsers, getTypeRoleService, createUserService,
-    getUsersPagination, deleteUserService, getDataUserUpdate, updateUserService
+    getUsersPagination, deleteUserService, getDataUserUpdate, updateUserService,
+    handleGetRoleUserService
 }

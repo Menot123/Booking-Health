@@ -14,7 +14,8 @@ const createUserPatientService = async (dataSend) => {
         let res = {}
 
         if (!dataSend.email || !dataSend.fullName || !dataSend.doctorId || !dataSend.dateSelectBooking || !dataSend.timeTypeBooking
-            || !dataSend.dateTimeMailer || !dataSend.nameDoctorBooking) {
+            || !dataSend.dateTimeMailer || !dataSend.nameDoctorBooking || !dataSend.contact
+            || !dataSend.gender) {
             res.EC = 1
             res.EM = 'Missing parameter !'
             res.DT = {}
@@ -27,7 +28,10 @@ const createUserPatientService = async (dataSend) => {
                 where: { email: dataSend.email },
                 defaults: {
                     email: dataSend.email,
-                    roleId: 'R3'
+                    roleId: 'R3',
+                    address: dataSend.contact,
+                    gender: dataSend.gender,
+                    firstName: dataSend.fullName
                 }
             });
 
@@ -131,7 +135,60 @@ const verifyBookingScheduleService = async (dataSend) => {
     }
 }
 
+const getAllPatientsService = async (dataSend) => {
+    try {
+        let res = {}
+        if (!dataSend.idDoctor || !dataSend.dateSelected) {
+            res.EC = 1
+            res.EM = 'Missing parameter !'
+            res.DT = {}
+        } else {
+
+            let patients = await db.Booking_doctor.findAll({
+                where: {
+                    doctorId: dataSend.idDoctor,
+                    date: dataSend.dateSelected,
+                    statusId: 'S2'
+                },
+                include: [
+                    {
+                        model: db.User, as: 'dataPatient', attributes: ['email', 'address', 'gender', 'firstName'],
+                        include: [
+                            {
+                                model: db.Allcode, as: 'genderData', attributes: ['valueVi', 'valueEn']
+
+                            },
+                        ]
+                    },
+
+                ]
+
+            })
+
+            if (patients) {
+                res.EC = 0
+                res.EM = 'Get all patients successfully'
+                res.DT = patients
+            } else {
+                res.EC = 2
+                res.EM = 'Get all patients failed'
+                res.DT = {}
+            }
+        }
+
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get all patients service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 
 module.exports = {
-    createUserPatientService, verifyBookingScheduleService
+    createUserPatientService, verifyBookingScheduleService, getAllPatientsService
 }
