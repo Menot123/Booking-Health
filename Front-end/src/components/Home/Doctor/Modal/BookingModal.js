@@ -11,7 +11,6 @@ import {
     Form,
     FormGroup,
 } from 'reactstrap';
-import img_doctor from '../../../../assets/img/bs-anh-thu1.jpg'
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { LANGUAGES } from '../../../../utils/index'

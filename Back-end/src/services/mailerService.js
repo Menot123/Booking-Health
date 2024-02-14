@@ -56,20 +56,70 @@ let sendEmail = async (dataMail) => {
         return content
     }
 
+
     const info = await transporter.sendMail({
-        from: '"Felix Dev 👻" <khanhduy8768@gmail.com>', // sender address
+        from: '"Felix Dev 👻" <From Booking Health>', // sender address
         to: dataMail.receiver, // list of receivers
-        subject: "Thông tin đặt lịch khám bệnh", // Subject line
+        subject: dataMail.currentLang === 'vi' ? "Thông tin đặt lịch khám bệnh" : "Information for scheduling medical examination", // Subject line
         html: contentMail(dataMail)
     });
 
+}
 
+const senRemedy = async (data) => {
+    const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+        auth: {
+            // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+            user: process.env.APP_EMAIL,
+            pass: process.env.APP_EMAIL_PASSWORD,
+        },
+    });
 
+    const contentRemedyMail = (data) => {
+        let result = ''
+        if (data.language === 'vi') {
+            result = `
+        
+            <h3>Xin chào ${data.patientName}</h3>
+            <p>Bạn nhận được email này vì đã đặt lịch khám bệnh online trên Booking Health thành công</p>
+            <p>Thông tin đơn thuốc/ hóa đơn được gửi trong file đính kèm. </p>
+            
+            <div>Xin chân thành cảm ơn</div>
+            `
+        }
+        if (data.language === 'en') {
+            result = `
+        
+            <h3>Dear ${data.patientName}</h3>
+            <p>You received this email because you made an online medical appointment on Booking Health</p>
+            <p>Prescription/invoice information is sent in the attached file.</p>
+            
+            <div>Sincerely thank</div>
+            `
+        }
+        return result
+    }
 
+    const info = await transporter.sendMail({
+        from: '"Felix Dev 👻" <From Booking Health>', // sender address
+        to: data.receiver, // list of receivers
+        subject: data.language === 'vi' ? "Kết quả đặt lịch khám bệnh" : "Result of medical examination appointment", // Subject line
+        html: contentRemedyMail(data),
+        attachments: [
+            {
+                filename: `booking-health-remedy-${data.patientId}- ${new Date().getTime()}.png`,
+                content: data.imgBase64.split("base64,")[1],
+                encoding: 'base64'
+            },
+        ]
+    });
 }
 
 
 
 
 
-module.exports = { sendEmail }
+module.exports = { sendEmail, senRemedy }

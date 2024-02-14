@@ -49,7 +49,7 @@ const initApiRoutes = (app) => {
 
 
 
-    // router.all('*', checkUserJWT);
+    router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
     router.get('/all-code', apiController.getAllCode);
@@ -98,6 +98,7 @@ const initApiRoutes = (app) => {
 
     // Manage patients
     router.get('/get-all-patients', patientController.getAllPatients)
+    router.post('/send-remedy', doctorController.sendRemedy)
 
 
     return app.use("/api/", router)

@@ -152,11 +152,13 @@ const getAllPatientsService = async (dataSend) => {
                 },
                 include: [
                     {
+                        model: db.Allcode, as: 'dataTime', attributes: ['valueVi', 'valueEn'],
+                    },
+                    {
                         model: db.User, as: 'dataPatient', attributes: ['email', 'address', 'gender', 'firstName'],
                         include: [
                             {
-                                model: db.Allcode, as: 'genderData', attributes: ['valueVi', 'valueEn']
-
+                                model: db.Allcode, as: 'genderData', attributes: ['valueVi', 'valueEn'],
                             },
                         ]
                     },

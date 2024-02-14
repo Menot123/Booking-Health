@@ -6,6 +6,7 @@ const initialState = {
     isAuthenticated: false,
     token: '',
     role: '',
+    id: '',
     account: {
         username: '',
         firstName: '',
@@ -44,7 +45,8 @@ export const userSlice = createSlice({
             state.isShowCarousel = action.payload
         },
         setRole: (state, action) => {
-            state.role = action.payload
+            state.role = action.payload.role
+            state.id = action.payload.id
         }
 
     },

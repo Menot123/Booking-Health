@@ -150,6 +150,15 @@ const getRoleUser = (email) => {
     return axios.get(`/api/get-role-user?email=${email}`)
 }
 
+const getAllPatientsByDate = (dataSend) => {
+    return axios.get(`/api/get-all-patients?idDoctor=${dataSend.idDoctor}&dateSelected=${dataSend.dateSelected}`)
+}
+
+const confirmAndSendRemedy = (dataSend) => {
+    return axios.post(`/api/send-remedy`, dataSend)
+}
+
+
 export {
     fetchAllUser, fetchAllDataSelect, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
     updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
@@ -157,5 +166,6 @@ export {
     getDataProfileDoctor, createBookingDoctor, verifyBooking, postDataCreateSpecialty, getSpecialties,
     getDetailSpecialty, postDataUpdateSpecialty, postDataDeleteSpecialty, getSpecialtiesPagination,
     getClinics, getClinicsPagination, postDataCreateClinic, getDetailClinic, postDataDeleteClinic,
-    postDataUpdateClinic, getDoctorsBySpecialtyAndLocation, getRoleUser
+    postDataUpdateClinic, getDoctorsBySpecialtyAndLocation, getRoleUser, getAllPatientsByDate,
+    confirmAndSendRemedy
 }

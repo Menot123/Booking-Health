@@ -59,10 +59,14 @@ const Login = (props) => {
           }
           let account = await getUserAccount()
           let userRole = await getRoleUser(username)
+          let dateUserRoleID = {
+            id: userRole?.DT?.id,
+            role: userRole?.DT?.roleId
+          }
           if (account && account.EC === 0) {
             if (isMounted.current) {
               dispatch(fetchAccount(account.DT));
-              dispatch(setRole(userRole?.DT?.roleId))
+              dispatch(setRole(dateUserRoleID))
             }
           }
           dispatch(setAuth(payload))
