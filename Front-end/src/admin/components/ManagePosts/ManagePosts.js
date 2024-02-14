@@ -40,9 +40,6 @@ function ManagePosts() {
 
     const [isLoading, setIsLoading] = useState(false)
     const [posts, setPosts] = useState([])
-    const [gender, setGender] = useState([])
-    const [role, setRole] = useState([])
-    const [position, setPosition] = useState([])
     const [postImg, setPostImg] = useState('')
     const [imgPreview, setImgPreview] = useState({
         isOpen: false,

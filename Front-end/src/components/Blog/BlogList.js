@@ -83,7 +83,7 @@ const BlogList = (props) => {
   }
 
   return (
-    <div className='container-bloglist'>
+    <div className='container-bloglist mb-3'>
       {/* Scroll to catalogue Button */}
       <div className='fixed-bottom mb-4 me-5 text-end'>
         <div onClick={() => scrollToIdView('search-title')} className='scroll-to-catalogue-container' style={{ cursor: 'pointer' }}>
