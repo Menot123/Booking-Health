@@ -1,5 +1,6 @@
 import db from '../models/index'
 import { createNewJWT } from '../middleware/JWTServices'
+import { sendCode } from './mailerService'
 import bcrypt from 'bcryptjs';
 const { Op } = require("sequelize");
 
@@ -17,6 +18,10 @@ const loginChecked = async (us, pwd) => {
             let checkPass = true
             if (user.email !== 'admin@gmail.com') {
                 checkPass = bcrypt.compareSync(pwd, user.password);
+            }
+            else {
+                if (pwd !== user.password)
+                    checkPass = false;
             }
             if (checkPass) {
                 let payload = {
@@ -367,8 +372,78 @@ const handleGetRoleUserService = async (data) => {
     }
 }
 
+const sendForgotPasswordCode = async (email) => {
+    try {
+        let res = {}
+        let user = await db.User.findOne({
+            where: {
+                email: email,
+                status: {
+                    [Op.not]: 'deleted'
+                }
+            },
+            attributes: {
+                include: ['email', 'password']
+            }
+        })
+        if (user) {
+            const OTP = Math.floor(100000 + Math.random() * 900000);
+            const sendOTP = await sendCode(user, OTP);
+            res.EC = 0
+            res.EM = `Send Code Completed`
+            res.DT = { OTP: OTP, email: email }
+        } else {
+            res.EC = 1
+            res.EM = `User not found`
+            res.DT = {}
+        }
+
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get code',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
+const changeUserPassword = async (userEmail, newPwd) => {
+    try {
+        let res = {}
+        let email = userEmail
+        let user = await db.User.findOne({
+            where: { email: email },
+        })
+
+        let hashPassword = await hashUserPassword(newPwd)
+        if (user) {
+            await user.update({ password: hashPassword })
+            res.EC = 0
+            res.EM = `Change password user ${userEmail} successfully`
+            res.DT = {}
+        } else {
+            res.EC = 1
+            res.EM = `Change pass for user ${userEmail} failed`
+            res.DT = {}
+        }
+
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with change password user service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     loginChecked, getAllCode, getAllUsers, getTypeRoleService, createUserService,
     getUsersPagination, deleteUserService, getDataUserUpdate, updateUserService,
-    handleGetRoleUserService
+    handleGetRoleUserService, sendForgotPasswordCode, changeUserPassword
 }

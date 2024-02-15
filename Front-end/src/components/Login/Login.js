@@ -141,7 +141,7 @@ const Login = (props) => {
                   <button className="btn btn-primary custom-gradient" onClick={() => handleLogin()}>Login</button>
                 </div>
                 <p className="card-text text-end mt-2">
-                  <a href="/home">Forgot password?</a>
+                  <a href="/forgot-password">Forgot password?</a>
                 </p>
               </div>
             </div>

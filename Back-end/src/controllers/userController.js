@@ -1,10 +1,10 @@
 import userService from '../services/userService'
 
-let getUser = async (req, res, next) => {
+let getUser = async(req, res, next) => {
     return res.status(200).json('')
 }
 
-const getAccount = async (req, res) => {
+const getAccount = async(req, res) => {
     return res.status(200).json({
         EM: 'OK',
         EC: 0,
@@ -17,7 +17,7 @@ const getAccount = async (req, res) => {
     })
 }
 
-const handleGetRoleUser = async (req, res, next) => {
+const handleGetRoleUser = async(req, res, next) => {
     try {
         let response = await userService.handleGetRoleUserService(req.query)
         return res.status(200).json({
@@ -53,7 +53,7 @@ const handleLogout = (req, res, next) => {
     }
 }
 
-const handleCreateUser = async (req, res, next) => {
+const handleCreateUser = async(req, res, next) => {
     try {
         let dataSend = req.body.data
         let response = await userService.createUserService(dataSend)
@@ -73,7 +73,7 @@ const handleCreateUser = async (req, res, next) => {
     }
 }
 
-const handleDeleteUser = async (req, res, next) => {
+const handleDeleteUser = async(req, res, next) => {
     try {
         // console.log(req.body)
         let user = req.body.user
@@ -94,7 +94,7 @@ const handleDeleteUser = async (req, res, next) => {
     }
 }
 
-const handleGetDataUpdateUser = async (req, res, next) => {
+const handleGetDataUpdateUser = async(req, res, next) => {
     try {
         let userId = req.query.userId
         let userEmail = req.query.userEmail
@@ -115,7 +115,7 @@ const handleGetDataUpdateUser = async (req, res, next) => {
     }
 }
 
-const handleUpdateUser = async (req, res, next) => {
+const handleUpdateUser = async(req, res, next) => {
     try {
         let userData = req.body.data
         let response = await userService.updateUserService(userData)
@@ -137,6 +137,12 @@ const handleUpdateUser = async (req, res, next) => {
 
 
 module.exports = {
-    getUser, getAccount, handleLogout, handleCreateUser, handleDeleteUser,
-    handleGetDataUpdateUser, handleUpdateUser, handleGetRoleUser
+    getUser,
+    getAccount,
+    handleLogout,
+    handleCreateUser,
+    handleDeleteUser,
+    handleGetDataUpdateUser,
+    handleUpdateUser,
+    handleGetRoleUser
 }

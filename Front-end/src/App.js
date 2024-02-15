@@ -18,6 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 import Login from './components/Login/Login';
+import ForgotPassword from './components/Forgot_Password/Forgot_Password';
 import Home from './components/Home/Home';
 
 import LoginRoute from './routes/LoginRoute';
@@ -56,9 +57,10 @@ function App() {
                         <div {...props} className="custom-thumb-vertical" style={{ padding: '0 17px 0 0' }} />
                     )}
                     autoHide autoHideTimeout={1000} autoHideDuration={200} style={{ width: '100%', height: '100%' }}>
-                    {url === '/login' || url.includes('/admin') || url.includes('/doctor') ? ' ' : <Nav />}
+                    {url === '/login' || url === '/forgot-password' || url.includes('/admin') || url.includes('/doctor') ? ' ' : <Nav />}
                     <Switch>
                         <LoginRoute path={path.LOGIN} component={Login} />
+                        <LoginRoute path={path.FORGOT_PASSWORD} component={ForgotPassword} />
                         <Route path={path.CO_SO_Y_TE}>
                             Co so y te
                         </Route>
@@ -132,7 +134,7 @@ function App() {
                             <NotFound />
                         </Route>
                     </Switch>
-                    {url === '/login' || url.includes('/admin') || url.includes('/doctor') ? ' ' : <Foot />}
+                    {url === '/login' || url === '/forgot-password' || url.includes('/admin') || url.includes('/doctor') ? ' ' : <Foot />}
                 </Scrollbars>
                 <ToastContainer
                     position="bottom-right"

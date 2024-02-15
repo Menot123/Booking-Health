@@ -13,6 +13,14 @@ const login = (username, password) => {
     return axios.post('/api/login', { username, password })
 }
 
+const sendOTP = (email) => {
+    return axios.post('/api/forgot-password', { email })
+}
+
+const resetPassword = (email, password) => {
+    return axios.post('/api/reset-password', { email, password })
+}
+
 const getUserAccount = () => {
     return axios.get('/api/account')
 }
@@ -157,5 +165,5 @@ export {
     getDataProfileDoctor, createBookingDoctor, verifyBooking, postDataCreateSpecialty, getSpecialties,
     getDetailSpecialty, postDataUpdateSpecialty, postDataDeleteSpecialty, getSpecialtiesPagination,
     getClinics, getClinicsPagination, postDataCreateClinic, getDetailClinic, postDataDeleteClinic,
-    postDataUpdateClinic, getDoctorsBySpecialtyAndLocation, getRoleUser
+    postDataUpdateClinic, getDoctorsBySpecialtyAndLocation, getRoleUser, sendOTP, resetPassword
 }

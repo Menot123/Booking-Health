@@ -17,14 +17,14 @@ const router = express.Router()
 const initApiRoutes = (app) => {
 
     router.get('/get-doctors', doctorController.getAllDoctor)
-    // Detail doctor
+        // Detail doctor
     router.get('/get-info-doctor', doctorController.getInfoDoctor)
     router.get('/get-schedule-by-date', doctorController.getScheduleByDate)
     router.get('/get-info-detail-doctor', doctorController.getDetailDoctor)
 
     // Get data to Modal booking
     router.get('/get-info-profile-doctor', doctorController.getInfoProfile)
-    // Create user when booking
+        // Create user when booking
     router.post('/create-user-patient', patientController.createUser)
 
     router.get('/type-role', apiController.getTypeRole)
@@ -40,7 +40,7 @@ const initApiRoutes = (app) => {
     router.get('/get-posts-by-type', postController.getPostsWithType)
     router.get('/get-posts-by-popular', postController.getPostsWithPopular)
     router.put('/add-post-view-count', postController.handleUpdatePostViewCount)
-    // Manage clinic
+        // Manage clinic
     router.get('/get-clinics', clinic.getClinics)
     router.get('/get-detail-clinic', clinic.getDetailClinic)
 
@@ -48,10 +48,12 @@ const initApiRoutes = (app) => {
     router.get('/get-doctors-specialty-location', specialty.getDoctorSpecialtyLocation)
 
 
-
-    // router.all('*', checkUserJWT);
+    router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
+    router.post('/forgot-password', loginController.handleForgotPassword)
+    router.post('/reset-password', loginController.handleChangePassword)
+
     router.get('/all-code', apiController.getAllCode);
     router.get('/users', apiController.getUsers);
     router.get('/account', userController.getAccount)
