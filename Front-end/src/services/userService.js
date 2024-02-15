@@ -151,19 +151,62 @@ const postDataUpdateClinic = (dataSend) => {
 }
 
 const getDoctorsBySpecialtyAndLocation = (dataSend) => {
-    return axios.get(`/api/get-doctors-specialty-location?provinceId=${dataSend.provinceId}&specialtyId=${dataSend.specialtyId}`,)
+    return axios.get(`/api/get-doctors-specialty-location?provinceId=${dataSend.provinceId}&specialtyId=${dataSend.specialtyId}`, )
 }
 
 const getRoleUser = (email) => {
     return axios.get(`/api/get-role-user?email=${email}`)
 }
 
+const getAllPatientsByDate = (dataSend) => {
+    return axios.get(`/api/get-all-patients?idDoctor=${dataSend.idDoctor}&dateSelected=${dataSend.dateSelected}`)
+}
+
+const confirmAndSendRemedy = (dataSend) => {
+    return axios.post(`/api/send-remedy`, dataSend)
+}
+
+
 export {
-    fetchAllUser, fetchAllDataSelect, login, getUserAccount, createNewUser, deleteUser, getDataUpdateUser,
-    updateUserData, getAllDoctor, getInfoDoctor, getAllPrice, getAllPayment, getAllProvince, getAllSpecialties,
-    getAllClinic, updateInfoDoctor, getInfoDetailDoctor, getAllSchedule, createSchedule, getSchedulesByDate,
-    getDataProfileDoctor, createBookingDoctor, verifyBooking, postDataCreateSpecialty, getSpecialties,
-    getDetailSpecialty, postDataUpdateSpecialty, postDataDeleteSpecialty, getSpecialtiesPagination,
-    getClinics, getClinicsPagination, postDataCreateClinic, getDetailClinic, postDataDeleteClinic,
-    postDataUpdateClinic, getDoctorsBySpecialtyAndLocation, getRoleUser, sendOTP, resetPassword
+    fetchAllUser,
+    fetchAllDataSelect,
+    login,
+    getUserAccount,
+    createNewUser,
+    deleteUser,
+    getDataUpdateUser,
+    updateUserData,
+    getAllDoctor,
+    getInfoDoctor,
+    getAllPrice,
+    getAllPayment,
+    getAllProvince,
+    getAllSpecialties,
+    getAllClinic,
+    updateInfoDoctor,
+    getInfoDetailDoctor,
+    getAllSchedule,
+    createSchedule,
+    getSchedulesByDate,
+    getDataProfileDoctor,
+    createBookingDoctor,
+    verifyBooking,
+    postDataCreateSpecialty,
+    getSpecialties,
+    getDetailSpecialty,
+    postDataUpdateSpecialty,
+    postDataDeleteSpecialty,
+    getSpecialtiesPagination,
+    getClinics,
+    getClinicsPagination,
+    postDataCreateClinic,
+    getDetailClinic,
+    postDataDeleteClinic,
+    postDataUpdateClinic,
+    getDoctorsBySpecialtyAndLocation,
+    getRoleUser,
+    sendOTP,
+    resetPassword,
+    getAllPatientsByDate,
+    confirmAndSendRemedy
 }

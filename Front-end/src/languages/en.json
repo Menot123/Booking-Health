@@ -111,6 +111,7 @@
     "homepage.detail-doctor.hide-price-list": "Hide price list",
     "homepage.detail-doctor.select": "Select",
     "homepage.detail-doctor.booking-free": "and make an appointment (booking fee 0 VND)",
+    "homepage.detail-doctor.booking-message-warning": "Bạn đang có 1 lịch hẹn khác trùng khung giờ trong hôm nay, vui lòng kiểm tra lại!",
     "homepage.detail-doctor.booking-message": "You have another appointment scheduled today, please check back!",
     "homepage.detail-doctor.booking-message-success": "Booking appointment was successfully!",
     "homepage.detail-doctor.booking-message-error": "Booking appointment error!!",
@@ -133,5 +134,17 @@
     "detail-doctor-booking-modal.birth": "Date of birth",
     "detail-doctor-booking-modal.gender": "Gender",
     "detail-specialty.view-more": "View more",
-    "detail-specialty.hidden": "Hidden"
+    "detail-specialty.hidden": "Hidden",
+    "doctor-manage-patients.title": "Managing medical examination patients",
+    "doctor-manage-patients.time-table": "Time",
+    "doctor-manage-patients.stt": "No",
+    "doctor-manage-patients.name": "Fullname",
+    "doctor-manage-patients.address": "Address",
+    "doctor-manage-patients.gender": "Gender",
+    "doctor-manage-patients.actions": "Actions",
+    "doctor-manage-patients.btn-confirm": "Confirm",
+    "doctor-manage-patients.modal-title": "Send medical bills",
+    "doctor-manage-patients.modal-email-patient": "Email patient",
+    "doctor-manage-patients.modal-remedy": "Attach invoice",
+    "doctor-manage-patients.modal-cancel": "Cancel"
 }

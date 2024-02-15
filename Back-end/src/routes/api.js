@@ -100,6 +100,7 @@ const initApiRoutes = (app) => {
 
     // Manage patients
     router.get('/get-all-patients', patientController.getAllPatients)
+    router.post('/send-remedy', doctorController.sendRemedy)
 
 
     return app.use("/api/", router)

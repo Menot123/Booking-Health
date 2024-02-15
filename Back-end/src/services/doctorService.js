@@ -1,6 +1,7 @@
 import db from '../models/index'
 const { Op } = require("sequelize");
 import _ from 'lodash'
+import { senRemedy } from '../services/mailerService'
 
 
 const getAllDoctorService = async () => {
@@ -538,8 +539,63 @@ const getInfoProfileService = async (dataSend) => {
     }
 }
 
+const sendRemedyService = async (dataSend) => {
+    try {
+        let res = {}
+
+        if (!dataSend.email || !dataSend.remedy || !dataSend.doctorId || !dataSend.timeType || !dataSend.patientId
+            || !dataSend.fullName || !dataSend.language) {
+            res.EC = 1
+            res.EM = 'Missing parameter !'
+            res.DT = {}
+        } else {
+            let booking = await db.Booking_doctor.findOne({
+                where: {
+                    doctorId: dataSend.doctorId,
+                    patientId: dataSend.patientId,
+                    timeType: dataSend.timeType,
+                    statusId: 'S2'
+                }
+            })
+
+            if (booking) {
+                booking.statusId = 'S3'
+                booking.save()
+
+                let dataSendMailRemedy = {
+                    language: dataSend.language,
+                    patientName: dataSend.fullName,
+                    receiver: dataSend.email,
+                    imgBase64: dataSend.remedy
+                }
+                await senRemedy(dataSendMailRemedy)
+                res.EC = 0
+                res.EM = `Send remedy to ${dataSend.email}  successfully`
+                res.DT = {}
+                return res
+
+            } else {
+                res.EC = 2
+                res.EM = 'Send remedy to ${dataSend.email}  failed'
+                res.DT = {}
+            }
+
+        }
+
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with create patient account service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     getAllDoctorService, getInfoDoctorService, getAllPriceService, getAllPaymentsService, getAllProvincesService,
     getAllSpecialtiesService, getAllClinicService, updateInfoDoctorService, getDetailDoctorService, getAllScheduleService,
-    createScheduleService, getScheduleByDateService, getInfoProfileService
+    createScheduleService, getScheduleByDateService, getInfoProfileService, sendRemedyService
 }

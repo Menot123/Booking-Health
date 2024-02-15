@@ -133,5 +133,17 @@
     "detail-doctor-booking-modal.birth": "Ngày sinh",
     "detail-doctor-booking-modal.gender": "Giới tính",
     "detail-specialty.view-more": "Xem thêm",
-    "detail-specialty.hidden": "Ẩn bớt"
+    "detail-specialty.hidden": "Ẩn bớt",
+    "doctor-manage-patients.title": "Quản lý bệnh nhân khám bệnh",
+    "doctor-manage-patients.time-table": "Thời gian",
+    "doctor-manage-patients.stt": "STT",
+    "doctor-manage-patients.name": "Họ tên",
+    "doctor-manage-patients.address": "Địa chỉ",
+    "doctor-manage-patients.gender": "Giới tính",
+    "doctor-manage-patients.actions": "Thao tác",
+    "doctor-manage-patients.btn-confirm": "Xác nhận",
+    "doctor-manage-patients.modal-title": "Gửi hóa đơn khám bệnh",
+    "doctor-manage-patients.modal-email-patient": "Email bệnh nhân",
+    "doctor-manage-patients.modal-remedy": "Đính kèm hóa đơn",
+    "doctor-manage-patients.modal-cancel": "Hủy bỏ"
 }
