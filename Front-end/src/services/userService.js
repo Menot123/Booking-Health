@@ -151,7 +151,7 @@ const postDataUpdateClinic = (dataSend) => {
 }
 
 const getDoctorsBySpecialtyAndLocation = (dataSend) => {
-    return axios.get(`/api/get-doctors-specialty-location?provinceId=${dataSend.provinceId}&specialtyId=${dataSend.specialtyId}`, )
+    return axios.get(`/api/get-doctors-specialty-location?provinceId=${dataSend.provinceId}&specialtyId=${dataSend.specialtyId}`,)
 }
 
 const getRoleUser = (email) => {
@@ -164,6 +164,10 @@ const getAllPatientsByDate = (dataSend) => {
 
 const confirmAndSendRemedy = (dataSend) => {
     return axios.post(`/api/send-remedy`, dataSend)
+}
+
+const checkFullScheduleDoctor = (doctorId) => {
+    return axios.get(`/api/check-full-schedule?doctorId=${doctorId}`)
 }
 
 
@@ -208,5 +212,6 @@ export {
     sendOTP,
     resetPassword,
     getAllPatientsByDate,
-    confirmAndSendRemedy
+    confirmAndSendRemedy,
+    checkFullScheduleDoctor
 }

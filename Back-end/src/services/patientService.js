@@ -2,6 +2,7 @@ import db from '../models/index'
 import { sendEmail } from '../services/mailerService'
 import { v4 as uuidv4 } from 'uuid';
 require('dotenv').config()
+const { Op } = require("sequelize");
 
 const buildTokenVerify = (token, idDoctor) => {
     let result = ''
@@ -31,30 +32,66 @@ const createUserPatientService = async (dataSend) => {
                     roleId: 'R3',
                     address: dataSend.contact,
                     gender: dataSend.gender,
-                    firstName: dataSend.fullName
+                    firstName: dataSend.fullName,
+                    status: 'patient'
                 }
             });
 
             if (patient) {
 
-                const [newBooking, createdBooking] = await db.Booking_doctor.findOrCreate({
+                const finderBooking = await db.Booking_doctor.findOne({
                     where: {
                         date: dataSend.dateSelectBooking,
-                        timeType: dataSend.timeTypeBooking
+                        timeType: dataSend.timeTypeBooking,
                     },
-                    defaults: {
+                    order: [['createdAt', 'DESC']],
+                    limit: 1,
+                    raw: true
+                })
+
+                if (finderBooking) {
+                    let checkExistBooking = await db.Booking_doctor.findAll({
+                        where: {
+                            date: dataSend.dateSelectBooking,
+                            timeType: dataSend.timeTypeBooking,
+                            patientId: patient.id,
+                        },
+                    })
+                    if (checkExistBooking.length === 0 && finderBooking?.numberPatient < 3) {
+                        await db.Booking_doctor.create({
+                            statusId: 'S1',
+                            doctorId: dataSend.doctorId,
+                            patientId: patient.id,
+                            date: dataSend.dateSelectBooking,
+                            timeType: dataSend.timeTypeBooking,
+                            verify: tokenVerify,
+                            numberPatient: +finderBooking.numberPatient + 1
+                        })
+                        await sendEmail({
+                            receiver: dataSend.email,
+                            name: dataSend.fullName,
+                            timeBooking: dataSend.dateTimeMailer,
+                            currentLang: dataSend.currentLang,
+                            doctorBooking: dataSend.nameDoctorBooking,
+                            redirectLink: buildTokenVerify(tokenVerify, dataSend.doctorId),
+                        })
+                    } else {
+                        res.EC = 2
+                        res.EM = 'You have another appointment scheduled today or schedule is full, please check back!'
+                        res.DT = {}
+                        return res
+
+                    }
+                } else {
+                    await db.Booking_doctor.create({
                         statusId: 'S1',
                         doctorId: dataSend.doctorId,
                         patientId: patient.id,
                         date: dataSend.dateSelectBooking,
                         timeType: dataSend.timeTypeBooking,
-                        verify: tokenVerify
-                    }
-                })
-
-                if (createdBooking) {
-
-
+                        verify: tokenVerify,
+                        numberPatient: 1
+                    })
                     await sendEmail({
                         receiver: dataSend.email,
                         name: dataSend.fullName,
@@ -63,18 +100,16 @@ const createUserPatientService = async (dataSend) => {
                         doctorBooking: dataSend.nameDoctorBooking,
                         redirectLink: buildTokenVerify(tokenVerify, dataSend.doctorId),
                     })
-
-                    res.EC = 0
-                    res.EM = 'Create user patient successfully'
-                    res.DT = {}
-                    return res
                 }
+                res.EC = 0
+                res.EM = 'Create user patient successfully'
+                res.DT = {}
+                return res
             }
 
             res.EC = 2
             res.EM = 'You have another appointment scheduled today, please check back!'
             res.DT = {}
-
             return res
         }
 

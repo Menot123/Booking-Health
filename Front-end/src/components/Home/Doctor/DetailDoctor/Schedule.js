@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react'
 import { getSchedulesByDate } from '../../../../services/userService'
 import { v4 as uuidv4 } from 'uuid';
 import { FormattedMessage } from 'react-intl'
-import { getDataProfileDoctor } from '../../../../services/userService'
+import { getDataProfileDoctor, checkFullScheduleDoctor } from '../../../../services/userService'
 import { toast } from 'react-toastify';
 import _ from 'lodash'
 
@@ -28,6 +28,25 @@ function Schedule(props) {
     useEffect(() => {
         setListday(getDays(language))
     }, [language])
+
+    if (schedules.length > 0) {
+        const handleFullBookingSchedule = async (doctorId) => {
+            let res = await checkFullScheduleDoctor(doctorId)
+            if (res.EC === 0) {
+                if (res.DT.length > 0) {
+                    let timeTypes = res.DT.map(item => item.timeType);
+                    timeTypes.forEach(timeType => {
+                        let element = document.getElementById(timeType);
+                        if (element) {
+                            element.classList.add("disabled", "fulled");
+                        }
+                    });
+
+                }
+            }
+        }
+        handleFullBookingSchedule(props.doctorId)
+    }
 
     useEffect(() => {
         let isMounted = true; // Biến flag để kiểm tra component có còn tồn tại hay không
@@ -73,10 +92,6 @@ function Schedule(props) {
     const capitalizeFirstLetter = (content) => {
         return content.charAt(0).toUpperCase() + content.slice(1);
     }
-
-    // console.log('moment vie:', moment(new Date()).format('dddd - DD/MM'));
-
-    // console.log('moment en:', moment(new Date()).locale('en').format("ddd - DD/MM"));
 
     const getDays = (language) => {
         let allDays = []
@@ -146,7 +161,7 @@ function Schedule(props) {
                     schedules && schedules.length > 0 &&
                     schedules.map((item, index) => {
                         return (
-                            <span onClick={() => handleClickBooking(item)} key={uuidv4()} className='btn btn-schedule'>{language === LANGUAGES.VI ? item.dataTime.valueVi : item.dataTime.valueEn}</span>
+                            <span id={item?.timeType} onClick={() => handleClickBooking(item)} key={uuidv4()} className='btn btn-schedule'>{language === LANGUAGES.VI ? item.dataTime.valueVi : item.dataTime.valueEn}</span>
                         )
                     })
                 }

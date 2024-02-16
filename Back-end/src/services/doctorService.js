@@ -594,8 +594,42 @@ const sendRemedyService = async (dataSend) => {
     }
 }
 
+const checkFullScheduleService = async (data) => {
+    try {
+        let res = {}
+        let scheduleFulled = await db.Booking_doctor.findAll({
+            where: {
+                doctorId: data?.doctorId,
+                numberPatient: 3
+            },
+            raw: true
+        });
+
+
+        if (scheduleFulled) {
+            res.EC = 0
+            res.EM = 'Get scheduleFulled successfully'
+            res.DT = scheduleFulled
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Get scheduleFulled failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get scheduleFulled service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     getAllDoctorService, getInfoDoctorService, getAllPriceService, getAllPaymentsService, getAllProvincesService,
     getAllSpecialtiesService, getAllClinicService, updateInfoDoctorService, getDetailDoctorService, getAllScheduleService,
-    createScheduleService, getScheduleByDateService, getInfoProfileService, sendRemedyService
+    createScheduleService, getScheduleByDateService, getInfoProfileService, sendRemedyService, checkFullScheduleService
 }

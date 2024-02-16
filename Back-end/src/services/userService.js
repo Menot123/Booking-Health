@@ -380,7 +380,8 @@ const sendForgotPasswordCode = async (email) => {
                 email: email,
                 status: {
                     [Op.not]: 'deleted'
-                }
+                },
+                roleId: 'R2'
             },
             attributes: {
                 include: ['email', 'password']
@@ -415,7 +416,7 @@ const changeUserPassword = async (userEmail, newPwd) => {
         let res = {}
         let email = userEmail
         let user = await db.User.findOne({
-            where: { email: email },
+            where: { email: email, roleId: 'R2' }
         })
 
         let hashPassword = await hashUserPassword(newPwd)

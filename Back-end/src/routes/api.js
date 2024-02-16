@@ -17,14 +17,14 @@ const router = express.Router()
 const initApiRoutes = (app) => {
 
     router.get('/get-doctors', doctorController.getAllDoctor)
-        // Detail doctor
+    // Detail doctor
     router.get('/get-info-doctor', doctorController.getInfoDoctor)
     router.get('/get-schedule-by-date', doctorController.getScheduleByDate)
     router.get('/get-info-detail-doctor', doctorController.getDetailDoctor)
 
     // Get data to Modal booking
     router.get('/get-info-profile-doctor', doctorController.getInfoProfile)
-        // Create user when booking
+    // Create user when booking
     router.post('/create-user-patient', patientController.createUser)
 
     router.get('/type-role', apiController.getTypeRole)
@@ -40,12 +40,15 @@ const initApiRoutes = (app) => {
     router.get('/get-posts-by-type', postController.getPostsWithType)
     router.get('/get-posts-by-popular', postController.getPostsWithPopular)
     router.put('/add-post-view-count', postController.handleUpdatePostViewCount)
-        // Manage clinic
+    // Manage clinic
     router.get('/get-clinics', clinic.getClinics)
     router.get('/get-detail-clinic', clinic.getDetailClinic)
 
     // Get doctor by specialty and location
     router.get('/get-doctors-specialty-location', specialty.getDoctorSpecialtyLocation)
+
+    // Check full schedule
+    router.get('/check-full-schedule', doctorController.checkFullSchedule)
 
 
     router.all('*', checkUserJWT);

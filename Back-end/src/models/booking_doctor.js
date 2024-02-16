@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         date: DataTypes.STRING,
         timeType: DataTypes.STRING,
         verify: DataTypes.STRING,
+        numberPatient: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'Booking_doctor',

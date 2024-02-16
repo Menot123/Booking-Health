@@ -26,6 +26,9 @@ module.exports = {
             verify: {
                 type: Sequelize.STRING
             },
+            numberPatient: {
+                type: Sequelize.INTEGER
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

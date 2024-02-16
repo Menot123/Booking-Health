@@ -1,7 +1,7 @@
 require('dotenv').config()
 const nodemailer = require("nodemailer");
 
-let sendEmail = async(dataMail) => {
+let sendEmail = async (dataMail) => {
 
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -66,7 +66,7 @@ let sendEmail = async(dataMail) => {
 
 }
 
-const senRemedy = async(data) => {
+const senRemedy = async (data) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
@@ -84,7 +84,7 @@ const senRemedy = async(data) => {
             result = `
         
             <h3>Xin chào ${data.patientName}</h3>
-            <p>Bạn nhận được email này vì đã đặt lịch khám bệnh online trên Booking Health thành công</p>
+            <p>Cảm ơn bạn đã đặt lịch khám bệnh với Booking Health.</p>
             <p>Thông tin đơn thuốc/ hóa đơn được gửi trong file đính kèm. </p>
             
             <div>Xin chân thành cảm ơn</div>
@@ -94,7 +94,7 @@ const senRemedy = async(data) => {
             result = `
         
             <h3>Dear ${data.patientName}</h3>
-            <p>You received this email because you made an online medical appointment on Booking Health</p>
+            <p>Thank you for booking your medical appointment with Booking Health.</p>
             <p>Prescription/invoice information is sent in the attached file.</p>
             
             <div>Sincerely thank</div>
@@ -112,11 +112,11 @@ const senRemedy = async(data) => {
             filename: `booking-health-remedy-${data.patientId}- ${new Date().getTime()}.png`,
             content: data.imgBase64.split("base64,")[1],
             encoding: 'base64'
-        }, ]
+        },]
     });
 }
 
-let sendCode = async(user, OTP) => {
+let sendCode = async (user, OTP) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
