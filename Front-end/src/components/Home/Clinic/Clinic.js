@@ -21,18 +21,25 @@ function Clinic(props) {
     const [clinics, setClinics] = useState([])
 
     useEffect(() => {
+        let isMounted = true;
+
         const fetchDataClinic = async () => {
-            let res = await getClinics()
-            if (res.EC === 0) {
-                setClinics(res.DT)
-            } else {
-                toast.error(res.EM)
+            let res = await getClinics();
+            if (isMounted) {
+                if (res.EC === 0) {
+                    setClinics(res.DT);
+                } else {
+                    toast.error(res.EM);
+                }
             }
-        }
+        };
 
-        fetchDataClinic()
-    }, [])
+        fetchDataClinic();
 
+        return () => {
+            isMounted = false;
+        };
+    }, []);
     const settings = {
         dots: false,
         infinite: false,

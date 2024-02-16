@@ -10,7 +10,7 @@ import { translate } from '../../../redux/slices/languageSlice'
 import { changeUserLanguage } from '../../../redux/slices/userSlice'
 import { useEffect } from 'react'
 
-function Navbar() {
+function Header() {
 
 
     const history = useHistory()
@@ -50,7 +50,7 @@ function Navbar() {
                                 <span className='nav-item-title'><FormattedMessage id='admin-header.user' /></span>
                                 <div className="sub-menu sub-menu-long">
 
-                                    <div div className='wrapper-link'>
+                                    <div className='wrapper-link'>
                                         <NavLink to="/admin"><FormattedMessage id='admin-header.manage-users' /></NavLink>
 
                                     </div>
@@ -131,4 +131,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export default Header;

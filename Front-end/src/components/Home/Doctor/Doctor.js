@@ -16,17 +16,25 @@ function Doctor() {
     const history = useHistory()
 
     useEffect(() => {
-        getDoctors()
-    }, [])
+        let isMounted = true;
 
-    const getDoctors = async () => {
-        let res = await getAllDoctor()
-        let listDoctor = ''
-        if (res.EC === 0 && res.DT) {
-            listDoctor = res.DT
+        const getDoctors = async () => {
+            let res = await getAllDoctor()
+            let listDoctor = ''
+            if (res.EC === 0 && res.DT) {
+                listDoctor = res.DT
+            }
+            if (isMounted) {
+                setDoctors(listDoctor)
+            }
         }
-        setDoctors(listDoctor)
-    }
+
+        getDoctors();
+
+        return () => {
+            isMounted = false;
+        };
+    }, []);
 
 
     const settings = {
