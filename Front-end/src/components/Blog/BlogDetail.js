@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './BlogDetail.scss'
 import { FaHome, FaArrowUp } from "react-icons/fa";
+import { IoMdHome } from "react-icons/io";
 import new_blog from '../../assets/img/new-blog.png'
 import { getDataUpdatePost, fetchPostsByType, addPostViewCount } from '../../services/postService'
 import NotFound from '../404_Not_Found/NotFound';
@@ -87,10 +88,11 @@ function BlogDetail(props) {
                     <>
                         {/* This is the Nav of the Blog */}
                         <div className='container' id='custom-blog-nav'>
-                            <FaHome onClick={() => props.handleNavigateToPage('/')} style={{ color: "blue", fontSize: "19", cursor: "pointer" }} />
-                            <span onClick={() => props.handleNavigateToPage('/cam-nang')} style={{ fontSize: "17px", color: "blue", cursor: "pointer" }}> / <FormattedMessage id="blog.handbook" defaultMessage={'Cẩm nang'} /></span>
-                            <span onClick={() => props.handleNavigateToPage('/cam-nang/danh-sach')} style={{ fontSize: "17px", color: "blue", cursor: "pointer" }}> / <FormattedMessage id="blog.handbook-list" defaultMessage={'Danh sách'} /></span>
-                            <span onClick={() => props.handleNavigateToPage('/cam-nang/danh-sach/' + post.type)} style={{ fontSize: "17px", color: "blue", cursor: "pointer" }}> / {decodeURIComponent(post.type)}</span>
+                            {/* <FaHome onClick={() => props.handleNavigateToPage('/')} style={{ color: "blue", fontSize: "19", cursor: "pointer" }} /> */}
+                            <IoMdHome onClick={() => props.handleNavigateToPage('/')} color="#45c3d2" fontSize="1.5em" />
+                            <span onClick={() => props.handleNavigateToPage('/cam-nang')} style={{ fontSize: "17px", color: "#438b94", cursor: "pointer" }}> / <FormattedMessage id="blog.handbook" defaultMessage={'Cẩm nang'} /></span>
+                            <span onClick={() => props.handleNavigateToPage('/cam-nang/danh-sach')} style={{ fontSize: "17px", color: "#438b94", cursor: "pointer" }}> / <FormattedMessage id="blog.handbook-list" defaultMessage={'Danh sách'} /></span>
+                            <span onClick={() => props.handleNavigateToPage('/cam-nang/danh-sach/' + post.type)} style={{ fontSize: "17px", color: "#438b94", cursor: "pointer" }}> / {decodeURIComponent(post.type)}</span>
                         </div>
 
                         {/* This is Blog Body */}
