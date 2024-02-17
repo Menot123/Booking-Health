@@ -289,8 +289,28 @@ const checkFullSchedule = async (req, res, next) => {
     }
 }
 
+const deleteBooking = async (req, res) => {
+    try {
+        let response = await doctorService.deleteBookingService(req.body)
+        return res.status(200).json({
+            EM: response.EM,
+            EC: response.EC,
+            DT: response.DT
+        })
+
+    } catch (e) {
+        console.log('Something went wrong from delete booking ')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
+        })
+    }
+}
+
 module.exports = {
     getAllDoctor, getAllPrice, getInfoDoctor, getAllPayments, getAllProvinces,
     getAllSpecialties, getAllClinics, updateInfoDoctor, getDetailDoctor, getAllSchedule,
-    createSchedule, getScheduleByDate, getInfoProfile, sendRemedy, checkFullSchedule
+    createSchedule, getScheduleByDate, getInfoProfile, sendRemedy, checkFullSchedule,
+    deleteBooking
 }

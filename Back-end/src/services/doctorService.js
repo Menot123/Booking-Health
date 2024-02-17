@@ -628,8 +628,40 @@ const checkFullScheduleService = async (data) => {
     }
 }
 
+const deleteBookingService = async (dataSend) => {
+    try {
+        let res = {}
+
+        if (!dataSend.bookingId) {
+            res.EC = 1
+            res.EM = 'Missing parameter !'
+            res.DT = {}
+        } else {
+            await db.Booking_doctor.destroy({
+                where: {
+                    id: dataSend.bookingId
+                }
+
+            })
+            res.EC = 0
+            res.EM = `Cancel booking id: ${dataSend.bookingId}  successfully`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with cancel booking service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     getAllDoctorService, getInfoDoctorService, getAllPriceService, getAllPaymentsService, getAllProvincesService,
     getAllSpecialtiesService, getAllClinicService, updateInfoDoctorService, getDetailDoctorService, getAllScheduleService,
-    createScheduleService, getScheduleByDateService, getInfoProfileService, sendRemedyService, checkFullScheduleService
+    createScheduleService, getScheduleByDateService, getInfoProfileService, sendRemedyService, checkFullScheduleService,
+    deleteBookingService
 }
