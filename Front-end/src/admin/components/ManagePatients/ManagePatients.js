@@ -11,8 +11,9 @@ import { LANGUAGES } from '../../../utils/index'
 import { useSelector } from 'react-redux';
 import moment from 'moment'
 import _ from 'lodash';
-import { getAllPatientsByDate, confirmAndSendRemedy } from '../../../services/userService'
+import { getAllPatientsByDate, confirmAndSendRemedy, cancelBooking } from '../../../services/userService'
 import ModalRemedy from './ModalRemedy'
+import ModalConfirmCancel from './ModalConfirmCancel'
 registerLocale('vi', vi)
 
 function ManagePatients() {
@@ -22,6 +23,7 @@ function ManagePatients() {
     const [dateSelected, setDateSelected] = useState(moment(new Date()).format('DD/MM/YYYY'))
     const [patients, setPatients] = useState([])
     const [isOpenModalRemedy, setIsOpenModalRemedy] = useState(false)
+    const [isOpenModalCancelBooking, setIsOpenModalCancelBooking] = useState(false)
     const dataPatientDefault = {
         email: '',
         idPatient: '',
@@ -30,6 +32,12 @@ function ManagePatients() {
     }
     const [dataPatient, setDataPatient] = useState(dataPatientDefault)
     const [isSendingEmail, setIsSendingEmail] = useState(false)
+    const bookingDataDefault = {
+        bookingId: '',
+        fullName: '',
+        timeType: ''
+    }
+    const [bookingData, setBookingData] = useState(bookingDataDefault)
 
     const handleChangeDatePicker = (date) => {
         setCurrentDate(date)
@@ -65,6 +73,10 @@ function ManagePatients() {
         setIsOpenModalRemedy(false)
     }
 
+    const handleCloseModalCancel = () => {
+        setIsOpenModalCancelBooking(false)
+    }
+
     const sendRemedy = async (email, remedy) => {
         setIsSendingEmail(true)
         let dataSend = {
@@ -87,6 +99,31 @@ function ManagePatients() {
         } else {
             setIsSendingEmail(false)
             toast.error(res.EM)
+        }
+    }
+
+    const handleOpenModalCancel = async (booking) => {
+        setIsOpenModalCancelBooking(true)
+        setBookingData({
+            fullName: booking?.dataPatient?.firstName,
+            bookingId: booking?.id,
+            timeType: booking?.dataTime?.valueVi
+        })
+    }
+
+    const handleDeleteBooking = async () => {
+        if (bookingData) {
+            let res = await cancelBooking(bookingData?.bookingId)
+            if (res.EC === 0) {
+                fetchPatientsByDate()
+                handleCloseModalCancel()
+                toast.success(res.EM)
+            } else {
+                toast.error(res.EM)
+                handleCloseModalCancel()
+            }
+        } else {
+            toast.error('Booking data is empty')
         }
     }
 
@@ -127,6 +164,7 @@ function ManagePatients() {
                                             <td>{language === LANGUAGES.VI ? item?.dataPatient?.genderData?.valueVi : item?.dataPatient?.genderData?.valueEn}</td>
                                             <td>
                                                 <button className='btn btn-warning' onClick={() => handleSendRemedy(item)}><FormattedMessage id="doctor-manage-patients.btn-confirm" /></button>
+                                                <button className='btn btn-danger ms-3' onClick={() => handleOpenModalCancel(item)}><FormattedMessage id="doctor-manage-patients.btn-cancel" /></button>
                                             </td>
                                         </tr>
                                     )
@@ -148,6 +186,13 @@ function ManagePatients() {
                     emailPatient={dataPatient?.email}
                     sendRemedy={sendRemedy}
                     isSendingEmail={isSendingEmail}
+                />
+
+                <ModalConfirmCancel
+                    isOpenModal={isOpenModalCancelBooking}
+                    handleCloseModal={handleCloseModalCancel}
+                    bookingData={bookingData}
+                    handleCancelBooking={handleDeleteBooking}
                 />
 
             </div>

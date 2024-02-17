@@ -143,7 +143,11 @@
     "doctor-manage-patients.gender": "Gender",
     "doctor-manage-patients.actions": "Actions",
     "doctor-manage-patients.btn-confirm": "Confirm",
+    "doctor-manage-patients.btn-cancel": "Cancel",
     "doctor-manage-patients.modal-title": "Send medical bills",
+    "doctor-manage-patients.modal-cancel-booking": "Confirmation of appointment cancellation",
+    "doctor-manage-patients.modal-cancel-mess1": "You definitely want to cancel your medical appointment of",
+    "doctor-manage-patients.modal-cancel-mess2": "at",
     "doctor-manage-patients.modal-email-patient": "Email patient",
     "doctor-manage-patients.modal-remedy": "Attach invoice",
     "doctor-manage-patients.modal-cancel": "Cancel"

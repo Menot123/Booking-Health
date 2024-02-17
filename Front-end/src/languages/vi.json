@@ -142,7 +142,11 @@
     "doctor-manage-patients.gender": "Giới tính",
     "doctor-manage-patients.actions": "Thao tác",
     "doctor-manage-patients.btn-confirm": "Xác nhận",
+    "doctor-manage-patients.btn-cancel": "Hủy bỏ",
     "doctor-manage-patients.modal-title": "Gửi hóa đơn khám bệnh",
+    "doctor-manage-patients.modal-cancel-booking": "Xác nhận hủy lịch khám",
+    "doctor-manage-patients.modal-cancel-mess1": "Bạn chắc chắn muốn hủy lịch hẹn khám bệnh của",
+    "doctor-manage-patients.modal-cancel-mess2": "vào lúc",
     "doctor-manage-patients.modal-email-patient": "Email bệnh nhân",
     "doctor-manage-patients.modal-remedy": "Đính kèm hóa đơn",
     "doctor-manage-patients.modal-cancel": "Hủy bỏ"

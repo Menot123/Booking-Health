@@ -170,6 +170,10 @@ const checkFullScheduleDoctor = (doctorId) => {
     return axios.get(`/api/check-full-schedule?doctorId=${doctorId}`)
 }
 
+const cancelBooking = (bookingId) => {
+    return axios.post(`/api/delete-booking`, { bookingId: bookingId })
+}
+
 
 export {
     fetchAllUser,
@@ -213,5 +217,6 @@ export {
     resetPassword,
     getAllPatientsByDate,
     confirmAndSendRemedy,
-    checkFullScheduleDoctor
+    checkFullScheduleDoctor,
+    cancelBooking
 }
