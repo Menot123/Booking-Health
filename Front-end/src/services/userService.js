@@ -17,6 +17,10 @@ const sendOTP = (email) => {
     return axios.post('/api/forgot-password', { email })
 }
 
+const checkingOTP = (email, otp) => {
+    return axios.post('/api/otp-check', { email, otp })
+}
+
 const resetPassword = (email, password) => {
     return axios.post('/api/reset-password', { email, password })
 }
@@ -214,6 +218,7 @@ export {
     getDoctorsBySpecialtyAndLocation,
     getRoleUser,
     sendOTP,
+    checkingOTP,
     resetPassword,
     getAllPatientsByDate,
     confirmAndSendRemedy,

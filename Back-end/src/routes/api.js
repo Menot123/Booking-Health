@@ -1,4 +1,5 @@
 import express from "express"
+import session from "express-session"
 import apiController from "../controllers/apiController"
 import loginController from "../controllers/loginController"
 import userController from '../controllers/userController'
@@ -12,6 +13,14 @@ import clinic from '../controllers/ClinicController'
 
 const router = express.Router()
 
+
+router.use(
+    session({
+        secret: "my-secret-key",
+        resave: false,
+        saveUninitialized: true,
+    })
+)
 
 
 const initApiRoutes = (app) => {
@@ -56,6 +65,7 @@ const initApiRoutes = (app) => {
     router.post('/login', loginController.handleLogin)
     router.post('/forgot-password', loginController.handleForgotPassword)
     router.post('/reset-password', loginController.handleChangePassword)
+    router.post('/otp-check', loginController.handleCheckingOTP)
 
     router.get('/all-code', apiController.getAllCode);
     router.get('/users', apiController.getUsers);

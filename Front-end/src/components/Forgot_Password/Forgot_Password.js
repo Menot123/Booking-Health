@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Forgot_Password.scss'
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { sendOTP, resetPassword } from '../../services/userService'
+import { sendOTP, resetPassword, checkingOTP } from '../../services/userService'
 
 const Forgot_Password = (props) => {
   // Loading
@@ -14,8 +14,7 @@ const Forgot_Password = (props) => {
 
   // OTP Step
   const [OTP, setOTP] = useState("");
-  const [OTPCheck, setOTPCheck] = useState("");
-  const [countdown, setCountdown] = useState(50);
+  const [countdown, setCountdown] = useState(60);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   // Reset Password Step
@@ -49,7 +48,6 @@ const Forgot_Password = (props) => {
     const res = await sendOTP(email)
     setIsLoading(false);
     if (res.EC == 0) {
-      setOTPCheck(res.DT.OTP)
       setIsEmail(true)
       setIsButtonDisabled(true);
       setCountdown(50);
@@ -69,8 +67,11 @@ const Forgot_Password = (props) => {
     }
   }
 
-  const validateOTP = () => {
-    if (OTP == OTPCheck) {
+  const validateOTP = async () => {
+    setIsLoading(true);
+    const res = await checkingOTP(email, OTP);
+    setIsLoading(false);
+    if (res.EC == 0) {
       setIsCorrectOTP(true)
     }
     else {
@@ -79,13 +80,12 @@ const Forgot_Password = (props) => {
   }
 
   const changePassword = async () => {
-    if (password == confirmPassword) {
+    if (password == confirmPassword && password != '') {
       const res = await resetPassword(email, password)
       if (res.EC == 0) {
         toast.success('Change password was successful, please login!');
         setTimeout(() => {
           setIsCorrectOTP(false)
-          setOTPCheck("")
           setOTP("")
           history.push('/login')
         }, 3000)
@@ -95,7 +95,7 @@ const Forgot_Password = (props) => {
       }
     }
     else {
-      toast.error('Password confirm is incorrect')
+      toast.error('Password confirm is incorrect or you let it empty')
     }
   }
 
