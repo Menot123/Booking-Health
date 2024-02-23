@@ -16,12 +16,7 @@ const Sup = (props) => {
             <div className='text-center mt-0'>
                 <img alt='img-logo-element' className='' src={qr} />
             </div>
-            {/* <div className='fixed-bottom mb-4 me-4 text-end'>
-                <div className='messenger-icon-wrapper' style={{ cursor: 'pointer' }}>
-                    <FaFacebookMessenger size={40} color='white' />
-                </div>
-            </div> */}
-            <MessengerCustomerChat pageId="183765171495047" appId="837110228098958" />
+            <MessengerCustomerChat pageId={process.env.REACT_APP_FACEBOOK_PAGE_ID} appId={process.env.REACT_APP_FACEBOOK_APP_ID} />
         </>
     );
 }
