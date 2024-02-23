@@ -1,7 +1,8 @@
-import { loginChecked, sendForgotPasswordCode, changeUserPassword } from '../services/userService'
+import { loginChecked, sendForgotPasswordCode, changeUserPassword, chekingOTPService } from '../services/userService'
+import express from "express"
+import session from "express-session"
 
-
-let handleLogin = async(req, res) => {
+let handleLogin = async (req, res) => {
     try {
         let { username, password } = req.body;
 
@@ -32,16 +33,21 @@ let handleLogin = async(req, res) => {
 
 }
 
-const handleForgotPassword = async(req, res, next) => {
-    // console.log(req.body);
-    // return res.status(200).json({ EM: 'ok' });
+const handleForgotPassword = async (req, res, next) => {
     try {
         // let userData = req.body.data
+        req.session.canChangePassword = false
         let response = await sendForgotPasswordCode(req.body.email)
+        if (response.EC == 0) {
+            req.session.otp = response.DT.OTP
+            setTimeout(function () {
+                req.session.destroy();
+            }, 120000);
+        }
         return res.status(200).json({
             EM: response.EM,
             EC: response.EC,
-            DT: response.DT
+            DT: {}
         })
 
     } catch (e) {
@@ -54,15 +60,65 @@ const handleForgotPassword = async(req, res, next) => {
     }
 }
 
-const handleChangePassword = async(req, res, next) => {
+const handleCheckingOTP = async (req, res, next) => {
     try {
         // let userData = req.body.data
-        let response = await changeUserPassword(req.body.email, req.body.password)
-        return res.status(200).json({
-            EM: response.EM,
-            EC: response.EC,
-            DT: response.DT
+        let response = await chekingOTPService(req.body.email)
+        if (response.EC == 0) {
+            if (req.session.otp == req.body.otp) {
+                req.session.canChangePassword = true
+                return res.status(200).json({
+                    EM: 'OTP is true',
+                    EC: response.EC,
+                    DT: response.DT
+                })
+            }
+            else {
+                return res.status(200).json({
+                    EM: 'OTP is false',
+                    EC: -1,
+                    DT: response.DT
+                })
+            }
+        }
+        else
+            return res.status(200).json({
+                EM: response.EM,
+                EC: response.EC,
+                DT: response.DT
+            })
+
+    } catch (e) {
+        console.log('Something went wrong from checkingOTP')
+        return res.status(500).json({
+            EM: 'error from server',
+            EC: '-1',
+            DT: ''
         })
+    }
+}
+
+const handleChangePassword = async (req, res, next) => {
+    try {
+        // let userData = req.body.data
+        if (req.session.canChangePassword) {
+            let response = await changeUserPassword(req.body.email, req.body.password)
+            if (response.EC == 0) {
+                req.session.canChangePassword = false
+            }
+            return res.status(200).json({
+                EM: response.EM,
+                EC: response.EC,
+                DT: response.DT
+            })
+        }
+        else {
+            return res.status(200).json({
+                EM: "You do not have permission to change password",
+                EC: -1,
+                DT: {}
+            })
+        }
 
     } catch (e) {
         console.log('Something went wrong from change password')
@@ -74,4 +130,4 @@ const handleChangePassword = async(req, res, next) => {
     }
 }
 
-module.exports = { handleLogin, handleForgotPassword, handleChangePassword }
+module.exports = { handleLogin, handleForgotPassword, handleChangePassword, handleCheckingOTP }

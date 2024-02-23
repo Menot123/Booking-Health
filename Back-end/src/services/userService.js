@@ -4,6 +4,7 @@ import { sendCode } from './mailerService'
 import bcrypt from 'bcryptjs';
 const { Op } = require("sequelize");
 
+
 const salt = bcrypt.genSaltSync(7);
 
 
@@ -392,7 +393,7 @@ const sendForgotPasswordCode = async (email) => {
             const sendOTP = await sendCode(user, OTP);
             res.EC = 0
             res.EM = `Send Code Completed`
-            res.DT = { OTP: OTP, email: email }
+            res.DT = { OTP: OTP }
         } else {
             res.EC = 1
             res.EM = `User not found`
@@ -411,6 +412,43 @@ const sendForgotPasswordCode = async (email) => {
     }
 }
 
+const chekingOTPService = async (email) => {
+    try {
+        let res = {}
+        let user = await db.User.findOne({
+            where: {
+                email: email,
+                status: {
+                    [Op.not]: 'deleted'
+                },
+                roleId: 'R2'
+            },
+            attributes: {
+                include: ['email']
+            }
+        })
+        if (user) {
+            res.EC = 0
+            res.EM = `User is found`
+            res.DT = {}
+        } else {
+            res.EC = 1
+            res.EM = `User not found`
+            res.DT = {}
+        }
+
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with checking otp service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 const changeUserPassword = async (userEmail, newPwd) => {
     try {
         let res = {}
@@ -418,7 +456,6 @@ const changeUserPassword = async (userEmail, newPwd) => {
         let user = await db.User.findOne({
             where: { email: email, roleId: 'R2' }
         })
-
         let hashPassword = await hashUserPassword(newPwd)
         if (user) {
             await user.update({ password: hashPassword })
@@ -446,5 +483,5 @@ const changeUserPassword = async (userEmail, newPwd) => {
 module.exports = {
     loginChecked, getAllCode, getAllUsers, getTypeRoleService, createUserService,
     getUsersPagination, deleteUserService, getDataUserUpdate, updateUserService,
-    handleGetRoleUserService, sendForgotPasswordCode, changeUserPassword
+    handleGetRoleUserService, sendForgotPasswordCode, changeUserPassword, chekingOTPService
 }
