@@ -17,7 +17,7 @@ import Search from '../Search/Search';
 const Nav = (props) => {
     let history = useHistory();
     const dispatch = useDispatch()
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
     const url = window.location.pathname;
 
     const location = useLocation();

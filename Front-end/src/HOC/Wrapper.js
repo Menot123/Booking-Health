@@ -10,7 +10,7 @@ const Wrapper = (props) => {
     const message = useSelector(state => state.language.message)
 
     return (
-        <IntlProvider messages={message} locale={locale} intl={injectIntl}>
+        <IntlProvider messages={message} locale={locale ? locale : 'vi'} intl={injectIntl}>
             {props.children}
         </IntlProvider>
     )

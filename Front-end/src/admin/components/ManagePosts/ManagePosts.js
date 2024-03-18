@@ -36,7 +36,7 @@ function ManagePosts() {
         }));
     };
 
-    const currentLang = useSelector(state => state.userRedux.language)
+    const currentLang = useSelector(state => state.userRedux.currentLang)
 
     const [isLoading, setIsLoading] = useState(false)
     const [posts, setPosts] = useState([])

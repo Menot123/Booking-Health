@@ -17,7 +17,7 @@ function ViewMoreDoctor(props) {
     const [searchInput, setSearchInput] = useState('');
     const [isSearch, setIsSearch] = useState(false);
     const [isEmptySearch, setIsEmptySearch] = useState(false);
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
     const history = useHistory()
 
     useEffect(() => {

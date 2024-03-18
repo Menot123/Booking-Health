@@ -17,7 +17,7 @@ import ModalConfirmCancel from './ModalConfirmCancel'
 registerLocale('vi', vi)
 
 function ManagePatients() {
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
     const idDoctor = useSelector(state => state.userRedux.id)
     const [currentDate, setCurrentDate] = useState(new Date())
     const [dateSelected, setDateSelected] = useState(moment(new Date()).format('DD/MM/YYYY'))

@@ -14,9 +14,6 @@ import { Scrollbars } from 'react-custom-scrollbars'
 import { path } from './utils/index'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
-
 import Login from './components/Login/Login';
 import ForgotPassword from './components/Forgot_Password/Forgot_Password';
 import Home from './components/Home/Home';

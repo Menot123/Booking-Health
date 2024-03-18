@@ -11,7 +11,7 @@ import { translate } from '../../redux/slices/languageSlice'
 const Home = (props) => {
 
     const dispatch = useDispatch()
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
 
     useEffect(() => {
         dispatch(translate(language))

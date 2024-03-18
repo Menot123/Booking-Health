@@ -13,7 +13,7 @@ function VerifyBooking(props) {
     const [verify, setVerify] = useState(false)
     const [status, setStatus] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
 
     useEffect(() => {
         let isMounted = true;

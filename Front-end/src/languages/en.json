@@ -113,7 +113,7 @@
     "homepage.detail-doctor.booking-free": "and make an appointment (booking fee 0 VND)",
     "homepage.detail-doctor.booking-message-warning": "Bạn đang có 1 lịch hẹn khác trùng khung giờ trong hôm nay, vui lòng kiểm tra lại!",
     "homepage.detail-doctor.booking-message": "You have another appointment scheduled today, please check back!",
-    "homepage.detail-doctor.booking-message-success": "Booking appointment was successfully!",
+    "homepage.detail-doctor.booking-message-success": "Please check your email to confirm your appointment!",
     "homepage.detail-doctor.booking-message-error": "Booking appointment error!!",
     "homepage.detail-doctor.message-validate": "Missing parameter, please check!",
     "homepage.detail-doctor.examination-price": "Examination price",

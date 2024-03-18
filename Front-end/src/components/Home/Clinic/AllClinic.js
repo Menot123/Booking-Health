@@ -13,22 +13,32 @@ import { FormattedMessage } from 'react-intl'
 function AllClinic() {
 
     const [Clinics, setClinics] = useState([])
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
     const history = useHistory()
 
 
     useEffect(() => {
-        const fetchDataClinic = async () => {
-            let res = await getClinics()
-            if (res.EC === 0) {
-                setClinics(res.DT)
-            } else {
-                toast.error(res.EM)
-            }
-        }
+        let isMounted = true; // Add a variable to track if the component is mounted
 
-        fetchDataClinic()
-    }, [])
+        const fetchDataClinic = async () => {
+            let res = await getClinics();
+            if (isMounted) {
+                // Check if the component is still mounted before updating the state
+                if (res.EC === 0) {
+                    setClinics(res.DT);
+                } else {
+                    toast.error(res.EM);
+                }
+            }
+        };
+
+        fetchDataClinic();
+
+        return () => {
+            // Cleanup function to cancel any ongoing tasks or subscriptions
+            isMounted = false;
+        };
+    }, []);
 
     const convertImgBase64 = (base64) => {
         let imageBase64 = ''

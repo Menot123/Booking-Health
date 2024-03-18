@@ -21,7 +21,7 @@ function ManageUser() {
 
     const history = useHistory()
 
-    const currentLang = useSelector(state => state.userRedux.language)
+    const currentLang = useSelector(state => state.userRedux.currentLang)
     const userRole = useSelector(state => state.userRedux.role)
     if (userRole !== 'R1') {
         history.push('/login')

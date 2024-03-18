@@ -13,7 +13,7 @@ import { FormattedMessage } from 'react-intl'
 
 function DetailSpecialty() {
 
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
 
     const location = useLocation();
 

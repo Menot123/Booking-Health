@@ -15,7 +15,7 @@ import { FormattedMessage } from 'react-intl'
 
 function DetailDoctor(props) {
 
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
 
 
     const [infoDoctor, setInfoDoctor] = useState('')

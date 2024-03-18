@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     isAuthenticated: false,
+    currentLang: 'vi',
     token: '',
     role: '',
     id: '',
@@ -12,7 +13,6 @@ const initialState = {
         firstName: '',
         lastName: ''
     },
-    currentLang: '',
     isShowCarousel: false,
 
 }
@@ -39,7 +39,7 @@ export const userSlice = createSlice({
             state.account = action.payload
         },
         changeUserLanguage: (state, action) => {
-            state.language = action.payload
+            state.currentLang = action.payload
         },
         setCarousel: (state, action) => {
             state.isShowCarousel = action.payload

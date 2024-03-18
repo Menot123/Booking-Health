@@ -8,12 +8,14 @@ import { useSelector } from 'react-redux'
 import { LANGUAGES } from '../../../utils/index'
 import { useHistory } from 'react-router-dom'
 import { FormattedMessage } from 'react-intl'
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 function AllSpecialty() {
 
     const [specialties, setSpecialties] = useState([])
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
     const history = useHistory()
 
 
@@ -56,17 +58,18 @@ function AllSpecialty() {
             {specialties && specialties.length > 0 &&
                 specialties.map((item, index) => {
                     return (
-                        <>
-                            <div key={'all-specialty' + index} className='all-specialty-item' onClick={() => handleDetailSpecialty(item.id)}>
+                        <React.Fragment key={uuidv4()}>
+                            <div className='all-specialty-item' onClick={() => handleDetailSpecialty(item.id)}>
                                 <img alt='img-element' className='img-specialty' src={convertImgBase64(item.image)} />
                                 <div className='name-specialty'>
                                     <span className='name-specialty-text'>{language === LANGUAGES.VI ? item.nameVi : item.nameEn}</span>
                                 </div>
                             </div>
                             <hr className='hr-line' />
-                        </>
+                        </React.Fragment>
                     )
-                })}
+                })
+            }
 
         </div>
     )

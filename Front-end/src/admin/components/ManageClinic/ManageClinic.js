@@ -28,7 +28,7 @@ const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 function ManageClinic() {
 
-    const currentLang = useSelector(state => state.userRedux.language)
+    const currentLang = useSelector(state => state.userRedux.currentLang)
 
 
     const [nameVi, setNameVi] = useState('')

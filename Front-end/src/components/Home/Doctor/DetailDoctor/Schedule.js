@@ -17,7 +17,7 @@ import _ from 'lodash'
 
 function Schedule(props) {
 
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
     const [listday, setListday] = useState([])
     const [schedules, setSchedules] = useState([])
     const [dateSelected, setDateSelected] = useState(moment(new Date()).format('DD/MM/YYYY'))

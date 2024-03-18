@@ -15,7 +15,7 @@ function Clinic(props) {
     const history = useHistory()
 
 
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
 
 
     const [clinics, setClinics] = useState([])

@@ -113,7 +113,7 @@
     "homepage.detail-doctor.select": "Chọn",
     "homepage.detail-doctor.booking-free": "và đặt lịch (phí đặt lịch 0đ)",
     "homepage.detail-doctor.booking-message-warning": "Bạn đang có 1 lịch hẹn khác trùng khung giờ trong hôm nay, vui lòng kiểm tra lại!",
-    "homepage.detail-doctor.booking-message-success": "Đặt lịch hẹn đã thành công!",
+    "homepage.detail-doctor.booking-message-success": "Vui lòng kiểm tra email để xác nhận lịch hẹn!",
     "homepage.detail-doctor.booking-message-error": "Có lỗi xảy ra khi đặt lịch, vui lòng thử lại!",
     "homepage.detail-doctor.message-validate": "Thiếu thông tin đặt lịch, vui lòng kiểm tra lại!",
     "homepage.all-specialty-examination-specialist": "Chuyên khoa khám",

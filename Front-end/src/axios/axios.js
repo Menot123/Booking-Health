@@ -31,16 +31,7 @@ instance.interceptors.response.use(function (response) {
 
     const status = error && error.response && error.response.status || 500;
     switch (status) {
-        // authentication (token related issues)
-        // case 401: {
-        //     if (window.location.pathname !== '/'
-        //         && window.location.pathname !== '/login') {
-        //         toast.error('Unauthorized the user. Please login ...')
-        //     }
-        //     return error.response.status
-        // }
 
-        // forbidden (permission related issues)
         case 403: {
             toast.error(`You don't have permission to access this resource...`)
             return Promise.reject(error);

@@ -21,7 +21,7 @@ const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 function ManageDoctors() {
 
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
 
 
     const [doctors, setDoctors] = useState([])

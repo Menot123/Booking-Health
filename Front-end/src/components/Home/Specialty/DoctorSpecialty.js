@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function DoctorSpecialty(props) {
 
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
 
 
     const [selectedPosition, setSelectedPosition] = useState('ALL')

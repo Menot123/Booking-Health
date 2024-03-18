@@ -18,10 +18,9 @@ registerLocale('vi', vi)
 
 
 function ManageSchedules() {
-    const language = useSelector(state => state.userRedux.language)
-
-
-
+    const language = useSelector(state => state.userRedux.currentLang)
+    const idDoctor = useSelector(state => state.userRedux.id)
+    const roleDoctor = useSelector(state => state.userRedux.role)
 
     const [doctors, setDoctors] = useState([])
     const [schedules, setSchedules] = useState([])
@@ -78,15 +77,28 @@ function ManageSchedules() {
     }
 
     const buildDataSelectDoctor = (data) => {
-
         let arrDoctor = []
-        data.forEach((item) => {
-            let doctorDataBuild = {
-                value: item.id,
-                label: item.lastName + ' ' + item.firstName
-            }
-            arrDoctor.push(doctorDataBuild)
-        })
+
+        if (roleDoctor === 'R2') {
+            data.forEach((item) => {
+                if (item.id === idDoctor) {
+                    let doctorDataBuild = {
+                        value: item.id,
+                        label: item.lastName + ' ' + item.firstName
+                    }
+                    arrDoctor.push(doctorDataBuild)
+                    return arrDoctor;
+                }
+            })
+        } else {
+            data.forEach((item) => {
+                let doctorDataBuild = {
+                    value: item.id,
+                    label: item.lastName + ' ' + item.firstName
+                }
+                arrDoctor.push(doctorDataBuild)
+            })
+        }
         return arrDoctor;
 
     }
@@ -163,12 +175,23 @@ function ManageSchedules() {
                 <>
                     <div className='manage-schedule-content'>
                         <div className='select-doctors'>
-                            <Select
-                                value={doctorSelect && doctorSelect}
-                                options={doctors.length > 0 ? doctors : []}
-                                placeholder={<FormattedMessage id='admin-manage-doctor.select-doctor' />}
-                                onChange={(e) => handleSelectDoctor(e)}
-                            />
+                            {roleDoctor === 'R2'
+                                ?
+                                <Select
+                                    value={doctorSelect && doctorSelect}
+                                    options={doctors.length > 0 ? doctors : []}
+                                    placeholder={<FormattedMessage id='admin-manage-doctor.select-doctor' />}
+                                    onChange={(e) => handleSelectDoctor(e)}
+                                />
+                                :
+                                <Select
+                                    value={doctorSelect && doctorSelect}
+                                    options={doctors.length > 0 ? doctors : []}
+                                    placeholder={<FormattedMessage id='admin-manage-doctor.select-doctor' />}
+                                    onChange={(e) => handleSelectDoctor(e)}
+                                />
+                            }
+
                         </div>
 
                         <div className='select-date'>

@@ -26,7 +26,7 @@ function Header() {
         dispatch(changeUserLanguage(lang))
     }
 
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
     const role = useSelector(state => state.userRedux.role)
     const nameUserVi = useSelector(state => state.userRedux.account?.firstName +
         ' ' + state.userRedux.account?.lastName)

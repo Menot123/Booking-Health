@@ -26,7 +26,7 @@ import { FaBullseye } from 'react-icons/fa6';
 
 
 function BookingModal(props) {
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
     const [position, setPosition] = useState('')
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')

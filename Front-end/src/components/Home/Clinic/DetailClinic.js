@@ -12,7 +12,7 @@ function DetailClinic() {
     const [imageClinic, setImageClinic] = useState('')
 
     const location = useLocation();
-    const language = useSelector(state => state.userRedux.language)
+    const language = useSelector(state => state.userRedux.currentLang)
 
 
     useEffect(() => {
