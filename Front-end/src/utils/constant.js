@@ -24,6 +24,7 @@ export const path = {
     BLOGDETAIL: '/cam-nang/:id',
     DETAIL_DOCTOR: '/detail-doctor/:id',
     VERIFY_BOOKING: '/verify-booking',
+    CANCEL_BOOKING: '/cancel-booking',
     DETAIL_SPECIALTY: '/specialty/detail',
     DETAIL_CLINIC: '/clinic/detail',
     LIST_SPECIALTY: '/list-specialty',

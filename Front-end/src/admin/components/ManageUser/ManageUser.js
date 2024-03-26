@@ -327,7 +327,7 @@ function ManageUser() {
     return (
         <div>
 
-            <h3 className='text-center mt-3'>Manage User</h3>
+            <h3 className='text-center mt-3'><FormattedMessage id='admin-manage-user.title' /></h3>
             <div className='container'>
                 {isLoading ? <Loader loading={isLoading} /> :
                     <>

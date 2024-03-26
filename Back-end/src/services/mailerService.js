@@ -15,6 +15,7 @@ let sendEmail = async (dataMail) => {
     });
 
     const contentMail = (dataMail) => {
+        console.log('>>>>> dataMail.cancelBooking:', dataMail.cancelBooking)
         let content = ''
         if (dataMail.currentLang === 'vi') {
             content =
@@ -31,6 +32,10 @@ let sendEmail = async (dataMail) => {
                 <p>Vui lòng nhấn vào đường link phía dưới để xác nhận lịch hẹn khám bệnh này.</p>
                 <div><a href=${dataMail.redirectLink} target='_blank'>  
                 Nhấn vào đây
+                </a></div>
+                <b>Hủy lịch hẹn khám bệnh.</b>
+                <div><a href=${dataMail.cancelBooking} target='_blank'>  
+                Nhấn vào đây để hủy lịch hẹn khám bệnh
                 </a></div>
                 <div>Xin cảm ơn quý khách hàng tin dùng Booking Health</div>
                 `
@@ -50,6 +55,10 @@ let sendEmail = async (dataMail) => {
             <div><a href=${dataMail.redirectLink} target='_blank'>  
             Click here
             </a></div>
+            <b>Cancel medical appointment.</b>
+                <div><a href=${dataMail.cancelBooking} target='_blank'>  
+                Click here to cancel your medical appointment
+                </a></div>
             <div>Thank you for trusting Booking Health</div>
             `
         }

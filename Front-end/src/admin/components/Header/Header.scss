@@ -1,77 +1,78 @@
 .navigation-bar {
-    height          : 40px;
-    background-color: rgb(49, 116, 240);
+    height             : 40px;
+    // background-color: rgb(49, 116, 240);
+    width              : 100%;
 
 
     .nav-content-left {
 
 
-        .nav-item {
-            height         : 100%;
-            border-right   : 2px solid rgb(196, 191, 191);
-            display        : flex;
-            align-items    : center;
-            padding        : 0 16px;
-            position       : relative;
-            min-width      : 120px;
-            justify-content: center;
+        // .nav-item {
+        //     height         : 100%;
+        //     border-right   : 2px solid rgb(196, 191, 191);
+        //     display        : flex;
+        //     align-items    : center;
+        //     padding        : 0 16px;
+        //     position       : relative;
+        //     min-width      : 120px;
+        //     justify-content: center;
 
-            span {
+        //     span {
 
-                color          : white !important;
-                text-decoration: none !important;
-            }
+        //         color          : white !important;
+        //         text-decoration: none !important;
+        //     }
 
-            .sub-menu,
-            .sub-menu-long {
-                z-index            : 100;
-                display            : none;
-                position           : absolute;
-                top                : 100%;
-                left               : 0;
-                background-color   : #ededed;
-                // padding         : 0.5rem;
-                box-shadow         : 0 2px 4px rgba(0, 0, 0, 0.1);
-                width              : 130%;
+        //     .sub-menu,
+        //     .sub-menu-long {
+        //         z-index            : 100;
+        //         display            : none;
+        //         position           : absolute;
+        //         top                : 100%;
+        //         left               : 0;
+        //         background-color   : #ededed;
+        //         // padding         : 0.5rem;
+        //         box-shadow         : 0 2px 4px rgba(0, 0, 0, 0.1);
+        //         width              : 130%;
 
-                .wrapper-link {
-                    width  : 100%;
-                    padding: 0.5rem;
+        //         .wrapper-link {
+        //             width  : 100%;
+        //             padding: 0.5rem;
 
-                    &:hover {
-                        background-color: #ccc;
-                    }
+        //             &:hover {
+        //                 background-color: #ccc;
+        //             }
 
-                    a {
-                        text-decoration: none;
-                        color          : #000;
-                        line-height    : 32px;
-                        width          : 100% !important;
-                        font-size      : 0.9rem;
-                    }
-
-
-                }
+        //             a {
+        //                 text-decoration: none;
+        //                 color          : #000;
+        //                 line-height    : 32px;
+        //                 width          : 100% !important;
+        //                 font-size      : 0.9rem;
+        //             }
 
 
-            }
+        //         }
 
-            .sub-menu-long {
-                width: 180%;
 
-            }
+        //     }
 
-            &:hover {
-                cursor: pointer;
-            }
+        //     .sub-menu-long {
+        //         width: 180%;
 
-            &:hover .sub-menu {
-                display       : flex;
-                flex-direction: column;
+        //     }
 
-            }
+        //     &:hover {
+        //         cursor: pointer;
+        //     }
 
-        }
+        //     &:hover .sub-menu {
+        //         display       : flex;
+        //         flex-direction: column;
+
+        //     }
+
+        // }
     }
 
     .nav-content-right {
@@ -79,7 +80,8 @@
         display     : flex;
         gap         : 14px;
         align-items : center;
-        color       : white;
+        color       : #000;
+        font-weight : bold;
 
         .hello-user {
             cursor: text;

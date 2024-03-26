@@ -41,10 +41,10 @@ function Header() {
 
     return (
         <>
-            <div className='navigation-bar d-flex justify-content-between'>
+            <div className='navigation-bar d-flex justify-content-between' >
                 <div className='nav-content-left d-flex '>
 
-                    {role !== 'R2' ?
+                    {/* {role !== 'R2' ?
                         <>
                             <div className='nav-item'>
                                 <span className='nav-item-title'><FormattedMessage id='admin-header.user' /></span>
@@ -107,14 +107,14 @@ function Header() {
                                 </div>
                             </div>
                         </div>
-                    }
+                    } */}
 
 
 
 
                 </div>
 
-                <div className='nav-content-right'>
+                <div div className='nav-content-right' >
                     <div className='hello-user'><FormattedMessage id='admin-header.welcome' /> {nameUserVi && nameUserEn && language === 'vi' ? nameUserVi.toUpperCase() : nameUserEn.toUpperCase()}</div>
                     <div className='change-language'>
                         <span onClick={() => handleChangeLanguage('vi')} className={language === 'vi' ? 'lang-vi active' : 'lang-vi '}>VN</span>
@@ -123,8 +123,8 @@ function Header() {
                     <div className='icon-logout' onClick={() => handleLogout()}>
                         <TbLogout />
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
 
 
         </>

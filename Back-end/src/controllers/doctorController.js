@@ -291,7 +291,7 @@ const checkFullSchedule = async (req, res, next) => {
 
 const deleteBooking = async (req, res) => {
     try {
-        let response = await doctorService.deleteBookingService(req.body)
+        let response = await doctorService.deleteBookingService(req.body.bookingId)
         return res.status(200).json({
             EM: response.EM,
             EC: response.EC,

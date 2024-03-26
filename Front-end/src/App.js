@@ -24,6 +24,7 @@ import AdminRoute from './routes/AdminRoute'
 import BlogRoute from './routes/BlogRoute';
 import DetailDoctor from './components/Home/Doctor/DetailDoctor/DetailDoctor';
 import VerifyBooking from './components/Home/Patient/VerifyBooking';
+import CancelBooking from './components/Home/Patient/CancelBooking';
 import DetailSpecialty from './components/Home/Specialty/DetailSpecialty';
 import DetailClinic from './components/Home/Clinic/DetailClinic';
 import AllSpecialty from './components/Home/Specialty/AllSpecialty';
@@ -74,6 +75,10 @@ function App() {
 
                         <Route path={path.VERIFY_BOOKING}>
                             <VerifyBooking scrollToTop={scrollToTop} />
+                        </Route>
+
+                        <Route path={path.CANCEL_BOOKING}>
+                            <CancelBooking scrollToTop={scrollToTop} />
                         </Route>
 
                         <Route path={path.DETAIL_SPECIALTY}>

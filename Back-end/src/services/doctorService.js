@@ -631,7 +631,6 @@ const checkFullScheduleService = async (data) => {
 const deleteBookingService = async (dataSend) => {
     try {
         let res = {}
-
         if (!dataSend.bookingId) {
             res.EC = 1
             res.EM = 'Missing parameter !'

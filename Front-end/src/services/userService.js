@@ -175,7 +175,7 @@ const checkFullScheduleDoctor = (doctorId) => {
 }
 
 const cancelBooking = (bookingId) => {
-    return axios.post(`/api/delete-booking`, { bookingId: bookingId })
+    return axios.post(`/api/cancel-booking-schedule`, { bookingId: bookingId })
 }
 
 

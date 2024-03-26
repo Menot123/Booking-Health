@@ -58,7 +58,7 @@ const createUserPatientService = async (dataSend) => {
                         },
                     })
                     if (checkExistBooking.length === 0 && finderBooking?.numberPatient < 3) {
-                        await db.Booking_doctor.create({
+                        let booking = await db.Booking_doctor.create({
                             statusId: 'S1',
                             doctorId: dataSend.doctorId,
                             patientId: patient.id,
@@ -74,6 +74,7 @@ const createUserPatientService = async (dataSend) => {
                             currentLang: dataSend.currentLang,
                             doctorBooking: dataSend.nameDoctorBooking,
                             redirectLink: buildTokenVerify(tokenVerify, dataSend.doctorId),
+                            cancelBooking: `${process.env.REACT_URL}/cancel-booking?bookingId=${booking?.dataValues?.id}`
                         })
                     } else {
                         res.EC = 2
@@ -83,7 +84,7 @@ const createUserPatientService = async (dataSend) => {
 
                     }
                 } else {
-                    await db.Booking_doctor.create({
+                    let booking = await db.Booking_doctor.create({
                         statusId: 'S1',
                         doctorId: dataSend.doctorId,
                         patientId: patient.id,
@@ -99,6 +100,7 @@ const createUserPatientService = async (dataSend) => {
                         currentLang: dataSend.currentLang,
                         doctorBooking: dataSend.nameDoctorBooking,
                         redirectLink: buildTokenVerify(tokenVerify, dataSend.doctorId),
+                        cancelBooking: `${process.env.REACT_URL}/cancel-booking?bookingId=${booking?.dataValues?.id}`
                     })
                 }
                 res.EC = 0
@@ -170,6 +172,37 @@ const verifyBookingScheduleService = async (dataSend) => {
     }
 }
 
+const cancelBookingScheduleService = async (dataSend) => {
+    try {
+        let res = {}
+        if (!dataSend.bookingId) {
+            res.EC = 1
+            res.EM = 'Missing parameter !'
+            res.DT = {}
+        } else {
+
+            await db.Booking_doctor.destroy({
+                where: {
+                    id: dataSend.bookingId
+                }
+
+            })
+            res.EC = 0
+            res.EM = `Cancel booking id: ${dataSend.bookingId}  successfully`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with create patient account service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 const getAllPatientsService = async (dataSend) => {
     try {
         let res = {}
@@ -227,5 +260,5 @@ const getAllPatientsService = async (dataSend) => {
 
 
 module.exports = {
-    createUserPatientService, verifyBookingScheduleService, getAllPatientsService
+    createUserPatientService, verifyBookingScheduleService, getAllPatientsService, cancelBookingScheduleService
 }

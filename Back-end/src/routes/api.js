@@ -38,6 +38,7 @@ const initApiRoutes = (app) => {
 
     router.get('/type-role', apiController.getTypeRole)
     router.post('/verify-booking-schedule', patientController.verifyBookingSchedule)
+    router.post('/cancel-booking-schedule', doctorController.deleteBooking)
 
     // Manage specialty
     router.get('/get-specialties', specialty.getSpecialties)
