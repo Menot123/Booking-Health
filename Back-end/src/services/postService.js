@@ -307,6 +307,169 @@ const deletePostService = async (postDelete) => {
     }
 }
 
+const convertBlob2Img = (blob) => {
+    let imageCloud = ''
+    imageCloud = new Buffer.from(blob, 'base64').toString('binary')
+    return imageCloud
+}
+
+const changePostBlobValueToUrl = (posts) => {
+    for (const post in posts) {
+        posts[post].titleImg = convertBlob2Img(posts[post].titleImg)
+    }
+    return posts
+}
+
+// Chatbot
+// Get post by popular
+const getPostsByPopularChatbot = async () => {
+    try {
+        let res = {}
+        let posts = await db.Post.findAll({
+            order: [
+                ['viewCount', 'DESC'],
+                ['createdAt', 'DESC']
+            ],
+            where: {
+                status: {
+                    [Op.not]: 'deleted'
+                }
+            }
+        })
+
+        if (posts) {
+            let postsChatbot = changePostBlobValueToUrl(posts)
+            res.EC = 0
+            res.EM = 'Get posts by popular successfully'
+            res.DT = postsChatbot
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Get posts by popular failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+    }
+}
+
+// Get all post
+const getAllPostServiceChatbot = async () => {
+    try {
+        let res = {}
+        let posts = await db.Post.findAll({
+            order: [['createdAt', 'DESC']],
+            where: {
+                status: {
+                    [Op.not]: 'deleted'
+                }
+            }
+        })
+
+        if (posts) {
+            let postsChatbot = changePostBlobValueToUrl(posts)
+            res.EC = 0
+            res.EM = 'Get all posts successfully'
+            res.DT = postsChatbot
+            return res
+        } else {
+            res.EC = 1
+            res.EM = 'Get all posts failed'
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+    }
+}
+
+// Get post with post ID
+const getPostWithIdServiceChatbot = async (postId) => {
+    try {
+        let res = {}
+        let post = await db.Post.findOne({
+            order: [['createdAt', 'DESC']],
+            where: {
+                id: postId,
+                status: {
+                    [Op.not]: 'deleted'
+                }
+            }
+        })
+        if (post) {
+            let postsChatbot = changePostBlobValueToUrl(post)
+            res.EC = 0
+            res.EM = `Get post with id ${postId} successfully`
+            res.DT = { postsChatbot }
+        } else {
+            res.EC = 1
+            res.EM = `Post with id ${postId} not found`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get post from id service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
+// Get post with post type
+const getPostsByTypeChatbot = async (type) => {
+    try {
+        let res = {}
+        let posts = await db.Post.findAll({
+            order: [
+                ['viewCount', 'DESC'],
+                ['createdAt', 'DESC']
+            ],
+            where: {
+                [Op.or]: [
+                    {
+                        type: {
+                            [Op.like]: `%${type}%`
+                        }
+                    },
+                    {
+                        description: {
+                            [Op.like]: `%${type}%`
+                        }
+                    }
+                ],
+                status: {
+                    [Op.not]: 'deleted'
+                }
+            }
+        })
+        if (posts) {
+            let postsChatbot = changePostBlobValueToUrl(posts)
+            res.EC = 0
+            res.EM = `Get post with type ${type} successfully`
+            res.DT = { postsChatbot }
+        } else {
+            res.EC = 1
+            res.EM = `Post with type ${type} not found`
+            res.DT = {}
+        }
+        return res
+
+    } catch (e) {
+        console.log('>>> error from service: ', e)
+        return {
+            EM: 'Something wrong with get post from id service',
+            EC: 1,
+            DT: ''
+        }
+    }
+}
+
 module.exports = {
     getAllPostService,
     getPostsPagination,
@@ -316,5 +479,9 @@ module.exports = {
     createPostService,
     getPostsByType,
     getPostsByPopular,
-    postViewCountAddOne
+    postViewCountAddOne,
+    getPostsByPopularChatbot,
+    getAllPostServiceChatbot,
+    getPostWithIdServiceChatbot,
+    getPostsByTypeChatbot
 }

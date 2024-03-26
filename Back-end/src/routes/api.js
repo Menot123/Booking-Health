@@ -49,6 +49,13 @@ const initApiRoutes = (app) => {
     router.get('/get-posts-by-type', postController.getPostsWithType)
     router.get('/get-posts-by-popular', postController.getPostsWithPopular)
     router.put('/add-post-view-count', postController.handleUpdatePostViewCount)
+
+    // Post Router for chatbot
+    router.get('/get-posts-chatbot', postController.getAllPostChatbot)
+    router.get('/get-post-chatbot', postController.getPostWithIdChatbot)
+    router.get('/get-posts-by-type-chatbot', postController.getPostsWithTypeChatbot)
+    router.get('/get-posts-by-popular-chatbot', postController.getPostsWithPopularChatbot)
+
     // Manage clinic
     router.get('/get-clinics', clinic.getClinics)
     router.get('/get-detail-clinic', clinic.getDetailClinic)
@@ -60,7 +67,7 @@ const initApiRoutes = (app) => {
     router.get('/check-full-schedule', doctorController.checkFullSchedule)
 
 
-    router.all('*', checkUserJWT);
+    // router.all('*', checkUserJWT);
 
     router.post('/login', loginController.handleLogin)
     router.post('/forgot-password', loginController.handleForgotPassword)
